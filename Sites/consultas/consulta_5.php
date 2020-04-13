@@ -4,7 +4,7 @@
 
   <?php
     # Llama a conexion, crea el objeto PDO y obtiene la variable $db
-    require("../config/conexion.php")
+    require("../config/conexion.php");
 
     $ciudad = $_POST["ciudad"];
     $apertura = $_POST["apertura"];

@@ -4,7 +4,7 @@
 
   <?php
     # Llama a conexion, crea el objeto PDO y obtiene la variable $db
-    require("../config/conexion.php")
+    require("../config/conexion.php");
 
     #Se construye la consulta como un string
     $query = "SELECT DISTINCT nombre FROM obras;";

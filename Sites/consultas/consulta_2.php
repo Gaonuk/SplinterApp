@@ -1,16 +1,22 @@
 <?php include('../templates/header.html')?>
 
-<main id="main">
+  <main id="main">
 
-<?php
+  <?php
     # Llama a conexion, crea el objeto PDO y obtiene la variable $db
-  require("../config/conexion.php")
+    require("../config/conexion.php");
 
     #Se construye la consulta como un string
-    // $query = ;
+    $query = "SELECT nombre FROM lugares, plazas, 
+    (SELECT lid FROM obras_en,
+    (SELECT oid FROM realizo ,
+    (SELECT aid FROM artistas WHERE nombre LIKE 'Gian Lorenzo Bernini') AS gid
+    WHERE realizo.aid = gid.aid) AS ogid
+    WHERE ogid.oid = obras_en.oid) AS logid
+    WHERE plazas.lid = lugares.lid AND logid.lid = lugares.lid;";
 
     #Se prepara y ejecuta la consulta. Se obtienen TODOS los resultados 
-    $result = $db -> prepare("SELECT nombre FROM lugares, plazas, (SELECT lid FROM obras_en, (SELECT oid FROM realizo ,(SELECT aid FROM artistas WHERE nombre LIKE 'Gian Lorenzo Bernini') AS gid WHERE realizo.aid = gid.aid) AS ogid WHERE ogid.oid = obras_en.oid) AS logid WHERE plazas.lid = lugares.lid AND logid.lid = lugares.lid;");
+    $result = $db -> prepare($query);
     $result -> execute();
     $plazas = $result -> fetchAll();
 
