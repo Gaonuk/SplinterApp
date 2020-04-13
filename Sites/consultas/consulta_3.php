@@ -10,10 +10,10 @@
     $pais = $_POST["pais"];
 
     #Se construye la consulta como un string
-    $query = "SELECT museosl.nombre FROM obras_en, obras,
-        (SELECT ubica_en.lid FROM ubica_en,
+    $query = "SELECT museospais.nombre FROM obras_en, obras,
+        (SELECT ubica_en.lid, museosl.nombre FROM ubica_en,
         (SELECT cid FROM ciudades WHERE LOWER(ciudades.pais) LIKE LOWER('%$pais%')) AS cpais,
-        (SELECT museos.lid FROM museos, lugares WHERE museos.lid = lugares.lid) AS museosl
+        (SELECT museos.lid, museos.nombre FROM museos, lugares WHERE museos.lid = lugares.lid) AS museosl
         WHERE cpais.cid = ubica_en.cid AND museosl.lid = ubica_en.lid) AS museospais
         WHERE obras_en.oid = obras.oid AND obras.periodo = 'Renacimiento' AND museospais.lid = obras_en.lid";
 
