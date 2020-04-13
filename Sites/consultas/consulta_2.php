@@ -7,16 +7,10 @@
     require("../config/conexion.php")
 
     #Se construye la consulta como un string
-    $query = "SELECT nombre FROM lugares, plazas, 
-    (SELECT lid FROM obras_en,
-    (SELECT oid FROM realizo ,
-    (SELECT aid FROM artistas WHERE nombre LIKE 'Gian Lorenzo Bernini') AS gid
-    WHERE realizo.aid = gid.aid) AS ogid
-    WHERE ogid.oid = obras_en.oid) AS logid
-    WHERE plazas.lid = lugares.lid AND logid.lid = lugares.lid;";
+    // $query = ;
 
     #Se prepara y ejecuta la consulta. Se obtienen TODOS los resultados 
-    $result = $db -> prepare($query);
+    $result = $db -> prepare("SELECT nombre FROM lugares, plazas, (SELECT lid FROM obras_en, (SELECT oid FROM realizo ,(SELECT aid FROM artistas WHERE nombre LIKE 'Gian Lorenzo Bernini') AS gid WHERE realizo.aid = gid.aid) AS ogid WHERE ogid.oid = obras_en.oid) AS logid WHERE plazas.lid = lugares.lid AND logid.lid = lugares.lid;");
     $result -> execute();
     $plazas = $result -> fetchAll();
 
