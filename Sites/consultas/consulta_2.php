@@ -22,20 +22,8 @@
 
 ?>
 
-    <!-- ======= Breadcrumbs ======= -->
-    <section id="breadcrumbs" class="breadcrumbs" data-aos="fade-up">
-      <div class="container">
+<?php include("../templates/breadcrumbs.html")?>
 
-        <div class="d-flex justify-content-between align-items-center">
-          <h2>Consultas</h2>
-          <ol>
-            <li><a href="index.html">Home</a></li>
-            <li>Consultas</li>
-          </ol>
-        </div>
-
-      </div>
-    </section><!-- End Breadcrumbs -->
 
     <!-- ======= Portfolio Details Section ======= -->
     <section id="portfolio-details" class="portfolio-details" data-aos="fade-up" data-aos-delay="100">
