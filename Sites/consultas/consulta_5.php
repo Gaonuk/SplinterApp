@@ -13,7 +13,7 @@
     #Se construye la consulta como un string
     $query = "SELECT igs_en.nombre, frescos_all.nombre from (select igls.lid, igls.nombre from 
         (select lugares.lid, lugares.nombre from iglesias, lugares where lugares.lid = iglesias.lid 
-        and iglesias.horario_in >= '$apertura' and iglesias.horario_fin <= '$cierre') as igls, ubica_en, ciudades 
+        and iglesias.horario_in >= '%$apertura%' and iglesias.horario_fin <= '%$cierre%') as igls, ubica_en, ciudades 
         where LOWER(ciudades.nombre) like LOWER('%$ciudad%') and ciudades.cid = ubica_en.cid 
         and igls.lid = ubica_en.lid) as igs_en, (select obras.oid, obras.nombre from obras, frescos 
         where obras.oid = frescos.oid) as frescos_all, obras_en where igs_en.lid = obras_en.lid 
