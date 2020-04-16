@@ -11,7 +11,7 @@
     $cierre = $_POST["cierre"];
 
     #Se construye la consulta como un string
-    $query = "SELECT igs_en.nombre, frescos_all.nombre from (select igls.lid, igls.nombre from 
+    $query = "SELECT DISTINCT igs_en.nombre, frescos_all.nombre from (select igls.lid, igls.nombre from 
         (select lugares.lid, lugares.nombre from iglesias, lugares where lugares.lid = iglesias.lid 
         and iglesias.horario_in >= '%$apertura%' or iglesias.horario_fin <= '%$cierre%') as igls, ubica_en, ciudades 
         where LOWER(ciudades.nombre) like LOWER('%$ciudad%') and ciudades.cid = ubica_en.cid 
