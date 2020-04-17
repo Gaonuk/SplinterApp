@@ -7,7 +7,7 @@
     require("../config/conexion.php");
 
     #Se construye la consulta como un string
-    $query = "SELECT lugar_periodo.nombre, lugar_periodo.cantidad_periodo
+    $query = "SELECT lugar_periodo.nombre
     FROM
     (SELECT lugares.nombre, COUNT(DISTINCT obras.periodo) AS cantidad_periodo 
     FROM lugares, obras, obras_en
