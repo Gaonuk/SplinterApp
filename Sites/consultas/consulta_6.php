@@ -7,7 +7,14 @@
     require("../config/conexion.php");
 
     #Se construye la consulta como un string
-    $query = "SELECT igs_en.nombre, frescos_all.nombre from (select igls.lid, igls.nombre from (select lugares.lid, lugares.nombre from iglesias, lugares where lugares.lid = iglesias.lid and iglesias.horario_in >= '$apertura' and iglesias.horario_fin <= '$cierre') as igls, ubica_en, ciudades where LOWER(ciudades.nombre) like LOWER('%$ciudad%') and ciudades.cid = ubica_en.cid and igls.lid = ubica_en.lid) as igs_en, (select obras.oid, obras.nombre from obras, frescos where obras.oid = frescos.oid) as frescos_all, obras_en where igs_en.lid = obras_en.lid and obras_en.oid = frescos_all.oid;";
+    $query = "SELECT lugar_periodo.nombre, lugar_periodo.cantidad_periodo
+    FROM
+    (SELECT lugares.nombre, COUNT(DISTINCT obras.periodo) AS cantidad_periodo 
+    FROM lugares, obras, obras_en
+    WHERE obras.oid = obras_en.oid and lugares.lid = obras_en.lid 
+    GROUP BY lugares.nombre) AS lugar_periodo,
+    (SELECT COUNT(DISTINCT periodo) AS total_periodo FROM obras) AS total
+    WHERE total.total_periodo = lugar_periodo.cantidad_periodo;";
 
     #Se prepara y ejecuta la consulta. Se obtienen TODOS los resultados 
     $result = $db -> prepare($query);
