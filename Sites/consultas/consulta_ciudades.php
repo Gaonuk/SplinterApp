@@ -7,7 +7,7 @@
   $pais = strtolower($_POST["pais"]);
   $pais1 = ucfirst(strtolower($_POST["pais"]));
  	$query = "SELECT nombreciudad, nombrepais FROM ciudades where nombrepais like '%$pais%' or nombrepais like '%$pais1%';";
-	$result = $db_par -> prepare($query);
+	$result = $db_impar -> prepare($query);
 	$result -> execute();
 	$ciudades = $result -> fetchAll();
   ?>

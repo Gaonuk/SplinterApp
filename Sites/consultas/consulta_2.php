@@ -16,7 +16,7 @@
     WHERE plazas.lid = lugares.lid AND logid.lid = lugares.lid;";
 
     #Se prepara y ejecuta la consulta. Se obtienen TODOS los resultados 
-    $result = $db_impar -> prepare($query);
+    $result = $db_par -> prepare($query);
     $result -> execute();
     $plazas = $result -> fetchAll();
 

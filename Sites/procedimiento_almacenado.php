@@ -10,7 +10,7 @@
     $query = "SELECT DISTINCT nombre FROM artistas;";
 
     #Se prepara y ejecuta la consulta. Se obtienen TODOS los resultados 
-    $result = $db_impar -> prepare($query);
+    $result = $db_par -> prepare($query);
     $result -> execute();
     $rows = $result -> fetchAll();
     foreach ($rows as $key => $value){

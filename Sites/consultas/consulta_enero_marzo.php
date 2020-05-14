@@ -7,7 +7,7 @@
   require("../config/conexion.php");
 
  	$query = "SELECT usuarios.uid, usuarios.nombreusuario, reservas.fechainicio, reservas.fechatermino, hoteles.nombrehotel FROM usuarios, reservas, hoteles WHERE usuarios.uid=reservas.uid AND hoteles.hid=reservas.hid AND reservas.fechainicio >= '2020-01-01' AND reservas.fechatermino <= '2020-03-31';";
-	$result = $db_par -> prepare($query);
+	$result = $db_impar -> prepare($query);
 	$result -> execute();
 	$data = $result -> fetchAll();
   ?>

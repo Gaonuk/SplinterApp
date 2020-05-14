@@ -17,7 +17,7 @@
     WHERE total.total_periodo = lugar_periodo.cantidad_periodo;";
 
     #Se prepara y ejecuta la consulta. Se obtienen TODOS los resultados 
-    $result = $db_impar -> prepare($query);
+    $result = $db_par -> prepare($query);
     $result -> execute();
     $result = $result -> fetchAll();
 

@@ -10,7 +10,7 @@
 	$F2 = $_POST["F2"];
 
  	$query = "SELECT usuarios.uid, SUM(destinos.precio) FROM usuarios, tickets, destinos WHERE usuarios.uid = tickets.uid AND tickets.did = destinos.did AND tickets.fechacompra >= '$F1' AND tickets.fechacompra <= '$F2' GROUP BY usuarios.uid;";
-	$result = $db_par -> prepare($query);
+	$result = $db_impar -> prepare($query);
 	$result -> execute();
 	$usuario = $result -> fetchAll();
   ?>

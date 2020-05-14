@@ -10,7 +10,7 @@
     $query = "SELECT DISTINCT nombre FROM obras;";
 
     #Se prepara y ejecuta la consulta. Se obtienen TODOS los resultados 
-    $result = $db_impar -> prepare($query);
+    $result = $db_par -> prepare($query);
     $result -> execute();
     $obras = $result -> fetchAll();
 

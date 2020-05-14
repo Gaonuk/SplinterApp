@@ -12,7 +12,7 @@
  	$query = "SELECT ciudades.nombrepais, username FROM ciudades, hoteles, reservas, usuarios WHERE LOWER(usuarios.username) LIKE LOWER('%$username%') AND reservas.uid=usuarios.uid AND reservas.hid=hoteles.hid AND hoteles.nombreciudad=ciudades.cid AND reservas.fechainicio < '$ahora' GROUP BY nombrepais, username ORDER BY username;";
 
   #Se prepara y ejecuta la consulta. Se obtienen TODOS los resultados
-	$result = $db_par -> prepare($query);
+	$result = $db_impar -> prepare($query);
 	$result -> execute();
 	$usuarios = $result -> fetchAll();
   ?>
