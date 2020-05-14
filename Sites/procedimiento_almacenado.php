@@ -1,4 +1,4 @@
-<?php include('../templates/header.html')?>
+<?php include('templates/header.html')?>
 
   <main id="main">
 
@@ -23,4 +23,4 @@
     }
 ?>
 
-<?php include("../templates/breadcrumbs.html")?>
+<?php include("templates/breadcrumbs.html")?>
