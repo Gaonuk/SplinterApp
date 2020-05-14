@@ -7,7 +7,7 @@
   require("../config/conexion.php");
 
  	$query = "SELECT username, correo FROM usuarios;";
-	$result = $db -> prepare($query);
+	$result = $db_par -> prepare($query);
 	$result -> execute();
 	$usuarios = $result -> fetchAll();
   ?>

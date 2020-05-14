@@ -9,7 +9,7 @@
   $var = intval($var);
   $ahora = date("Y-m-d");
   $query = "SELECT SUM(destinos.precio) FROM destinos, tickets where destinos.did = tickets.did and tickets.uid = $var and tickets.fechacompra::date <= '$ahora' group by tickets.uid;";
-  $result = $db -> prepare($query);
+  $result = $db_par -> prepare($query);
   $result -> execute();
   $dinero = $result -> fetchAll(); #Obtiene todos los resultados de la consulta en forma de un arreglo
   

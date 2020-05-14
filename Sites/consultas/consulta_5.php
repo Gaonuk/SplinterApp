@@ -14,7 +14,7 @@
     $query = "SELECT DISTINCT lugar_ciudad.nombre, frescos_lugar.nombre FROM (SELECT lid FROM iglesias WHERE horario_in >= '$apertura' OR horario_fin <= '$cierre') AS iglesiash, (SELECT lugares.lid, lugares.nombre FROM lugares, ciudades, ubica_en WHERE LOWER(ciudades.nombre) LIKE LOWER('%$ciudad%') AND ciudades.cid = ubica_en.cid AND lugares.lid = ubica_en.lid) AS lugar_ciudad, (SELECT obras_en.lid, obras.nombre FROM obras, frescos, obras_en WHERE obras.oid = frescos.oid AND obras_en.oid = obras.oid) AS frescos_lugar WHERE iglesiash.lid = lugar_ciudad.lid AND iglesiash.lid = frescos_lugar.lid;";
 
     #Se prepara y ejecuta la consulta. Se obtienen TODOS los resultados 
-    $result = $db -> prepare($query);
+    $result = $db_impar -> prepare($query);
     $result -> execute();
     $tuplas = $result -> fetchAll();
 

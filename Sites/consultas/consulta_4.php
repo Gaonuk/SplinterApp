@@ -12,7 +12,7 @@
     WHERE realizo.oid = obras.oid AND artistas.aid = realizo.aid GROUP BY artistas.nombre;";
 
     #Se prepara y ejecuta la consulta. Se obtienen TODOS los resultados 
-    $result = $db -> prepare($query);
+    $result = $db_impar -> prepare($query);
     $result -> execute();
     $artistas = $result -> fetchAll();
 

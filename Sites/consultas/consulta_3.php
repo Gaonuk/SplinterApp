@@ -13,7 +13,7 @@
     $query = "SELECT distinct museos_en.nombre from (select ms.lid, ms.nombre from (select cid from ciudades where lower(ciudades.pais) like LOWER('%$pais%')) as cpais, ubica_en, (select lugares.lid, lugares.nombre from lugares,museos where museos.lid = lugares.lid) as ms where cpais.cid = ubica_en.cid and ms.lid = ubica_en.lid) as museos_en, obras_en, obras where obras.oid = obras_en.oid and museos_en.lid = obras_en.lid and obras.periodo='Renacimiento';";
 
     #Se prepara y ejecuta la consulta. Se obtienen TODOS los resultados 
-    $result = $db -> prepare($query);
+    $result = $db_impar -> prepare($query);
     $result -> execute();
     $iglesias = $result -> fetchAll();
 
