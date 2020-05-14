@@ -4,7 +4,7 @@
 
 <?php
 
-    require("../config/conexion.php");
+    require("config/conexion.php");
 
     #Se construye la consulta como un string
     $query = "SELECT DISTINCT nombre FROM artistas;";
