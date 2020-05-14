@@ -3,7 +3,7 @@
 
 <body>
 <h3 align="center"> Iniciar Sesión</h3>
-<form align="center" action="login.php" method="post">
+<form align="center" action="usuario/login.php" method="post">
     Username
     <input type="text" name="username">
     <br/><br/>
