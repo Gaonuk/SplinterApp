@@ -12,9 +12,9 @@
     $rows = 0;
     $uid = $uid[0][0];
     $uid++;
-    $query = "INSERT INTO usuarios(uid, nombreusuario, username, correo, direccion) VALUES ($uid, $nombreusuario, $username, $email, $direccion);";
-    $result = $db_impar -> prepare($query);
-    $result -> execute();
-    echo $uid;
+    $query2 = "INSERT INTO usuarios(uid, nombreusuario, username, correo, direccion) VALUES ($uid, $nombreusuario, $username, $email, $direccion);";
+    $result2 = $db_impar -> prepare($query2);
+    $result2 -> execute();
+    $print2 = $result2 -> fetchAll();
   }
 ?>
