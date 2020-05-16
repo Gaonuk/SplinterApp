@@ -16,8 +16,9 @@
     foreach ($rows as $key => $value){
         echo '
         <div class="label-container">
-            <input type="checkbox" name="artista[]" id="'. $value['nombre'] . '" value="'. $value['nombre'] .'">
-            <label for="Artistas">Artistas</label>
+            <input type="checkbox" id="nombre_artista" value="'. $value['nombre'] .'" name="'. $value['nombre'] .'">
+            <label for="'. $value['nombre'] .'">  '$value['nombre']'
+            </label><br>
         </div>
         ';
     }
