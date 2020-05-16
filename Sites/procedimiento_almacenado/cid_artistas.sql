@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION cid_artistas(lista_artistas)
+CREATE OR REPLACE FUNCTION cid_artistas(lista_artistas VARCHAR)
 RETURNS TABLE (cid INT, artista VARCHAR) AS
 $$
 BEGIN
