@@ -17,7 +17,7 @@
         echo '
         <div class="label-container">
             <input type="checkbox" id="nombre_artista" value="'. $value['nombre'] .'" name="'. $value['nombre'] .'">
-            <label for="'. $value['nombre'] .'">  '$value['nombre']'
+            <label for="'. $value['nombre'] .'">  '.$value['nombre'].'
             </label><br>
         </div>
         ';
