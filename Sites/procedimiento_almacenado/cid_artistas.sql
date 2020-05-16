@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION cid_artistas(lista_artistas VARCHAR)
+CREATE OR REPLACE FUNCTION cid_artistas(lista_artistas SET)
 RETURNS TABLE (cid INT, artista VARCHAR) AS $$
 BEGIN
 RETURN QUERY EXECUTE 'SELECT DISTINCT ubica_en.cid, artistas.nombre
