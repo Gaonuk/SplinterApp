@@ -9,6 +9,6 @@
 ?>
 
 <?php
-    <p>La fecha es '$fecha' y la ciudad '$ciudad_origen'</p>
+    <p>La fecha es '$fecha' y la ciudad '$ciudad_origen'</p>;
 
 ?>
