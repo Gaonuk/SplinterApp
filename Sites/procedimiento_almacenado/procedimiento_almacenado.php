@@ -48,7 +48,7 @@
             ';
         }
     ?>
-    </datalist>
+    </datalist><br>
 
 <!--Date para la fecha de inicio-->
     <label for="fecha">Fecha:</fecha><br>
