@@ -45,7 +45,8 @@
         foreach ($rows as $key => $value){
             echo'
             <option value=" '. $value['nombre'] .'>
-            '
+            ';
+        }
     ?>
     </datalist>
 
