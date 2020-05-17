@@ -3,8 +3,8 @@
   <main id="main">
 
 <?php
-    $ciudad_origen = $_POST["ciudad_origen"]
-    $fecha = $_POST["fecha"]
+    $ciudad_origen = $_POST["ciudad_origen"];
+    $fecha = $_POST["fecha"];
 
 ?>
 
