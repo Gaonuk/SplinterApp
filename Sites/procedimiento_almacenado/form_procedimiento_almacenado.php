@@ -53,9 +53,10 @@
 <!--Date para la fecha de inicio-->
     <label for="fecha">Fecha:</fecha><br>
     <input type="date" id="fecha" name="fecha">
+    <br>
 
 <!--Sumbit boton envia a procedimiento_almacenado.php -->
-    <input type="sumbit" value="Buscar" class="boton-busqueda">
+    <input type="submit" value="Buscar" class="boton-busqueda">
 
 
 </form>
