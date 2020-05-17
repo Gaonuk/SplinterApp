@@ -50,6 +50,10 @@
     ?>
     </datalist>
 
+<!--Date para la fecha de inicio-->
+    <label for="fecha">Fecha:</fecha><br>
+    <input type="date" id="fecha" name="fecha">
+
 </form>
 
 <?php include("../templates/breadcrumbs.html")?>
