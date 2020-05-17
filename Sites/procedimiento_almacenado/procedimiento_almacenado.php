@@ -4,7 +4,7 @@
 
 <form>
 
-#CheckBox para nombre de artistas
+<!--CheckBox para nombre de artistas-->
     <label for="nombre_artistas">Artistas:</label><br>
     <?php
 
@@ -29,7 +29,7 @@
 
     ?>
 
-#Datalist para la ciudad de origen
+<!--Datalist para la ciudad de origen-->
     <label for="ciudad_origen">Ciudad de Origen:</label><br>
     <input list="ciudades">
     <datalist id="ciudades">
@@ -44,7 +44,7 @@
         $rows = $result -> fetchAll();
         foreach ($rows as $key => $value){
             echo'
-            <option value=" '. $value['nombre'] .'>
+            <option value=" '. $value['nombre'] .' ">
             ';
         }
     ?>
