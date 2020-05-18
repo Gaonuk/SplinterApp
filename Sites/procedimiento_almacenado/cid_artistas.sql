@@ -1,8 +1,8 @@
 CREATE OR REPLACE FUNCTION
 cid_artistas(lista_artistas VARCHAR)
-RETURNS TABLE (ubica_en.cid INT, artistas.nombre VARCHAR) AS $$
+RETURNS TABLE (cid INT, nombre VARCHAR) AS $$
 BEGIN
-RETURN QUERY EXECUTE 'SELECT DISTINCT ubica_en.cid, artistas.nombre
+RETURN QUERY EXECUTE 'SELECT DISTINCT ubica_en.cid AS cid, artistas.nombre AS nombre
     FROM artistas, ciudades, obras, obras_en, realizo, ubica_en
     WHERE artistas.aid = realizo.aid AND obras.oid = realizo.oid AND obras.oid = obras_en.oid AND ubica_en.lid = obras_en.lid
     AND artistas.nombre IN $1'
