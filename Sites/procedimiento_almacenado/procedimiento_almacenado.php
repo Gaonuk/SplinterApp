@@ -22,7 +22,7 @@
     $query = 'SELECT DISTINCT ubica_en.cid AS cid, artistas.nombre AS nombre
     FROM artistas, ciudades, obras, obras_en, realizo, ubica_en
     WHERE artistas.aid = realizo.aid AND obras.oid = realizo.oid AND obras.oid = obras_en.oid AND ubica_en.lid = obras_en.lid
-    AND artistas.nombre IN (\''.implode("','", $nombre_artista).'\')';
+    AND artistas.nombre IN  (\''.implode("','", $nombre_artistas).'\')      ';
 
     #Se prepara y ejecuta la consulta. Se obtienen TODOS los resultados
     $result = $db_par -> prepare($query);
