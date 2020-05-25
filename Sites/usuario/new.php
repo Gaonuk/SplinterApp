@@ -8,7 +8,7 @@
 
     #Verificamos que no exista el username
     $query_username_unico = "SELECT usuarios.username FROM usuarios WHERE usuarios.username = '$username';";
-    $result = $db_impar -> prepare($query);
+    $result = $db_impar -> prepare($query_username_unico);
     $result -> execute();
     $usuario = $result -> fetchAll();
     $rows = 0;
@@ -26,7 +26,7 @@
       $uid = $uid[0][0];
       $uid++;
 
-      $query2 = "INSERT INTO usuarios(uid, nombreusuario, username, correo, direccion) VALUES ($uid, $nombreusuario, $username, $email, $direccion);";
+      $query2 = "INSERT INTO usuarios(uid, nombreusuario, username, correo, direccion) VALUES ('$uid', '$nombreusuario', '$username', '$email', '$direccion');";
       $result2 = $db_impar -> prepare($query2);
       $result2 -> execute();
       $print2 = $result2 -> fetchAll();
