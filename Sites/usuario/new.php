@@ -26,7 +26,7 @@
       $uid = $uid[0][0];
       $uid++;
 
-      $query2 = "INSERT INTO usuarios(uid, nombreusuario, username, correo, direccion) VALUES ('$uid', '$nombreusuario', '$username', '$email', '$direccion');";
+      $query2 = "INSERT INTO usuarios(uid, nombreusuario, username, correo, direccion) VALUES ($uid, '$nombreusuario', '$username', '$email', '$direccion');";
       $result2 = $db_impar -> prepare($query2);
       $result2 -> execute();
       $print2 = $result2 -> fetchAll();
