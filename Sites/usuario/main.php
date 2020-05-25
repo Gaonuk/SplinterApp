@@ -35,11 +35,11 @@ Comprar Tickets
       ?>  
       <?  
         $conn = pg_pconnect("dbname=$db_impar");
-        $result = pg_query($conn, "SELECT nombreciudad from ciudades;"); 
+        $result = pg_query($conn, "SELECT cid, nombreciudad from ciudades;"); 
         while($row_list=pg_fetch_array($list)){
           ?>
-          <option value=<?php echo $row_list["id"]; ?>>
-          <?php echo $row_list["name"]; ?> 
+          <option value=<?php echo $row_list["cid"]; ?>>
+          <?php echo $row_list["nombreciudad"]; ?> 
           </option>
           <?php
           }
