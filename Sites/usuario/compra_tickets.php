@@ -4,7 +4,7 @@ $login_session = intval($login_session);
 $fecha_viaje = $_POST["fecha_viaje"];
 echo "ID Usuario: $login_session. Buscando viajes para $fecha_viaje";
 
-$query = "SELECT partidas.nombreciudad, llegadas.nombreciudad, destinos.horasalida, destinos.duracion, destinos.medio, destinos.precio FROM destinos, ciudades AS partidas, ciudades AS llegadas WHERE partidas.cid = destinos.ciudadorigen and llegadas.cid = destinos.ciudaddestino and destinos.fechaviaje = '$fecha_viaje;";
+$query = "SELECT partidas.nombreciudad, llegadas.nombreciudad, destinos.horasalida, destinos.duracion, destinos.medio, destinos.precio FROM destinos, ciudades AS partidas, ciudades AS llegadas WHERE partidas.cid = destinos.ciudadorigen and llegadas.cid = destinos.ciudaddestino;";
 $result = $db_impar -> prepare($query);
 $result -> execute();
 $tickets = $result -> fetchAll();
