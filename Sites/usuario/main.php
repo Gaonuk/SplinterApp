@@ -34,7 +34,7 @@ Comprar Tickets
       }  
       ?>  
       <?  
-        $conn = pg_pconnect("dbname=$db_impar")
+        $conn = pg_pconnect("dbname=$db_impar");
         $result = pg_query($conn, "SELECT nombreciudad from ciudades;"); 
         while($row_list=pg_fetch_array($list)){
           ?>
