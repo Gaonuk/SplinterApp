@@ -8,7 +8,7 @@
 
     #Verificamos que no exista el username
     $query_username_unico = "SELECT usuarios.username FROM usuarios WHERE usuarios.username = '$username';";
-    $result = $db_impar -> prepare($query);
+    $result = $db_impar -> prepare($query_username_unico);
     $result -> execute();
     $usuario = $result -> fetchAll();
     $rows = 0;

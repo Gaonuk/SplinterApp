@@ -17,6 +17,13 @@ Ver mis tickets de transporte
 <h2><a href = "tickets.php">Ver entradas</a></h2>
 
 <br>
-Ver mis entradas a museos
+Comprar Tickets
 <br>
-<h2><a href = "museum_entrance.php">Ver entradas</a></h2>
+  <form align="center" action="compra_tickets.php" method="post">
+    Fecha Viaje
+    <br>
+    <input type="text" name="fecha_viaje">
+    <br>
+    <input type="submit" value="Buscar"> 
+  </form>
+  <br>
