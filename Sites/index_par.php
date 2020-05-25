@@ -5,9 +5,11 @@
 <h3 align="center"> Iniciar Sesión</h3>
 <form align="center" action="usuario/login.php" method="post">
     Username
+    <br>
     <input type="text" name="username">
     <br/><br/>
     Email
+    <br>
     <input type="text" name="email">
     <br/><br/>
     <input type="submit" value="Buscar"> 
@@ -17,15 +19,19 @@
 <h3 align="center">Nuevo Usuario</h3>
 <form align="center" action="usuario/new.php" method="post">
     Username
+    <br>
     <input type="text" name="username">
     <br/><br/>
     Email
+    <br>
     <input type="text" name="email">
     <br/><br/>
     Nombre Completo
+    <br>
     <input type="text" name="nombre">
     <br/><br/>
     Dirección
+    <br>
     <input type="text" name="direccion">
     <br/><br/>
 
