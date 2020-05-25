@@ -8,15 +8,17 @@ $result -> execute();
 $reserva = $result -> fetchAll();
 ?>
  <table>
-    <tr>
+    <thead>
       <th>Inicio Reserva</th>
       <th>Fin Reserva</th>
       <th>Nombre Hotel</th>
       <th>Teléfono Hotel</th>>
-    </tr>
+    </thead>
+  <tbody>
   <?php
   foreach ($reserva as $r) {
     echo "<tr> <td>$r[0]</td> <td>$r[1]</td> <td>$r[2]</td> <td>$r[3]</td></tr>";
   }
   ?>
+  </tbody>
   </table>

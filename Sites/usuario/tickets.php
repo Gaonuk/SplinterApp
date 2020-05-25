@@ -8,7 +8,7 @@ $result -> execute();
 $tickets = $result -> fetchAll();
 ?>
  <table>
-    <tr>
+    <thead>
       <th>Fecha Compra</th>
       <th>Fecha Viaje</th>
       <th>Número Asiento</th>
@@ -17,10 +17,12 @@ $tickets = $result -> fetchAll();
       <th>Hora Salida</th>
       <th>Duración</th>
       <th>Medio de Transporte</th>
-    </tr>
+    </thead>
+  <tbody>
   <?php
   foreach ($tickets as $t) {
     echo "<tr> <td>$t[0]</td> <td>$t[1]</td> <td>$t[2]</td> <td>$t[3]</td> <td>$t[4]</td> <td>$t[5]</td> <td>$t[6]</td> <td>$t[7]</td> </tr>";
   }
   ?>
+  </tbody>
   </table>

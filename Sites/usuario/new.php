@@ -30,6 +30,9 @@
       $result2 = $db_impar -> prepare($query2);
       $result2 -> execute();
       $print2 = $result2 -> fetchAll();
+      
+      $_SESSION["user"] = $username;
+      header('location:main.php');
     } else {
       $error = "Username ya existe, intente otra vez";
       

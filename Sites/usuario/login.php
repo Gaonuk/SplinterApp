@@ -12,8 +12,8 @@
         $rows++;
     }
     if ($rows == 1){
-      $_SESSION["login_user"] = $username;
-      header('location:index.php');
+      $_SESSION["user"] = $username;
+      header('location:main.php');
     
     } else {
         $error = "Nombre o Email Inválido";
