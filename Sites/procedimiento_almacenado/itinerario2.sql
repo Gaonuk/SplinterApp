@@ -1,7 +1,7 @@
 CREATE OR REPLACE FUNCTION itinerario(fecha date, origen varchar, nombre_artistas varchar)
 RETURNS Table (cid int, nombre varchar(50)) as $$
 BEGIN
-RETURN QUERY SELECT *
+RETURN QUERY SELECT artistas_cid.cid, artistas_cid.nombre
     FROM dblink('dbname=grupo84e3 user=grupo84 password=grupo84', '
     SELECT DISTINCT ubica_en.cid AS cid, artistas.nombre AS nombre
     FROM artistas, ciudades, obras, obras_en, realizo, ubica_en
