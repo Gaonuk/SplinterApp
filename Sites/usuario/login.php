@@ -13,6 +13,7 @@
     }
     if ($rows == 1){
       $_SESSION["user"] = $username;
+      $_SESSION["uid"] = $uid;
       header('location:main.php');
     
     } else {

@@ -16,9 +16,6 @@
         $rows++;
     }
     if ($rows == 0){
-      $_SESSION["user"] = $username;
-      header('location:index.php');
-
       $query = "SELECT usuarios.uid FROM usuarios ORDER BY usuarios.uid DESC;";
       $result = $db_impar -> prepare($query);
       $result -> execute();
@@ -32,6 +29,7 @@
       $print2 = $result2 -> fetchAll();
       
       $_SESSION["user"] = $username;
+      $_SESSION["uid"] = $uid;
       header('location:main.php');
     } else {
       $error = "Username ya existe, intente otra vez";
