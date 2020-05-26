@@ -7,7 +7,7 @@ RETURN QUERY SELECT *
     FROM artistas, ciudades, obras, obras_en, realizo, ubica_en
     WHERE artistas.aid = realizo.aid AND obras.oid = realizo.oid AND obras.oid = obras_en.oid AND ubica_en.lid = obras_en.lid
     AND artistas.nombre IN ($1)'
-    USING nombre_artistas
+    USING nombre_artistas;
     ) AS artistas(cid int, nombre varchar(50));
 RETURN;
 END;
