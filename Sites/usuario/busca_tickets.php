@@ -1,9 +1,10 @@
 <?php
 include ('session.php');
 $login_session = intval($login_session);
-$fecha_viaje = $_POST["fecha"];
-$destino_id = intval($_POST["destino"]);
-echo "ID Usuario: $login_session. Buscando viajes para $fecha_viaje, para el destino $destino_id";
+$fecha_viaje = $_POST["fecha_viaje"];
+$ciudad_origen = $_POST["ciudad_origen"];
+$ciudad_destino = $_POST["ciudad_destino"];
+echo "ID Usuario: $login_session. Buscando viajes para $fecha_viaje";
 
 $query = "SELECT partidas.nombreciudad, llegadas.nombreciudad, destinos.horasalida,
  destinos.duracion, destinos.medio, destinos.precio, destinos.did FROM destinos,ciudades AS partidas,

@@ -97,7 +97,7 @@
     </p>
     <ul class="menu-list" style="background-color: #363636;">
       <li>
-				<a href="">
+				<a href="nuevo_ticket.php">
 					<span class="icon">
 						<i class="fas fa-ticket-alt"></i>
 					</span>
@@ -154,36 +154,3 @@
 </div>
 
 <?php include "../templates/main_footer.html"; ?>
-<!--<br>-->
-<!--Comprar Tickets-->
-<!--<br>-->
-<!--  <form align="center" action="compra_tickets.php" method="post">-->
-<!--    Fecha Viaje-->
-<!--    <br>-->
-<!--    <input type="text" name="fecha_viaje">-->
-<!--    <br>-->
-<!--    Ciudad origen:  -->
-<!--      <select Nombre Ciudad='NEW'>  -->
-<!--      <option value="">--- Select ---</option>  -->
-<!--      --><?php //require("../config/conexion.php");
-	//          $select="ciudades";
-	//          if (isset ($select)&&$select!=""){
-	//          $select=$_POST ['NEW'];
-	//      }
-	//      ?><!--  -->
-<!--      --><? //
-	//        $conn = pg_pconnect("dbname=$db_impar");
-	//        $result = pg_query($conn, "SELECT cid, nombreciudad from ciudades;");
-	//        while($row_list=pg_fetch_array($result)){
-	//          ?>
-<!--          <option value=--><?php //echo $row_list["cid"]; ?><!---->
-<!--          --><?php //echo $row_list["nombreciudad"]; ?><!-- -->
-<!--          </option>-->
-<!--          --><?php
-	//          }
-	//          ?>
-<!--          </select>-->
-<!--          ?>  -->
-<!--      <input type="submit" value="Buscar"> -->
-<!--  </form>-->
-<!--  <br>-->
