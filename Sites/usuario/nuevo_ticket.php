@@ -15,14 +15,13 @@ Comprar Tickets
 	       $result = pg_query($db_impar, "SELECT cid, nombreciudad from ciudades ");
 	       while($row_list=pg_fetch_assoc($result)){
 	         ?>
-         <option value=--><?php echo $row_list["cid"]; ?>
+         <option value="<?php echo $row_list["cid"]; ?>">
          <?php echo $row_list["nombreciudad"]; ?>
          </option>
 <?php
 	         }
 	         ?>
          </select>
-         ?> 
      <input type="submit" value="Buscar">
  </form>
  <br>
