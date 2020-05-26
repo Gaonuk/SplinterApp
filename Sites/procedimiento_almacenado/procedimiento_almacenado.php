@@ -40,7 +40,7 @@
 
     */
     echo ' '.$ciudad_origen.'  '.$fecha.'  '.implode(',',$nombre_artistas).' ';
-    $query = 'SELECT * FROM itinerario(\''.$fecha.'\', \''.$ciudad_origen.'\', \''.implode(',', $a).'\')';
+    $query = 'SELECT * FROM itinerario(\''.$fecha.'\', \''.$ciudad_origen.'\', \''.implode(',', $nombre_artistas).'\')';
 
     #Se prepara y ejecuta la consulta. Se obtienen TODOS los resultados
     $result = $db_impar -> prepare($query);
