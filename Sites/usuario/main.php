@@ -97,7 +97,7 @@
     </p>
     <ul class="menu-list" style="background-color: #363636;">
       <li>
-				<a href="nuevo_ticket">
+				<a href="nuevo_ticket.php">
 					<span class="icon">
 						<i class="fas fa-ticket-alt"></i>
 					</span>
