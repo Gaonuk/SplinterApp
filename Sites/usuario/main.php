@@ -1,5 +1,4 @@
-<?php include "../templates/main_header.html";
-      session_start(); ?>
+<?php include "../templates/main_header.html"; ?>
 <nav class="navbar has-shadow">
   <div class="navbar-brand">
     <a class="navbar-item">
@@ -17,7 +16,7 @@
     <div class="navbar-end">
       <div class="navbar-item has-dropdown is-hoverable" style="background-color: #363636">
         <div class="navbar-link" style="background-color: #363636">
-					<?php $_SESSION["user"] ?>
+					<?php echo $_SESSION["user"]; ?>
         </div>
         <div class="navbar-dropdown" style="background-color: #363636">
           <a class="navbar-item" href="">

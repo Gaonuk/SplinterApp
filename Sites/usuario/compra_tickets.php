@@ -1,6 +1,5 @@
 <?php
-include ('session.php');
-$login_session = intval($login_session);
+$login_session = intval($_SESSION["uid"]);
 $fecha_viaje = $_POST["fecha"];
 $destino_id = intval($_POST["destino"]);
 
