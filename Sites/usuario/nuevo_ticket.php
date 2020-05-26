@@ -1,5 +1,6 @@
 <?php
-include ('session.php'); ?>
+include ('session.php');
+include "../templates/main_header.html"; ?>
 <br>
 Comprar Tickets
  <br>
