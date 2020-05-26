@@ -17,8 +17,8 @@ $tid = $result -> fetchAll();
 $tid = $tid[0][0]++;
 
 if ($tickets[0][1]>$tickets[0][0]){
-  $asiento = $tickets[0][0]+1
-  $date = date('Y-m-d H:i:s')
+  $asiento = $tickets[0][0]+1;
+  $date = date('Y-m-d H:i:s');
   $_SESSION["user"] = $username;
   $query = "INSERT INTO tickets(uid, asiento, fechacompra, fechaviaje, did, tid) VALUES($login_session, $asiento, '$date', '$fecha_viaje', $destino_id, $tid);";
   $result = $db_impar -> prepare($query);
