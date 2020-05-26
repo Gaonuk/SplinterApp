@@ -2,13 +2,13 @@ CREATE OR REPLACE FUNCTION itinerario(fecha date, origen varchar, nombre_artista
 RETURNS Table (ciudadaorigen int, ciudaddestino int, counter int) as $$
 DECLARE viajes RECORD;
 BEGIN
-    DROP TABLE origen_id;
+    DROP TABLE IF EXISTS origen_id;
 	CREATE TEMP TABLE IF NOT EXISTS origen_id AS
 		(SELECT DISTINCT cid FROM ciudades WHERE nombreciudad = origen);
 
-    DROP TABLE ciudades_id;
+    DROP TABLE IF EXISTS ciudades_id;
 	CREATE TEMP TABLE IF NOT EXISTS ciudades_id AS
-        (SELECT DISTINCT cid_artistas.cid FROM 
+        (SELECT DISTINCT cid_artistas.cid FROM
 		(SELECT artistas_cid.cid, artistas_cid.nombre
 		FROM dblink('dbname=grupo84e3 user=grupo84 password=grupo84', '
 		SELECT DISTINCT ubica_en.cid AS cid, artistas.nombre AS nombre
@@ -18,7 +18,7 @@ BEGIN
 		string_to_array(nombre_artistas, ',') AS nombre_array(nombre)
 		WHERE artistas_cid.nombre =ANY(nombre_array.nombre)) AS cid_artistas);
 
-    DROP TABLE viajes;
+    DROP TABLE IF EXISTS viajes;
 	CREATE TEMP TABLE IF NOT EXISTS viajes AS
 		(WITH RECURSIVE alcanzo(ciudadorigen, ciudaddestino, counter) AS
 			(
