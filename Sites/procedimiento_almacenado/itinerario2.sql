@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION itinerario(fecha, origen, nombre_artistas)
+CREATE OR REPLACE FUNCTION itinerario(fecha date, origen varchar, nombre_artistas varchar)
 RETURNS Table (cid int, nombre varchar(50)) as $$
 BEGIN
     FROM dblink('dbname=grupo84e3 user=grupo84 password=grupo84', '
