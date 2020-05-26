@@ -9,7 +9,7 @@
 ?>
 
 <?php
-    $nombre_artistas = string();
+    $nombre_artistas = array();
     foreach ($_POST as $key =>$value){
       if ($key != "fecha" AND $key != "ciudad_origen") {
         array_push($nombre_artistas, $value );
