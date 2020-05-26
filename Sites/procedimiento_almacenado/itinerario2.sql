@@ -1,5 +1,4 @@
 CREATE OR REPLACE FUNCTION itinerario(fecha date, origen varchar, nombre_artistas varchar)
-DECLARE array_nombres 
 RETURNS Table (cid int, nombre varchar(50)) as $$
 BEGIN
 RETURN QUERY SELECT *
