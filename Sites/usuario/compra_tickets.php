@@ -7,7 +7,7 @@ $ciudad_destino = $_POST["ciudad_destino"];
 echo "ID Usuario: $login_session. Buscando viajes para $fecha_viaje";
 
 $query = "SELECT partidas.nombreciudad, llegadas.nombreciudad, destinos.horasalida,
- destinos.duracion, destinos.medio, destinos.precio FROM destinos,ciudades AS partidas,
+ destinos.duracion, destinos.medio, destinos.precio, destinos.did FROM destinos,ciudades AS partidas,
   ciudades AS llegadas WHERE partidas.cid = destinos.ciudadorigen AND 
   llegadas.cid = destinos.ciudaddestino AND destinos.ciudadorigen = '$ciudad_origen' AND 
   destinos.ciudaddestino = '$ciudad_destino';";
@@ -28,7 +28,19 @@ $tickets = $result -> fetchAll();
   <tbody>
   <?php
   foreach ($tickets as $t) {
-    echo "<tr> <td>$t[0]</td> <td>$t[1]</td> <td>$t[2]</td> <td>$t[3]</td> <td>$t[4]</td> <td>$t[5]</td> <td><input type='button' name='comprar' value=$t, action='main.php'></tr>";
+    echo "<tr> 
+    <td>$t[0]</td> 
+    <td>$t[1]</td> 
+    <td>$t[2]</td> 
+    <td>$t[3]</td> 
+    <td>$t[4]</td> 
+    <td>$t[5]</td> 
+    <td><form action='main.php' method='post'>
+    <div class='control'>
+    <input type='hidden' name='compra', value=$t[6]>
+    <input type='submit' value='Buscar' class='button is-primary'>
+    </div>
+ </form> </td></tr>";
   }
   ?>
   </tbody>

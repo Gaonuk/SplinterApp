@@ -11,7 +11,7 @@ Comprar Tickets
   <div class="control has-icons-left">
     <input type="date" name="fecha_viaje" class="input" placeholder="Fecha Viaje">
     <span class="icon is-medium is-left">
-    <i class="fas fa-envelope"></i>
+    <i class="fas fa-calendar"></i>
   </span>
   </div>
   </div>
