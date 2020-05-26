@@ -8,23 +8,30 @@ Comprar Tickets
   <br>
   <input type="text" name="fecha_viaje">
   <br>
-  Ciudad origen: 
-     <select name="ciudad_origen"> 
-     <option value="">--- Select ---</option> 
-    <?php
-      $query = "SELECT cid, nombreciudad from ciudades;";
-      $result = $db_impar -> prepare($query);
-      $result -> execute();
-      $ciudades = $result -> fetchAll();
-      foreach($ciudades as $c){
+  Ciudad origen:
+    <div class="control has-icons-left"> 
+      <div class="select">
+      <select name="ciudad_origen"> 
+      <option value="">Ciudad Origen</option> 
+      <?php
+        $query = "SELECT cid, nombreciudad from ciudades;";
+        $result = $db_impar -> prepare($query);
+        $result -> execute();
+        $ciudades = $result -> fetchAll();
+        foreach($ciudades as $c){
+          ?>
+        <option value="<?php echo $c[0]; ?>">
+        <?php echo $c[1]; ?>
+        </option>
+  <?php
+        }
         ?>
-      <option value="<?php echo $c[0]; ?>">
-      <?php echo $c[1]; ?>
-      </option>
-<?php
-      }
-      ?>
-    </select>
+        </select>
+      </div>
+      <div class="icon is-small is-left">
+      <i class="fas fa-city"></i>
+      </div>
+    </div>
   Ciudad destino: 
      <select name="ciudad_destino"> 
      <option value="">--- Select ---</option> 
