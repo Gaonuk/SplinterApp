@@ -5,24 +5,17 @@ $fecha_viaje = $_POST["fecha"];
 $destino_id = intval($_POST["destino"]);
 echo "ID Usuario: $login_session. Buscando viajes para $fecha_viaje, para el destino $destino_id";
 
-$query = "SELECT partidas.nombreciudad, llegadas.nombreciudad, destinos.horasalida,
- destinos.duracion, destinos.medio, destinos.precio, destinos.did FROM destinos,ciudades AS partidas,
-  ciudades AS llegadas WHERE partidas.cid = destinos.ciudadorigen AND 
-  llegadas.cid = destinos.ciudaddestino AND destinos.ciudadorigen = '$ciudad_origen' AND 
-  destinos.ciudaddestino = '$ciudad_destino';";
+$query = "SELECT COUNT(tickets.did), destinos.duracion FROM destinos, tickets WHERE tickets.did = destinos.did AND 
+  tickets.did = $destino_id AND tickets.fecha_viaje = '$fecha_viaje';";
 $result = $db_impar -> prepare($query);
 $result -> execute();
 $tickets = $result -> fetchAll();
 ?>
  <table>
     <thead>
-      <th>Ciudad Origen</th>
-      <th>Ciudad Destino</th>
-      <th>Hora Salida</th>
-      <th>Duración</th>
-      <th>Medio de Transporte</th>
-      <th>Precio</th>
-      <th>Comprar</th>
+      <th>Tickets Comprados</th>
+      <th>Capacidad</th>
+      <th>Tickets Disponibles</th>
     </thead>
   <tbody>
   <?php
@@ -30,17 +23,7 @@ $tickets = $result -> fetchAll();
     echo "<tr> 
     <td>$t[0]</td> 
     <td>$t[1]</td> 
-    <td>$t[2]</td> 
-    <td>$t[3]</td> 
-    <td>$t[4]</td> 
-    <td>$t[5]</td> 
-    <td><form action='compra_tickets.php' method='post'>
-    <div class='control'>
-    <input type='hidden' name='destino', value=$t[6]>
-    <input type='hidden' name='fecha', value=$fechaviaje>
-    <input type='submit' value='Buscar' class='button is-primary'>
-    </div>
- </form> </td></tr>";
+    <td>$t[1]-$t[0] </td></tr>";
   }
   ?>
   </tbody>
