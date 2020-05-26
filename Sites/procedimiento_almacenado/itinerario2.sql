@@ -8,4 +8,4 @@ BEGIN
     AND artistas.nombre IN  (nombre_artistas)
     ) AS artistas(cid int, nombre varchar(50))');
 
-$$ language plpsql;
+$$ language plpgsql;
