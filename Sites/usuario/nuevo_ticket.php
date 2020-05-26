@@ -4,7 +4,7 @@ include "../templates/main_header.html"; ?>
 <br>
 Comprar Tickets
  <br>
- <form align="center" action="compra_tickets.php" method="post">
+ <form align="center" action="busca_tickets.php" method="post">
   Fecha Viaje
   <br>
   <div class="field">
