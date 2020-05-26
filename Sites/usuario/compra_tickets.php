@@ -18,7 +18,6 @@ $tid = $tid[0][0]++;
 
 if ($tickets[0][1]>$tickets[0][0]){
   $_SESSION["user"] = $username;
-  header('location:index.php');
   $query = "INSERT INTO tickets(uid, asiento, fechacompra, fechaviaje, did, tid) VALUES($login_session, ($tickets[0][0]+1), date('Y-m-d H:i:s'), '$fecha_viaje', $destino_id, $tid);";
   $result = $db_impar -> prepare($query);
   $result -> execute();
