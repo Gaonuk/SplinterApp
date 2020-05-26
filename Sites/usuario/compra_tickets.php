@@ -5,7 +5,7 @@ $fecha_viaje = $_POST["fecha"];
 $destino_id = intval($_POST["destino"]);
 echo "ID Usuario: $login_session. Buscando viajes para $fecha_viaje, para el destino $destino_id";
 
-$query = "SELECT COUNT(tickets.did), destinos.duracion FROM destinos, tickets WHERE tickets.did = destinos.did AND 
+$query = "SELECT COUNT(tickets.did), destinos.duracion FROM destinos, tickets WHERE $destino_id = destinos.did AND 
   tickets.did = $destino_id AND tickets.fecha_viaje = '$fecha_viaje';";
 $result = $db_impar -> prepare($query);
 $result -> execute();
