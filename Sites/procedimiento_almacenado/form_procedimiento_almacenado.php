@@ -61,4 +61,6 @@
 
 </form>
 
-<?php include("../templates/breadcrumbs.html")?>
+
+<!-- ======= Footer ======= -->
+<?php include('../templates/footer.html')?>
