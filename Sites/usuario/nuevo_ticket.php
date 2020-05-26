@@ -13,7 +13,9 @@ Comprar Tickets
      <option value="">--- Select ---</option> 
     <?php 
       require("../config/conexion.php");
-      $result = pg_query($db_impar, "SELECT cid, nombreciudad from ciudades;");
+      $query = "SELECT cid, nombreciudad from ciudades;";
+      $result = $db_impar -> prepare($query);
+      $result -> execute();
       if (pg_num_rows($result) == 0)
     {
      echo "<option>No rows exist</option>";
