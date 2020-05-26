@@ -12,7 +12,7 @@ Comprar Tickets
      <select Nombre Ciudad='NEW'> 
      <option value="">--- Select ---</option> 
     <?php 
-      include("../config/conexion.php");
+      require("../config/conexion.php");
       $result = pg_query($db_impar, "SELECT cid, nombreciudad from ciudades ");
       if (pg_num_rows($result) == 0)
     {
