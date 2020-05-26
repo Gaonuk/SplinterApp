@@ -1,5 +1,5 @@
 <?php include "../templates/main_header.html";
-      include ("session.php") ?>
+      session_start(); ?>
 <nav class="navbar has-shadow">
   <div class="navbar-brand">
     <a class="navbar-item">
