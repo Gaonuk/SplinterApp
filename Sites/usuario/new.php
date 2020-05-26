@@ -16,7 +16,7 @@
         $rows++;
     }
     if ($rows == 0){
-      $_SESSION["login_user"] = $username;
+      $_SESSION["user"] = $username;
       header('location:index.php');
 
       $query = "SELECT usuarios.uid FROM usuarios ORDER BY usuarios.uid DESC;";
