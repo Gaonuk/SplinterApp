@@ -3,7 +3,7 @@
   <main id="main">
 
 <?php
-    $ciudad_origen = $_POST["ciudad_origen"];
+    $ciudad_origen = substr($_POST["ciudad_origen"], 1, -1);
     $fecha = $_POST["fecha"];
 
 ?>
