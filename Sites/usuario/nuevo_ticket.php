@@ -53,3 +53,4 @@ Comprar Tickets
   <input type="submit" value="Buscar">
  </form>
  <br>
+ <?php include "../templates/main_footer.html"; ?>
