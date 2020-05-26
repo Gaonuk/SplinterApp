@@ -42,7 +42,7 @@ if ($tickets[0][1]>$tickets[0][0]){
   $tickets = $result -> fetchAll();
   header('location:tickets.php');
 }else{
-  $error = "No quedan cupos en el viaje solicitado."
+  $error = "No quedan cupos en el viaje solicitado.";
 }
 ?>
 <body>
