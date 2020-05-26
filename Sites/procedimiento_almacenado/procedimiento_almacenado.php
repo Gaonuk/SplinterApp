@@ -39,7 +39,7 @@
     }
 
     */
-    echo ' '.$ciudad_origen.'  '.$fecha.'  '.$nombre_artistas.' '
+    echo ' '.$ciudad_origen.'  '.$fecha.'  '.$nombre_artistas.' ';
     $query = 'SELECT * FROM itinerario('$fecha', '$ciudad_origen', 'implode(",", $nombre_artistas)')';
 
     #Se prepara y ejecuta la consulta. Se obtienen TODOS los resultados
