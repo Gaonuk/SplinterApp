@@ -38,7 +38,7 @@ $tickets = $result -> fetchAll();
     <td><form action='compra_tickets.php' method='post'>
     <div class='control'>
     <input type='hidden' name='destino', value=$t[6]>
-    <input type='hidden' name='fecha', value=$fechaviaje>
+    <input type='hidden' name='fecha', value=$fecha_viaje>
     <input type='submit' value='Buscar' class='button is-primary'>
     </div>
  </form> </td></tr>";
