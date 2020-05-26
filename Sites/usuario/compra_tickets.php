@@ -23,11 +23,12 @@ $tickets = $result -> fetchAll();
       <th>Duración</th>
       <th>Medio de Transporte</th>
       <th>Precio</th>
+      <th>Comprar</th>
     </thead>
   <tbody>
   <?php
   foreach ($tickets as $t) {
-    echo "<tr> <td>$t[0]</td> <td>$t[1]</td> <td>$t[2]</td> <td>$t[3]</td> <td>$t[4]</td> <td>$t[5]</td> </tr>";
+    echo "<tr> <td>$t[0]</td> <td>$t[1]</td> <td>$t[2]</td> <td>$t[3]</td> <td>$t[4]</td> <td>$t[5]</td> <td><input type='radio' name='comprar' value=$t, action='main.php'></tr>";
   }
   ?>
   </tbody>

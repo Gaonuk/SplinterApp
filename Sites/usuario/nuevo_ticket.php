@@ -7,8 +7,16 @@ Comprar Tickets
  <form align="center" action="compra_tickets.php" method="post">
   Fecha Viaje
   <br>
-  <input type="text" name="fecha_viaje">
+  <div class="field">
+  <div class="control has-icons-left">
+    <input type="date" name="fecha_viaje" class="input" placeholder="Fecha Viaje">
+    <span class="icon is-medium is-left">
+    <i class="fas fa-envelope"></i>
+  </span>
+  </div>
+  </div>
   <br>
+  <div class="field">
   Ciudad origen:
     <div class="control has-icons-left"> 
       <div class="select">
@@ -33,24 +41,36 @@ Comprar Tickets
       <i class="fas fa-city"></i>
       </div>
     </div>
+  </div>
+  <div class="field">
   Ciudad destino: 
-     <select name="ciudad_destino"> 
-     <option value="">--- Select ---</option> 
-    <?php
-      $query = "SELECT cid, nombreciudad from ciudades;";
-      $result = $db_impar -> prepare($query);
-      $result -> execute();
-      $ciudades = $result -> fetchAll();
-      foreach($ciudades as $c){
+    <div class="control has-icons-left"> 
+      <div class="select">
+      <select name="ciudad_destino"> 
+      <option value="">Ciudad Destino</option> 
+      <?php
+        $query = "SELECT cid, nombreciudad from ciudades;";
+        $result = $db_impar -> prepare($query);
+        $result -> execute();
+        $ciudades = $result -> fetchAll();
+        foreach($ciudades as $c){
+          ?>
+        <option value="<?php echo $c[0]; ?>">
+        <?php echo $c[1]; ?>
+        </option>
+  <?php
+        }
         ?>
-      <option value="<?php echo $c[0]; ?>">
-      <?php echo $c[1]; ?>
-      </option>
-<?php
-      }
-      ?>
-    </select>
-  <input type="submit" value="Buscar">
+        </select>
+      </div>
+      <div class="icon is-small is-left">
+      <i class="fas fa-city"></i>
+      </div>
+    </div>
+  </div>
+  <div class="control">
+    <input type="submit" value="Buscar" class="button is-primary">
+  </div>
  </form>
  <br>
  <?php include "../templates/main_footer.html"; ?>
