@@ -104,6 +104,14 @@
 					Comprar Tickets
 				</a>
       </li>
+      <li>
+				<a href="nuevo_hotel.php">
+					<span class="icon">
+						<i class="fas fa-hotel-alt"></i>
+					</span>
+					Hacer Reserva de Hotel
+				</a>
+      </li>
     </ul>
   </aside>
   <div class="container has-text-centered">

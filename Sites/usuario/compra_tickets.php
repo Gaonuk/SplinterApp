@@ -26,7 +26,7 @@ if ($tickets[0][1]>$tickets[0][0]){
   $result -> execute();
   $error = "Comprando asiento $asiento, como usuario $login_session, para el viaje $destino_id, del dia $fecha_viaje. Comprado el $date, comprando el ticket $tid";
   $tickets = $result -> fetchAll();
-  #header('location:tickets.php');
+  header('location:tickets.php');
 }else{
   $error = "No quedan cupos en el viaje solicitado.";
 }
@@ -34,4 +34,4 @@ if ($tickets[0][1]>$tickets[0][0]){
 <body>
 Hubo un error:
 <?php echo $error ?>
-<h2><a href = "../main.php">Volver a intentar</a></h2>
+<h2><a href = "main.php">Volver a intentar</a></h2>
