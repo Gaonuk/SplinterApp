@@ -33,7 +33,7 @@ $hoteles = $result -> fetchAll();
     <td>$h[4]</td> 
     <td><form action='compra_hotel.php' method='post'>
     <div class='control'>
-    <input type='hidden' name='hotel', value=$t[6]>
+    <input type='hidden' name='hotel', value=$h[5]>
     <input type='hidden' name='fecha_inicio', value=$fecha_inicio>
     <input type='hidden' name='fecha_fin', value=$fecha_fin>
     <input type='submit' value='Buscar' class='button is-primary'>

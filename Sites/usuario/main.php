@@ -107,7 +107,7 @@
       <li>
 				<a href="nuevo_hotel.php">
 					<span class="icon">
-						<i class="fas fa-hotel-alt"></i>
+						<i class="fas fa-hotel"></i>
 					</span>
 					Hacer Reserva de Hotel
 				</a>
