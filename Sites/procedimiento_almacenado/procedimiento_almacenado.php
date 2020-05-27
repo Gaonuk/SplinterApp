@@ -52,7 +52,7 @@
     </tr>
   <?php
 	foreach ($rows as $c) {
-  		echo "<tr><td>$c[0]</td> <td>$c[1]</td> <td>$c[2]</td></tr>";
+  		echo "<tr> <td>$c[0]</td> <td>$c[1]</td> <td>$c[2]</td></tr> <td>$c[3]</td> <td>$c[4]</td> <td>$c[5]</td> <td>$c[6]</td> <td>$c[7]</td> <td>$c[8]</td> <td>$c[9]</td> <td>$c[10]</td> <td>$c[11]</td> <td>$c[12]</td> <td>$c[13]</td> <td>$c[14]</td> <td>$c[15]</td> <td>$c[16]</td> <td>$c[17]</td> <td>$c[18]</td> </tr>";
 	}
   ?>
 	</table>
