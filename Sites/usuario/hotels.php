@@ -1,5 +1,5 @@
 <?php
-include ('session.php');
+include('session.php');
 include "../templates/main_header.html";
 $login_session = intval($login_session);
 $query = "SELECT reservas.fechainicio, reservas.fechatermino, hoteles.nombrehotel, hoteles.telefono FROM usuarios, reservas, hoteles WHERE usuarios.uid = reservas.uid and reservas.hid = hoteles.hid and usuarios.uid = $login_session;";
@@ -25,7 +25,7 @@ $reserva = $result -> fetchAll();
       <th>Inicio Reserva</th>
       <th>Fin Reserva</th>
       <th>Nombre Hotel</th>
-      <th>Teléfono Hotel</th>>
+      <th>Teléfono Hotel</th>
     </thead>
   <tbody>
   <?php
@@ -36,9 +36,7 @@ $reserva = $result -> fetchAll();
   </tbody>
   </table>
 </div>
-<footer class="footer is-dark">
-  <div class="content has-text-centered">
-    <a href="main.php">Volver</a>
-  </div>
-</footer>
+<div class="content has-text-centered">
+  <a href="main.php">Volver</a>
+</div>
 <?php include "../templates/main_footer.html"; ?>

@@ -8,7 +8,7 @@ $ciudad = $_POST["ciudad"];
 
 $query = "SELECT ciudades.nombreciudad, hoteles.nombrehotel,
  hoteles.direccionhotel, hoteles.telefono, hoteles.precionoche, hoteles.hid FROM hoteles, ciudades 
- WHERE hoteles.nombreciudad = ciudades.cid AND hoteles.nombreciudad = '$ciudad';";
+ WHERE hoteles.nombreciudad = ciudades.cid AND hoteles.nombreciudad = '$ciudad' AND '$fecha_fin' >= '$fecha_inicio';";
 $result = $db_impar -> prepare($query);
 $result -> execute();
 $hoteles = $result -> fetchAll();
@@ -54,4 +54,9 @@ $hoteles = $result -> fetchAll();
   </tbody>
   </table>
 </div>
-<?php include "../templates/main_footer.html"; ?>
+<? if ($fecha_fin<$fecha_inicio){
+  echo "La fecha de salida debe ser posterior a la fecha de entrada";?>
+  <h2><a href = "main.php">Volver a intentar</a></h2>
+  <?
+}
+php include "../templates/main_footer.html"; ?>

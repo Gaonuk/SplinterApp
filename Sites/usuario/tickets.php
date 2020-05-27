@@ -1,5 +1,5 @@
 <?php
-include ('session.php');
+include('session.php');
 include "../templates/main_header.html";
 $login_session = intval($login_session);
 $query = "SELECT tickets.fechacompra, tickets.fechaviaje, tickets.asiento, partidas.nombreciudad, llegadas.nombreciudad, destinos.horasalida, destinos.duracion, destinos.medio FROM usuarios, tickets, destinos, ciudades AS partidas, ciudades AS llegadas WHERE usuarios.uid = tickets.uid and tickets.did = destinos.did and usuarios.uid = $login_session and partidas.cid = destinos.ciudadorigen and llegadas.cid = destinos.ciudaddestino;";
@@ -40,9 +40,7 @@ $tickets = $result -> fetchAll();
   </tbody>
   </table>
 </div>
-<footer class="footer is-dark">
-  <div class="content has-text-centered">
-    <a href="main.php">Volver</a>
-  </div>
-</footer>
+<div class="content has-text-centered">
+  <a href="main.php">Volver</a>
+</div>
 <?php include "../templates/main_footer.html"; ?>
