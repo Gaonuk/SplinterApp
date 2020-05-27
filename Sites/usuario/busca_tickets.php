@@ -15,7 +15,7 @@ $result = $db_impar -> prepare($query);
 $result -> execute();
 $tickets = $result -> fetchAll();
 ?>
-<section class="hero is-light">
+<section class="hero is-dark">
   <div class="hero-body">
     <div class="container">
       <h1 class="title">

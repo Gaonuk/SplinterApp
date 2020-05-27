@@ -1,7 +1,7 @@
 <?php
 include ('session.php');
 include "../templates/main_header.html"; ?>
-<section class="hero is-light">
+<section class="hero is-dark">
   <div class="hero-body">
     <div class="container">
       <h1 class="title">
@@ -14,7 +14,7 @@ include "../templates/main_header.html"; ?>
   </div>
 </section>
 <div class="columns is-centered">
-<div class="column is two-thirds">
+<div class="column is-two-thirds">
  <form align="center" action="busca_hotel.php" method="post">
   <label class="label">Fecha Inicio</label>
   <br>
@@ -69,7 +69,7 @@ include "../templates/main_header.html"; ?>
     <input type="submit" value="Buscar" class="button is-primary">
   </div>
  </form>
- </div>
- </div>
+</div>
+</div>
  <br>
  <?php include "../templates/main_footer.html"; ?>

@@ -7,7 +7,7 @@ $result = $db_impar -> prepare($query);
 $result -> execute();
 $reserva = $result -> fetchAll();
 ?>
-<section class="hero is-light">
+<section class="hero is-dark">
   <div class="hero-body">
     <div class="container">
       <h1 class="title">
@@ -36,7 +36,7 @@ $reserva = $result -> fetchAll();
   </tbody>
   </table>
 </div>
-<footer class="footer">
+<footer class="footer is-dark">
   <div class="content has-text-centered">
     <a href="main.php">Volver</a>
   </div>
