@@ -19,26 +19,6 @@
 
 <?php
     require("../config/conexion.php");
-    /*
-    #Se construye la consulta como un string
-
-    $query = 'SELECT DISTINCT ubica_en.cid AS cid, artistas.nombre AS nombre
-    FROM artistas, ciudades, obras, obras_en, realizo, ubica_en
-    WHERE artistas.aid = realizo.aid AND obras.oid = realizo.oid AND obras.oid = obras_en.oid AND ubica_en.lid = obras_en.lid
-    AND artistas.nombre IN  (\''.implode("','", $nombre_artistas).'\')      ';
-
-    #Se prepara y ejecuta la consulta. Se obtienen TODOS los resultados
-    $result = $db_par -> prepare($query);
-    $result -> execute();
-    $rows = $result -> fetchAll();
-    #Guarda todos los cid que se quieren visitar.
-    $ciudades = array()
-    foreach ($rows as $key => $value){
-        array_push($ciudades, $value['cid'])
-        echo ' ' .$value['cid'] . ' de '.$value['nombre'] .' ';
-    }
-
-    */
     echo ' '.$ciudad_origen.'  '.$fecha.'  '.implode(',',$nombre_artistas).' ';
     $query = 'SELECT * FROM itinerario(\''.$fecha.'\', \''.$ciudad_origen.'\', \''.implode(',', $nombre_artistas).'\')';
     echo $query;
