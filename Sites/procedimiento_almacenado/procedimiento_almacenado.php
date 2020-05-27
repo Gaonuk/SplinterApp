@@ -30,9 +30,25 @@
 
 <table>
     <tr>
-      <th>Ciudad Origen</th>
-      <th>Ciudad Destino</th>
-      <th>Escalas</th>
+      <th>tid</th>
+      <th>c1</th>
+      <th>c2</th>
+      <th>hora_salida</th>
+      <th>duracion</th>
+      <th>medio</th>
+      <th>precio</th>
+      <th>c3</th>
+      <th>c4</th>
+      <th>hora_salida</th>
+      <th>duracion</th>
+      <th>medio</th>
+      <th>precio</th>
+      <th>c5</th>
+      <th>c6</th>
+      <th>hora_salida</th>
+      <th>duracion</th>
+      <th>medio</th>
+      <th>precio</th>
     </tr>
   <?php
 	foreach ($rows as $c) {
