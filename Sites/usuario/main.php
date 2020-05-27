@@ -16,7 +16,7 @@
     <div class="navbar-end">
       <div class="navbar-item has-dropdown is-hoverable" style="background-color: #363636">
         <div class="navbar-link" style="background-color: #363636">
-					<?php $_SESSION["user"] ?>
+					<?php echo $_SESSION["user"]; ?>
         </div>
         <div class="navbar-dropdown" style="background-color: #363636">
           <a class="navbar-item" href="">
@@ -102,6 +102,14 @@
 						<i class="fas fa-ticket-alt"></i>
 					</span>
 					Comprar Tickets
+				</a>
+      </li>
+      <li>
+				<a href="nuevo_hotel.php">
+					<span class="icon">
+						<i class="fas fa-hotel"></i>
+					</span>
+					Hacer Reserva de Hotel
 				</a>
       </li>
     </ul>
