@@ -57,6 +57,6 @@ $hoteles = $result -> fetchAll();
 <? if ($fecha_fin<$fecha_inicio){
   echo "La fecha de salida debe ser posterior a la fecha de entrada";?>
   <h2><a href = "main.php">Volver a intentar</a></h2>
-  <?
+  <?php
 }
-php include "../templates/main_footer.html"; ?>
+ include "../templates/main_footer.html"; ?>
