@@ -38,6 +38,6 @@ BEGIN
     UPDATE obras SET foto_url= 'https://es.wikipedia.org/wiki/Madonna_Sixtina_(Rafael)#/media/Archivo:RAFAEL_-_Madonna_Sixtina_(Gem%C3%A4ldegalerie_Alter_Meister,_Dresden,_1513-14._%C3%93leo_sobre_lienzo,_265_x_196_cm).jpg' WHERE oid=36;
     UPDATE obras SET foto_url= 'https://es.wikipedia.org/wiki/Las_Gracias_(Rafael)#/media/Archivo:Rapha%C3%ABl_-_Les_Trois_Gr%C3%A2ces_-_Google_Art_Project_2.jpg' WHERE oid=37;
     UPDATE obras SET foto_url= 'https://es.wikipedia.org/wiki/La_primavera_(Botticelli)#/media/Archivo:Sandro_Botticelli_-_La_Primavera_-_Google_Art_Project.jpg' WHERE oid=38;
-    UPDATE obras SET foto_url= 'https://es.wikipedia.org/wiki/El_nacimiento_de_Venus_(Botticelli)#/media/Archivo:Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg' WHERE oid=39;
+    UPDATE obras SET foto_url= "https://es.wikipedia.org/wiki/El_nacimiento_de_Venus_(Botticelli)#/media/Archivo:Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg" WHERE oid=39;
 END
 $$ language plpgsql
