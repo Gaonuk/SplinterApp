@@ -23,8 +23,9 @@ if ($tickets[0][1]>$tickets[0][0]){
   $query = "INSERT INTO tickets(uid, asiento, fechacompra, fechaviaje, did, tid) VALUES($login_session, $asiento, '$date', '$fecha_viaje', $destino_id, $tid);";
   $result = $db_impar -> prepare($query);
   $result -> execute();
+  $error = "Comprando asiento $asiento, como usuario $login_session, para el viaje $destino_id, del dia $fecha_viaje. Comprado el $date";
   $tickets = $result -> fetchAll();
-  header('location:tickets.php');
+  #header('location:tickets.php');
 }else{
   $error = "No quedan cupos en el viaje solicitado.";
 }
