@@ -1,10 +1,10 @@
 <?php include "../templates/main_header.html";
 	include('../config/conexion.php');
 	session_start();
-	$query = "SELECT * FROM artistas GROUP BY artistas.aid;";
+	$query = "SELECT * FROM lugares;";
 	$result = $db_par -> prepare($query);
 	$result -> execute();
-	$artistas = $result -> fetchAll();
+	$lugares = $result -> fetchAll();
 ?>
 
 <div class="navbar-menu">
@@ -56,7 +56,7 @@
 						</a>
 					</li>
 					<li>
-						<a  class="is-active">
+						<a href="artistas.php">
                         <span class="icon">
                             <i class="fa fa-paint-brush"></i>
                         </span>
@@ -72,7 +72,7 @@
 						</a>
 					</li>
 					<li>
-						<a href="lugares.php" >
+						<a class="is-active" >
                         <span class="icon">
                             <i class="fas fa-map-marker-alt"></i>
                         </span>
@@ -111,24 +111,24 @@
 		<main class="column">
 			<h1 class="title">Artistas</h1>
 			<div class="columns is-multiline">
-				<?php foreach ($artistas as $a) { ?>
+				<?php foreach ($lugares as $a) { ?>
 					<div class="column is-12-tablet is-6-desktop is-4-widescreen">
 						<article class="box">
 							<div class="media">
 								<aside class="media-left">
-									<img src="<?php echo $a[5]?>" width="80" alt="">
+									<img src="<?php echo '#'?>" width="80" alt="">
 								</aside>
 								<div class="media-content">
 									<p class="title is-5 is-marginless">
 										<a href="artista.php?artista_id=<?php echo $a[0] ?>"><?php echo $a[1]?></a>
 									</p>
 									<p class="subtitle is-marginless">
-										<?php echo $a[2]?>
+<!--										--><?php //echo $a[2]?>
 										<br>
-										<?php echo $a[3]?>
+<!--										--><?php //echo $a[3]?>
 									</p>
 									<div class="content is-small">
-										<?php echo $a[4]?>
+<!--										--><?php //echo $a[4]?>
 									</div>
 								</div>
 						</article>
@@ -141,36 +141,3 @@
 
 
 <?php include "../templates/main_footer.html"; ?>
-<!--<br>-->
-<!--Comprar Tickets-->
-<!--<br>-->
-<!--  <form align="center" action="compra_tickets.php" method="post">-->
-<!--    Fecha Viaje-->
-<!--    <br>-->
-<!--    <input type="text" name="fecha_viaje">-->
-<!--    <br>-->
-<!--    Ciudad origen:  -->
-<!--      <select Nombre Ciudad='NEW'>  -->
-<!--      <option value="">--- Select ---</option>  -->
-<!--      --><?php //require("../config/conexion.php");
-	//          $select="ciudades";
-	//          if (isset ($select)&&$select!=""){
-	//          $select=$_POST ['NEW'];
-	//      }
-	//      ?><!--  -->
-<!--      --><? //
-	//        $conn = pg_pconnect("dbname=$db_impar");
-	//        $result = pg_query($conn, "SELECT cid, nombreciudad from ciudades;");
-	//        while($row_list=pg_fetch_array($result)){
-	//          ?>
-<!--          <option value=--><?php //echo $row_list["cid"]; ?><!---->
-<!--          --><?php //echo $row_list["nombreciudad"]; ?><!-- -->
-<!--          </option>-->
-<!--          --><?php
-	//          }
-	//          ?>
-<!--          </select>-->
-<!--          ?>  -->
-<!--      <input type="submit" value="Buscar"> -->
-<!--  </form>-->
-<!--  <br>-->

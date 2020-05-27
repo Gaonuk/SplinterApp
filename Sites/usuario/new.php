@@ -1,11 +1,13 @@
-<?php require("../config/conexion.php");
+<?php require("../config/data.php");
   session_start();
   if($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
     $email = $_POST["email"];
     $nombreusuario = $_POST["nombre"];
     $direccion = $_POST["direccion"];
-
+	
+		require("../config/conexion.php");
+    
     #Verificamos que no exista el username
     $query_username_unico = "SELECT usuarios.username FROM usuarios WHERE usuarios.username = '$username';";
     $result = $db_impar -> prepare($query_username_unico);
@@ -32,6 +34,7 @@
       $print2 = $result2 -> fetchAll();
       
       $_SESSION["user"] = $username;
+      $_SESSION["name"] = $nombreusuario;
       header('location:main.php');
     } else {
       $error = "Username ya existe, intente otra vez";
