@@ -1,10 +1,10 @@
 <?php
 include ('session.php');
+include "../templates/main_header.html";
 $login_session = intval($login_session);
 $fecha_viaje = $_POST["fecha_viaje"];
 $ciudad_origen = $_POST["ciudad_origen"];
 $ciudad_destino = $_POST["ciudad_destino"];
-echo "ID Usuario: $login_session. Buscando viajes para $fecha_viaje";
 
 $query = "SELECT partidas.nombreciudad, llegadas.nombreciudad, destinos.horasalida,
  destinos.duracion, destinos.medio, destinos.precio, destinos.did FROM destinos,ciudades AS partidas,
@@ -15,7 +15,17 @@ $result = $db_impar -> prepare($query);
 $result -> execute();
 $tickets = $result -> fetchAll();
 ?>
- <table>
+<section class="hero is-light">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        Hola, <?php echo $_SESSION["user"]; ?>
+      </h1>
+    </div>
+  </div>
+</section>
+<div class="columns is-centered">
+ <table class="table">
     <thead>
       <th>Ciudad Origen</th>
       <th>Ciudad Destino</th>
@@ -46,3 +56,5 @@ $tickets = $result -> fetchAll();
   ?>
   </tbody>
   </table>
+</div>
+  <?php include "../templates/main_footer.html"; ?>

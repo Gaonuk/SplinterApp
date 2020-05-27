@@ -1,11 +1,23 @@
 <?php
 include ('session.php');
 include "../templates/main_header.html"; ?>
-<br>
-Comprar Tickets
- <br>
+
+<section class="hero is-light">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+      Comprar Tickets
+      </h1>
+      <h2 class="subtitle">
+        Aquí puedes comprar el ticket para moverte de una ciudad a otra
+      </h2>
+    </div>
+  </div>
+</section>
+<div class="columns is-centered">
+<div class="column is two-thirds">
  <form align="center" action="busca_tickets.php" method="post">
-  Fecha Viaje
+  <label class="label">Fecha Viaje</label>
   <br>
   <div class="field">
   <div class="control has-icons-left">
@@ -17,7 +29,7 @@ Comprar Tickets
   </div>
   <br>
   <div class="field">
-  Ciudad origen:
+  <label class="label">Ciudad origen</label>
     <div class="control has-icons-left"> 
       <div class="select">
       <select name="ciudad_origen"> 
@@ -43,7 +55,7 @@ Comprar Tickets
     </div>
   </div>
   <div class="field">
-  Ciudad destino: 
+  <label class="label">Ciudad destino:</label> 
     <div class="control has-icons-left"> 
       <div class="select">
       <select name="ciudad_destino"> 
@@ -72,5 +84,7 @@ Comprar Tickets
     <input type="submit" value="Buscar" class="button is-primary">
   </div>
  </form>
+ </div>
+ </div>
  <br>
  <?php include "../templates/main_footer.html"; ?>

@@ -1,10 +1,10 @@
 <?php
 include ('session.php');
+include "../templates/main_header.html";
 $login_session = intval($login_session);
 $fecha_inicio = $_POST["fecha_inicio"];
 $fecha_fin = $_POST["fecha_fin"];
 $ciudad = $_POST["ciudad"];
-echo "ID Usuario: $login_session. Buscando viajes para $ciudad";
 
 $query = "SELECT ciudades.nombreciudad, hoteles.nombrehotel,
  hoteles.direccionhotel, hoteles.telefono, hoteles.precionoche, hoteles.hid FROM hoteles, ciudades 
@@ -13,7 +13,17 @@ $result = $db_impar -> prepare($query);
 $result -> execute();
 $hoteles = $result -> fetchAll();
 ?>
- <table>
+<section class="hero is-light">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        Hola, <?php echo $_SESSION["user"]; ?>
+      </h1>
+    </div>
+  </div>
+</section>
+<div class="columns is-centered">
+ <table class="table">
     <thead>
       <th>Ciudad </th>
       <th>Nombre Hotel</th>
@@ -43,3 +53,5 @@ $hoteles = $result -> fetchAll();
   ?>
   </tbody>
   </table>
+</div>
+<?php include "../templates/main_footer.html"; ?>
