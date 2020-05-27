@@ -15,6 +15,11 @@ $rid = $rid[0][0]+1;
 $query = "INSERT INTO reservas(rid, uid, fechainicio, fechatermino, hid) VALUES($rid, $login_session, '$fecha_inicio', '$fecha_fin', $hotel_id);";
 $result = $db_impar -> prepare($query);
 $result -> execute();
+$error = "Reservando en el hotel $hotel_id, como usuario $login_session, para los dias $fecha_inicio a $fecha_fin, reserva $tid";
 $reservas = $result -> fetchAll();
-header('location:tickets.php');
+#header('location:hotels.php');
 ?>
+<body>
+Hubo un error:
+<?php echo $error ?>
+<h2><a href = "main.php">Volver a intentar</a></h2>
