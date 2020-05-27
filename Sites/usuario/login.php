@@ -10,6 +10,7 @@
     $rows = 0;
     foreach ($usuario as $u) {
         $rows++;
+        $uid = $u[0];
     }
     if ($rows == 1){
       $_SESSION["user"] = $username;

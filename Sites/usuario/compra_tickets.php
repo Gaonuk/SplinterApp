@@ -15,7 +15,7 @@ $query = "SELECT MAX(tid) FROM tickets;";
 $result = $db_impar -> prepare($query);
 $result -> execute();
 $tid = $result -> fetchAll();
-$tid = $tid[0][0]++;
+$tid = $tid[0][0]+1;
 
 if ($tickets[0][1]>$tickets[0][0]){
   $asiento = $tickets[0][0]+1;
