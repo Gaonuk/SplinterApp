@@ -18,9 +18,6 @@
         $rows++;
     }
     if ($rows == 0){
-      $_SESSION["login_user"] = $username;
-      header('location:index.php');
-
       $query = "SELECT usuarios.uid FROM usuarios ORDER BY usuarios.uid DESC;";
       $result = $db_impar -> prepare($query);
       $result -> execute();
@@ -28,13 +25,14 @@
       $uid = $uid[0][0];
       $uid++;
 
-      $query2 = "INSERT INTO usuarios(uid, nombreusuario, username, correo, direccion) VALUES ('$uid', '$nombreusuario', '$username', '$email', '$direccion');";
+      $query2 = "INSERT INTO usuarios (uid, nombreusuario, username, correo, direccionusuario) VALUES ($uid, '$nombreusuario', '$username', '$email', '$direccion')";
       $result2 = $db_impar -> prepare($query2);
       $result2 -> execute();
       $print2 = $result2 -> fetchAll();
       
       $_SESSION["user"] = $username;
       $_SESSION["name"] = $nombreusuario;
+      $_SESSION["uid"] = $uid;
       header('location:main.php');
     } else {
       $error = "Username ya existe, intente otra vez";

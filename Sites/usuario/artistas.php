@@ -2,9 +2,9 @@
 	include('../config/conexion.php');
 	session_start();
 	$query = "SELECT * FROM artistas GROUP BY artistas.aid;";
-	$result = $db_par -> prepare($query);
-	$result -> execute();
-	$artistas = $result -> fetchAll();
+	$result = $db_par->prepare($query);
+	$result->execute();
+	$artistas = $result->fetchAll();
 ?>
 
 <div class="navbar-menu">
@@ -39,102 +39,154 @@
 </div>
 </nav>
 
-<section class="section">
-	<div class="columns">
+<section class="">
+	<div class="columns is-gapless">
 		<div class="column is-4-tablet is-3-desktop is-2-widescreen">
-			<aside class="menu ">
-				<p class="menu-label">
-					General
-				</p>
-				<ul class="menu-list">
-					<li>
-						<a href="main.php">
-                        <span class="icon">
-                            <i class="fa fa-tachometer"></i>
-                        </span>
-							Dashboard
-						</a>
-					</li>
-					<li>
-						<a  class="is-active">
-                        <span class="icon">
-                            <i class="fa fa-paint-brush"></i>
-                        </span>
-							Artistas
-						</a>
-					</li>
-					<li>
-						<a href="obras.php" >
-                        <span class="icon">
-                            <i class="fa fa-image"></i>
-                        </span>
-							Obras
-						</a>
-					</li>
-					<li>
-						<a href="lugares.php" >
-                        <span class="icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </span>
-							Lugares
-						</a>
-					</li>
-				</ul>
-				<p class="menu-label">
-					Itinerario
-				</p>
-				<ul class="menu-list" >
-					<li>
-						<a >
-                        <span class="icon">
-                            <i class="fas fa-clipboard-list"></i>
-                        </span>
-							Crear Itinerario
-						</a>
-					</li>
-				</ul>
-				<p class="menu-label">
-					Compras
-				</p>
-				<ul class="menu-list" >
-					<li>
-						<a href="" >
-					<span class="icon">
-						<i class="fas fa-ticket-alt"></i>
-					</span>
-							Comprar Tickets
-						</a>
-					</li>
-				</ul>
-			</aside>
+			<div style="background-color: #f5f5f5; padding: 1.5rem; min-height: calc(100vh - 3.25rem); overflow: auto;">
+				<aside class="menu ">
+					<p class="menu-label">
+						General
+					</p>
+					<ul class="menu-list">
+						<li>
+							<a class="is-active">
+													<span class="icon">
+															<i class="fa fa-tachometer"></i>
+													</span>
+								Dashboard
+							</a>
+						</li>
+						<li>
+							<a href="artistas.php">
+													<span class="icon">
+															<i class="fa fa-paint-brush"></i>
+													</span>
+								Artistas
+							</a>
+						</li>
+						<li>
+							<a href="obras.php">
+													<span class="icon">
+															<i class="fa fa-image"></i>
+													</span>
+								Obras
+							</a>
+						</li>
+						<li>
+							<a href="lugares.php">
+													<span class="icon">
+															<i class="fas fa-map-marker-alt"></i>
+													</span>
+								Lugares
+							</a>
+						</li>
+					</ul>
+					<p class="menu-label">
+						Itinerario
+					</p>
+					<ul class="menu-list">
+						<li>
+							<a>
+								<span class="icon">
+									<i class="fas fa-clipboard-list"></i>
+								</span>
+								Crear Itinerario
+							</a>
+						</li>
+					</ul>
+					<p class="menu-label">
+						Compras
+					</p>
+					<ul class="menu-list">
+						<li>
+							<a href="nuevo_ticket.php">
+								<span class="icon">
+									<i class="fas fa-ticket-alt"></i>
+								</span>
+								Comprar Tickets
+							</a>
+						</li>
+						<li>
+							<a href="nuevo_hotel.php">
+								<span class="icon">
+									<i class="fas fa-hotel"></i>
+								</span>
+								Hacer Reserva de Hotel
+							</a>
+						</li>
+					</ul>
+				</aside>
+			</div>
 		</div>
 		<main class="column">
-			<h1 class="title">Artistas</h1>
-			<div class="columns is-multiline">
-				<?php foreach ($artistas as $a) { ?>
-					<div class="column is-12-tablet is-6-desktop is-4-widescreen">
-						<article class="box">
-							<div class="media">
-								<aside class="media-left">
-									<img src="<?php echo $a[5]?>" width="80" alt="">
-								</aside>
-								<div class="media-content">
-									<p class="title is-5 is-marginless">
-										<a href="artista.php?artista_id=<?php echo $a[0] ?>"><?php echo $a[1]?></a>
-									</p>
-									<p class="subtitle is-marginless">
-										<?php echo $a[2]?>
-										<br>
-										<?php echo $a[3]?>
-									</p>
-									<div class="content is-small">
-										<?php echo $a[4]?>
-									</div>
-								</div>
-						</article>
-					</div>
-				<?php  }?>
+			<div class="hero is-primary">
+				<div class="hero-body">
+					<h1 class="title">Artistas</h1>
+				</div>
 			</div>
+			<div class="section">
+				<nav class="level">
+					<div class="level-left">
+						<div class="level-item">
+							<p class="subtitle is-5">
+								<strong><?php echo count($artistas) ?></strong> Artistas
+							</p>
+						</div>
+						<div class="level-item is-hidden-tablet-only">
+							<div class="field has-addons">
+								<p class="control">
+									<input class="input" type="text" placeholder="Nombre artista, ...">
+								</p>
+								<p class="control">
+									<button class="button">
+										Search
+									</button>
+								</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="level-right">
+						<div class="level-item">
+							Order by
+						</div>
+						<div class="level-item">
+							<div class="select">
+								<select>
+									<option>Fecha Nacimiento</option>
+									<option>Nombre</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</nav>
+				<div class="columns is-multiline">
+					<?php foreach ($artistas as $a) { ?>
+						<div class="column is-12-tablet is-6-desktop is-4-widescreen">
+							<article class="box">
+								<div class="media">
+									<aside class="media-left">
+										<img src="<?php echo $a[5] ?>" width="80" alt="">
+									</aside>
+									<div class="media-content">
+										<p class="title is-5 is-marginless">
+											<a href="artista.php?artista_id=<?php echo $a[0] ?>"><?php echo $a[1] ?></a>
+										</p>
+										<p class="subtitle is-marginless">
+											<?php echo $a[2] ?>
+											<br>
+											<?php echo $a[3] ?>
+										</p>
+										<div class="content is-small">
+											<?php echo $a[4] ?>
+										</div>
+									</div>
+							</article>
+						</div>
+					<?php } ?>
+				</div>
+			</div>
+
 		</main>
 	</div>
 </section>
