@@ -1,24 +1,24 @@
-CREATE OR REPLACE FUNCTION itinerario(fecha date, origen varchar, nombre_artistas varchar)
-RETURNS Table (tid int, c1 varchar, c2 varchar(50), hora_salida1 TIME, duracion1 INT, medio1 varchar, precio1 INT,
-														c3 varchar, c4 varchar, hora_salida2 time, duracion2 int, medio2 varchar, precio2 int,
-														c5 varchar, c6 varchar, hora_salida3 time, duracion3 int, medio3 varchar, precio3 int) as $$
+CREATE OR REPLACE FUNCTION f_itinerario(fecha date, origen varchar, nombre_artistas varchar)
+RETURNS Table (c1 varchar, c2 varchar(50), hora_salida1 TIMESTAMP, medio1 varchar,
+				c3 varchar, c4 varchar, hora_salida2 TIMESTAMP, medio2 varchar,
+				c5 varchar, c6 varchar, hora_salida3 TIMESTAMP, medio3 varchar, total INT) as $$
 DECLARE
 viajes RECORD;
 prow RECORD;
 tiene_escala1 INT;
 tiene_escala2 INT;
 trow RECORD;
-tid INT;
 viaje1 INT;
 viaje2 INT;
 viaje3 INT;
 vrow RECORD;
+hora_llegada TIMESTAMP;
 BEGIN
 	--Obtiene el id de la ciudad de origen
     DROP TABLE IF EXISTS origen_id;
 	CREATE TEMP TABLE IF NOT EXISTS origen_id AS
 		(SELECT DISTINCT cid FROM ciudades WHERE nombreciudad = origen);
-
+	
 	--Obtiene los id de las ciudades segun artistas
     DROP TABLE IF EXISTS ciudades_id;
 	CREATE TEMP TABLE IF NOT EXISTS ciudades_id AS
@@ -26,7 +26,7 @@ BEGIN
 		(SELECT artistas_cid.cid, artistas_cid.nombre
 		FROM dblink('dbname=grupo84e3 user=grupo84 password=grupo84', '
 		SELECT ubica_en.cid, artista_lugar.nombre
-		FROM ubica_en, 
+		FROM ubica_en,
 			(SELECT obras_artista.aid, obras_en.oid, obras_en.lid, obras_artista.nombre
 					FROM obras_en,
 						(SELECT oid, artistas.aid, nombre FROM artistas, realizo
@@ -66,16 +66,16 @@ BEGIN
 	
 	--Crea tabla para poblar los itinerarios
 	DROP TABLE IF EXISTS itinerario;
-	CREATE TEMP TABLE IF NOT EXISTS itinerario(tid int, c1 varchar, c2 varchar(50), hora_salida1 TIME, duracion1 INT, medio1 varchar, precio1 INT,
-														c3 varchar, c4 varchar, hora_salida2 time, duracion2 int, medio2 varchar, precio2 int,
-														c5 varchar, c6 varchar, hora_salida3 time, duracion3 int, medio3 varchar, precio3 int);
+	CREATE TEMP TABLE IF NOT EXISTS itinerario(tid SERIAL, c1 varchar, c2 varchar(50), hora_salida1 TIMESTAMP, duracion1 INT, medio1 varchar, precio1 INT,
+														c3 varchar, c4 varchar, hora_salida2 TIMESTAMP, duracion2 int, medio2 varchar, precio2 int,
+														c5 varchar, c6 varchar, hora_salida3 TIMESTAMP, duracion3 int, medio3 varchar, precio3 int, total INT);
 	
 	--Poblar tabla de itinerario
-	tid := 0;
+
 	FOR prow IN
 			SELECT * FROM planificacion
 		LOOP
-			tid := tid + 1;
+
 			--Caso que ocupe tres viajes
 			IF prow.v1 != '' THEN
 				viaje1 := CAST(prow.v1 AS INTEGER);
@@ -92,10 +92,10 @@ BEGIN
 				CREATE TEMP TABLE IF NOT EXISTS v3 AS
 				SELECT * FROM destinos WHERE did = viaje3;
 
-				INSERT INTO itinerario (c1, c2, hora_salida1, duracion1, medio1, precio1, c3, c4, hora_salida2, duracion2, medio2, precio2, c5, c6, hora_salida3, duracion3, medio3, precio3)
-					SELECT  c1.nombreciudad, c2.nombreciudad, v1.horasalida, v1.duracion, v1.medio, v1.precio,
-								c3.nombreciudad, c4.nombreciudad, v2.horasalida, v2.duracion, v2.medio, v2.precio,
-								c5.nombreciudad, c6.nombreciudad, v3.horasalida, v3.duracion, v3.medio, v3.precio
+				INSERT INTO itinerario (c1, c2, hora_salida1, duracion1, medio1, precio1, c3, c4, hora_salida2, duracion2, medio2, precio2, c5, c6, hora_salida3, duracion3, medio3, precio3, total)
+					SELECT  c1.nombreciudad, c2.nombreciudad, fecha + v1.horasalida, v1.duracion, v1.medio, v1.precio,
+								c3.nombreciudad, c4.nombreciudad, fecha + v2.horasalida, v2.duracion, v2.medio, v2.precio,
+								c5.nombreciudad, c6.nombreciudad, fecha + v3.horasalida, v3.duracion, v3.medio, v3.precio, v1.precio + v2.precio + v3.precio
 					FROM v1, v2, v3, ciudades AS c1, ciudades AS c2, ciudades AS c3, ciudades AS c4, ciudades AS c5, ciudades AS c6
 					WHERE c1.cid = v1.ciudadorigen AND c2.cid = v1.ciudaddestino AND
 						c3.cid = v2.ciudadorigen AND c4.cid = v2.ciudaddestino AND
@@ -108,29 +108,58 @@ BEGIN
 				DROP TABLE IF EXISTS v2;
 				CREATE TEMP TABLE IF NOT EXISTS v2 AS
 				SELECT * FROM destinos WHERE did = viaje2;
-			
-			INSERT INTO itinerario (c1, c2, hora_salida1, duracion1, medio1, precio1, c3, c4, hora_salida2, duracion2, medio2, precio2)
-					SELECT  c1.nombreciudad, c2.nombreciudad, v1.horasalida, v1.duracion, v1.medio, v1.precio,
-								c3.nombreciudad, c4.nombreciudad, v2.horasalida, v2.duracion, v2.medio, v2.precio	
-								
+
+			INSERT INTO itinerario (c1, c2, hora_salida1, duracion1, medio1, precio1, c3, c4, hora_salida2, duracion2, medio2, precio2, total)
+					SELECT  c1.nombreciudad, c2.nombreciudad, fecha + v1.horasalida, v1.duracion, v1.medio, v1.precio,
+								c3.nombreciudad, c4.nombreciudad, fecha + v2.horasalida, v2.duracion, v2.medio, v2.precio, v1.precio + v2.precio
+
 					FROM v1, v2, ciudades AS c1, ciudades AS c2, ciudades AS c3, ciudades AS c4
 					WHERE c1.cid = v1.ciudadorigen AND c2.cid = v1.ciudaddestino AND
 						c3.cid = v2.ciudadorigen AND c4.cid = v2.ciudaddestino;
+
 			--Caso que ocupe un viaje
 			ELSE
 				CREATE TEMP TABLE IF NOT EXISTS v1 AS
 				SELECT * FROM destinos WHERE did = viaje1;
 
-			INSERT INTO itinerario (c1, c2, hora_salida1, duracion1, medio1, precio1)
-					SELECT  c1.nombreciudad, c2.nombreciudad, v1.horasalida, v1.duracion, v1.medio, v1.precio
+			INSERT INTO itinerario (c1, c2, hora_salida1, duracion1, medio1, precio1, total)
+					SELECT  c1.nombreciudad, c2.nombreciudad, fecha + v1.horasalida, v1.duracion, v1.medio, v1.precio, v1.precio
 
 					FROM v1, ciudades AS c1, ciudades AS c2
 					WHERE c1.cid = v1.ciudadorigen AND c2.cid = v1.ciudaddestino;
 			END IF;
 
 		END LOOP;
+
+	FOR prow IN
+		SELECT * FROM itinerario
+	LOOP
+		IF prow.c3 IS NOT NULL THEN
+			hora_llegada := prow.hora_salida1 + interval '1' HOUR * prow.duracion1;
+			LOOP
+				IF hora_llegada < prow.hora_salida2 THEN
+					EXIT;
+				END IF;
+				prow.hora_salida2 := prow.hora_salida2 + interval '1' day;
+			END LOOP;
+			UPDATE itinerario SET hora_salida2= prow.hora_salida2 WHERE itinerario.tid = prow.tid;
+
+			IF prow.c5 IS NOT NULL THEN
+				hora_llegada := prow.hora_salida2 + interval '1' HOUR * prow.duracion2;
+				LOOP
+				IF hora_llegada < prow.hora_salida3 THEN
+					EXIT;
+				END IF;
+				prow.hora_salida3 := prow.hora_salida3 + interval '1' day;
+			END LOOP;
+			UPDATE itinerario SET hora_salida3= prow.hora_salida3 WHERE itinerario.tid = prow.tid;
+			END IF;
+		END IF;
 	
-	RETURN QUERY SELECT * FROM itinerario;
+	END LOOP;
+
+
+	RETURN QUERY SELECT DISTINCT i.c1, i.c2, i.hora_salida1, i.medio1, i.c3, i.c4, i.hora_salida2, i.medio2 , i.c5, i.c6, i.hora_salida3, i.medio3, i.total  FROM itinerario as i ORDER BY total;
 RETURN;
 END;
 $$ language plpgsql;
