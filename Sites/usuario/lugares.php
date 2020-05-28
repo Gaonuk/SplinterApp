@@ -50,7 +50,7 @@
 						</p>
 						<ul class="menu-list">
 							<li>
-								<a class="is-active">
+								<a href="main.php">
 													<span class="icon">
 															<i class="fa fa-tachometer"></i>
 													</span>
@@ -74,7 +74,7 @@
 								</a>
 							</li>
 							<li>
-								<a href="lugares.php">
+								<a class="is-active">
 													<span class="icon">
 															<i class="fas fa-map-marker-alt"></i>
 													</span>
@@ -126,6 +126,40 @@
 					</div>
 				</div>
 				<div class="section">
+					<nav class="level">
+						<div class="level-left">
+							<div class="level-item">
+								<p class="subtitle is-5">
+									<strong><?php echo count($lugares) ?></strong> Lugares
+								</p>
+							</div>
+							<div class="level-item is-hidden-tablet-only">
+								<div class="field has-addons">
+									<p class="control">
+										<input class="input" type="text" placeholder="Nombre...">
+									</p>
+									<p class="control">
+										<button class="button">
+											Search
+										</button>
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="level-right">
+							<div class="level-item">
+								Order by
+							</div>
+							<div class="level-item">
+								<div class="select">
+									<select>
+										<option>Fecha Inicio</option>
+										<option>Periodo</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</nav>
 					<div class="columns is-multiline">
 						<?php foreach ($lugares as $a) { ?>
 							<div class="column is-12-tablet is-6-desktop is-4-widescreen">

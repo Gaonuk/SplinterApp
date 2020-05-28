@@ -50,7 +50,7 @@
 						</p>
 						<ul class="menu-list">
 							<li>
-								<a class="is-active">
+								<a href="main.php">
 													<span class="icon">
 															<i class="fa fa-tachometer"></i>
 													</span>
@@ -66,7 +66,7 @@
 								</a>
 							</li>
 							<li>
-								<a href="obras.php">
+								<a class="is-active">
 													<span class="icon">
 															<i class="fa fa-image"></i>
 													</span>
