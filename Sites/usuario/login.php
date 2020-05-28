@@ -3,7 +3,8 @@
   if($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
     $email = $_POST["email"];
-    $query = "SELECT usuarios.uid FROM usuarios WHERE usuarios.username = '$username' AND usuarios.correo = '$email';";
+    $password = $_POST["password"];
+    $query = "SELECT usuarios.uid FROM usuarios WHERE usuarios.username = '$username' AND usuarios.correo = '$email' AND usuarios.password = $password;";
     $result = $db_impar -> prepare($query);
     $result -> execute();
     $usuario = $result -> fetchAll();
