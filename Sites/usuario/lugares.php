@@ -1,5 +1,10 @@
 <?php include "../templates/main_header.html";
+	include('../config/conexion.php');
 	session_start();
+	$query = "SELECT * FROM lugares;";
+	$result = $db_par->prepare($query);
+	$result->execute();
+	$lugares = $result->fetchAll();
 ?>
 
 	<div class="navbar-menu">
@@ -33,6 +38,7 @@
 		</div>
 	</div>
 	</nav>
+
 
 	<section class="">
 		<div class="columns is-gapless">
@@ -116,50 +122,34 @@
 			<main class="column">
 				<div class="hero is-primary">
 					<div class="hero-body">
-						<h1 class="title">Welcome, <strong><?php echo $_SESSION['user'] ?></strong></h1>
+						<h1 class="title">Lugares</h1>
 					</div>
 				</div>
 				<div class="section">
-
-
-					<p class="title">¿Qué deseas hacer? </p>
-					<div class="columns is-centered">
-						<div class="column">
-							<div class="box">
-								<p>
-															<span class="icon">
-																	<i class="fa fa-landmark"></i>
-															</span>
-									Ver mis entradas a museos
-								</p>
-								<br>
-								<a href="museum_entrance.php" class="button is-success">Ver entradas</a>
+					<div class="columns is-multiline">
+						<?php foreach ($lugares as $a) { ?>
+							<div class="column is-12-tablet is-6-desktop is-4-widescreen">
+								<article class="box">
+									<div class="media">
+										<aside class="media-left">
+											<img src="<?php echo '#' ?>" width="80" alt="">
+										</aside>
+										<div class="media-content">
+											<p class="title is-5 is-marginless">
+												<a href="artista.php?artista_id=<?php echo $a[0] ?>"><?php echo $a[1] ?></a>
+											</p>
+											<p class="subtitle is-marginless">
+												<!--										--><?php //echo $a[2]?>
+												<br>
+												<!--										--><?php //echo $a[3]?>
+											</p>
+											<div class="content is-small">
+												<!--										--><?php //echo $a[4]?>
+											</div>
+										</div>
+								</article>
 							</div>
-						</div>
-						<div class="column is-5-tablet is-4-widescreen is-4-desktop">
-							<div class="box">
-								<p>
-															<span class="icon">
-																	<i class="fas fa-hotel"></i>
-															</span>
-									Ver mis reservas de hoteles
-								</p>
-								<br>
-								<a href="hotels.php" class="button is-success">Ver reservas</a>
-							</div>
-						</div>
-						<div class="column">
-							<div class="box">
-								<p>
-															<span class="icon">
-																	<i class="fas fa-subway"></i>
-															</span>
-									Ver mis tickets de transporte
-								</p>
-								<br>
-								<a href="tickets.php" class="button is-success">Ver tickets</a>
-							</div>
-						</div>
+						<?php } ?>
 					</div>
 				</div>
 			</main>

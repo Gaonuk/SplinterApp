@@ -1,5 +1,22 @@
 <?php include "../templates/main_header.html";
+	include('../config/conexion.php');
 	session_start();
+	$obras_id = $_GET['obra_id'];
+	$obras_id = intval($obras_id);
+	$query = "SELECT * FROM obras WHERE oid=$obras_id;";
+	$result = $db_par->prepare($query);
+	$result->execute();
+	$obra = $result->fetchAll();
+	$obra = $obra[0];
+	$query2 = "SELECT artistas.aid, artistas.nombre FROM artistas, realizo, obras WHERE artistas.aid = realizo.aid AND obras.oid = realizo.oid and obras.oid = $obras_id;";
+	$result2 = $db_par->prepare($query2);
+	$result2->execute();
+	$artistas = $result2->fetchAll();
+	$query3 = "select lugares.lid, lugares.nombre from obras, lugares, obras_en where obras_en.lid = lugares.lid and obras_en.oid = obras.oid and obras.oid = $obras_id;";
+	$result3 = $db_par->prepare($query3);
+	$result3->execute();
+	$lugares = $result3->fetchAll();
+	$lugar = $lugares[0];
 ?>
 
 	<div class="navbar-menu">
@@ -114,54 +131,71 @@
 				</div>
 			</div>
 			<main class="column">
-				<div class="hero is-primary">
-					<div class="hero-body">
-						<h1 class="title">Welcome, <strong><?php echo $_SESSION['user'] ?></strong></h1>
-					</div>
-				</div>
-				<div class="section">
+				<nav class="breadcrumb " aria-label="breadcrumbs ">
+					<ul>
+						<li>
+							<a href="obras.php">Obras</a>
+						</li>
+						<li class="is-active">
+							<a>Ver Obra</a>
+						</li>
+					</ul>
+				</nav>
+				<h1 class="title">
+					<span class="has-text-grey-light">Obra</span> <strong><?php echo $obra[1] ?></strong>
+				</h1>
 
+				<form>
+					<div class="columns is-desktop">
+						<div class="column is-4-desktop is-3-widescreen">
+							<figure class="image">
+								<img src="<?php echo $obra[5] ?>" width="120" alt="Placeholder image">
+							</figure>
+							<br>
+							<p class="heading">
+								<strong>Artistas que realizaron esta obra:</strong>
+							</p>
+							<ul>
+								<?php foreach ($artistas as $a) { ?>
+									<li><a href="artista.php?artista_id=<?php echo $a[0] ?>"><?php echo $a[1] ?></a></li>
+								<?php } ?>
+							</ul>
+							<br>
+							<p class="heading">
+								<strong>Ubicacion de la obra:</strong>
+							</p>
+							<p class="content">
+								<a href="lugar.php?lugar_id=<?php echo $lugar[0] ?>"><?php echo $lugar[1] ?></a>
+							</p>
+						</div>
+						<div class="column is-4-desktop is-4-widescreen">
+							<p class="heading">
+								<strong>Fecha de Inicio</strong>
+							</p>
+							<p class="content">
+								<?php echo $obra[2] ?>
+							</p>
+							<p class="heading">
+								<strong>Fecha de Fin</strong>
+							</p>
+							<p class="content">
+								<?php echo $obra[3] ?>
+							</p>
+							<p class="heading">
+								<strong>Periodo</strong>
+							</p>
+							<p class="content">
+								<?php echo $obra[4] ?>
+							</p>
+							<p class="heading">
+								Link Imagen
+							</p>
+							<p class="content">
+								<a href="<?php echo $obra[5] ?>"><?php echo $obra[5] ?></a>
+							</p>
+						</div>
 
-					<p class="title">¿Qué deseas hacer? </p>
-					<div class="columns is-centered">
-						<div class="column">
-							<div class="box">
-								<p>
-															<span class="icon">
-																	<i class="fa fa-landmark"></i>
-															</span>
-									Ver mis entradas a museos
-								</p>
-								<br>
-								<a href="museum_entrance.php" class="button is-success">Ver entradas</a>
-							</div>
-						</div>
-						<div class="column is-5-tablet is-4-widescreen is-4-desktop">
-							<div class="box">
-								<p>
-															<span class="icon">
-																	<i class="fas fa-hotel"></i>
-															</span>
-									Ver mis reservas de hoteles
-								</p>
-								<br>
-								<a href="hotels.php" class="button is-success">Ver reservas</a>
-							</div>
-						</div>
-						<div class="column">
-							<div class="box">
-								<p>
-															<span class="icon">
-																	<i class="fas fa-subway"></i>
-															</span>
-									Ver mis tickets de transporte
-								</p>
-								<br>
-								<a href="tickets.php" class="button is-success">Ver tickets</a>
-							</div>
-						</div>
-					</div>
-				</div>
+				</form>
 			</main>
 		</div>
 	</section>
