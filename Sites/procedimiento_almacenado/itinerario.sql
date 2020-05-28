@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION itinerario3(fecha date, origen varchar, nombre_artistas varchar)
+CREATE OR REPLACE FUNCTION f_itinerario(fecha date, origen varchar, nombre_artistas varchar)
 RETURNS Table (c1 varchar, c2 varchar(50), hora_salida1 TIMESTAMP, medio1 varchar,
 				c3 varchar, c4 varchar, hora_salida2 TIMESTAMP, medio2 varchar,
 				c5 varchar, c6 varchar, hora_salida3 TIMESTAMP, medio3 varchar, total INT) as $$
@@ -18,6 +18,24 @@ BEGIN
     DROP TABLE IF EXISTS origen_id;
 	CREATE TEMP TABLE IF NOT EXISTS origen_id AS
 		(SELECT DISTINCT cid FROM ciudades WHERE nombreciudad = origen);
+	
+	--Obtiene los id de las ciudades segun artistas
+    DROP TABLE IF EXISTS ciudades_id;
+	CREATE TEMP TABLE IF NOT EXISTS ciudades_id AS
+        (SELECT DISTINCT cid_artistas.cid FROM
+		(SELECT artistas_cid.cid, artistas_cid.nombre
+		FROM dblink('dbname=grupo84e3 user=grupo84 password=grupo84', '
+		SELECT ubica_en.cid, artista_lugar.nombre
+		FROM ubica_en,
+			(SELECT obras_artista.aid, obras_en.oid, obras_en.lid, obras_artista.nombre
+					FROM obras_en,
+						(SELECT oid, artistas.aid, nombre FROM artistas, realizo
+							WHERE artistas.aid = realizo.aid) AS obras_artista
+					WHERE obras_en.oid = obras_artista.oid) AS artista_lugar
+		WHERE ubica_en.lid = artista_lugar.lid'
+		) AS artistas_cid(cid int, nombre varchar(50)),
+		string_to_array(nombre_artistas, ',') AS nombre_array(nombre)
+		WHERE artistas_cid.nombre =ANY(nombre_array.nombre)) AS cid_artistas);
 
 	--Obtiene todos los viajes posible a maximo dos escalas
     DROP TABLE IF EXISTS viajes;
