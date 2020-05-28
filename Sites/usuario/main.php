@@ -81,7 +81,7 @@
 						</p>
 						<ul class="menu-list">
 							<li>
-								<a>
+								<a href="../procedimiento_almacenado/form_procedimiento_almacenado.php">
 								<span class="icon">
 									<i class="fas fa-clipboard-list"></i>
 								</span>

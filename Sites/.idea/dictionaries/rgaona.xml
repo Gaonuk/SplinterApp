@@ -2,7 +2,9 @@
   <dictionary name="rgaona">
     <words>
       <w>almacenado</w>
+      <w>apertura</w>
       <w>aplicacion</w>
+      <w>aqui</w>
       <w>artista</w>
       <w>artistas</w>
       <w>bienvenido</w>
@@ -10,6 +12,7 @@
       <w>bulma</w>
       <w>buscar</w>
       <w>catolica</w>
+      <w>cierre</w>
       <w>colorprimary</w>
       <w>completo</w>
       <w>comprar</w>
@@ -24,9 +27,11 @@
       <w>deseas</w>
       <w>direccion</w>
       <w>dirección</w>
+      <w>encuentran</w>
       <w>entradas</w>
       <w>entrega</w>
       <w>estado</w>
+      <w>este</w>
       <w>exista</w>
       <w>existe</w>
       <w>fallecido</w>
@@ -39,9 +44,12 @@
       <w>grupos</w>
       <w>hacer</w>
       <w>hola</w>
+      <w>horario</w>
       <w>hoteles</w>
       <w>hoverable</w>
       <w>hubo</w>
+      <w>iglesia</w>
+      <w>iglesias</w>
       <w>imagen</w>
       <w>impar</w>
       <w>iniciar</w>
@@ -51,10 +59,12 @@
       <w>intente</w>
       <w>inválido</w>
       <w>itinerario</w>
+      <w>letra</w>
       <w>logeado</w>
       <w>lugar</w>
       <w>lugares</w>
       <w>marginless</w>
+      <w>museo</w>
       <w>museos</w>
       <w>nacimiento</w>
       <w>navbar</w>
@@ -74,9 +84,12 @@
       <w>realizaron</w>
       <w>reserva</w>
       <w>reservas</w>
+      <w>searchlugares</w>
       <w>sesión</w>
+      <w>tipo</w>
       <w>transporte</w>
       <w>ubicacion</w>
+      <w>ubicadas</w>
       <w>unico</w>
       <w>universidad</w>
       <w>usuario</w>

@@ -1,10 +1,19 @@
 <?php include "../templates/main_header.html";
 	include('../config/conexion.php');
 	session_start();
-	$query = "SELECT * FROM artistas GROUP BY artistas.aid;";
-	$result = $db_par->prepare($query);
-	$result->execute();
-	$artistas = $result->fetchAll();
+	$n_buscar = $_POST['nombre'];
+	if ($n_buscar != '') {
+		$query = "SELECT * FROM artistas WHERE LOWER(nombre) LIKE LOWER('%$n_buscar%');";
+		$result = $db_par->prepare($query);
+		$result->execute();
+		$artistas = $result->fetchAll();
+	}
+	else {
+		$query = "SELECT * FROM artistas GROUP BY artistas.aid;";
+		$result = $db_par->prepare($query);
+		$result->execute();
+		$artistas = $result->fetchAll();
+	}
 ?>
 
 <div class="navbar-menu">
@@ -86,7 +95,7 @@
 					</p>
 					<ul class="menu-list">
 						<li>
-							<a>
+							<a href="../procedimiento_almacenado/form_procedimiento_almacenado.php">
 								<span class="icon">
 									<i class="fas fa-clipboard-list"></i>
 								</span>
@@ -134,28 +143,16 @@
 						</div>
 						<div class="level-item is-hidden-tablet-only">
 							<div class="field has-addons">
-								<p class="control">
-									<input class="input" type="text" placeholder="Nombre artista, ...">
-								</p>
-								<p class="control">
-									<button class="button">
-										Search
-									</button>
-								</p>
-							</div>
-						</div>
-					</div>
-
-					<div class="level-right">
-						<div class="level-item">
-							Order by
-						</div>
-						<div class="level-item">
-							<div class="select">
-								<select>
-									<option>Fecha Nacimiento</option>
-									<option>Nombre</option>
-								</select>
+								<form method="post" name="searchlugares" action="artistas.php">
+									<div class="field has-addons">
+										<div class="control">
+											<input class="input" type="text" placeholder="Buscar por nombre, letra,..." name="nombre">
+										</div>
+										<div class="control">
+											<input type="submit" class="button is-info" value="Search">
+										</div>
+									</div>
+								</form>
 							</div>
 						</div>
 					</div>

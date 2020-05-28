@@ -29,7 +29,7 @@
 					<?php echo $_SESSION["user"] ?>
 				</div>
 				<div class="navbar-dropdown">
-					<a class="navbar-item" href="">
+					<a class="navbar-item" href="#">
 						<div>
                                 <span class="icon is-small">
                                   <i class="fa fa-user-circle-o"></i>
@@ -98,7 +98,7 @@
 						</p>
 						<ul class="menu-list">
 							<li>
-								<a>
+								<a href="../procedimiento_almacenado/form_procedimiento_almacenado.php">
 								<span class="icon">
 									<i class="fas fa-clipboard-list"></i>
 								</span>

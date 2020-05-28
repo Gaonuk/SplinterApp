@@ -1,10 +1,28 @@
 <?php include "../templates/main_header.html";
 	include('../config/conexion.php');
 	session_start();
-	$query = "SELECT * FROM lugares;";
-	$result = $db_par->prepare($query);
-	$result->execute();
-	$lugares = $result->fetchAll();
+	$n_buscar = $_POST['nombre'];
+	if ($n_buscar != '') {
+		$query = "SELECT * FROM lugares WHERE LOWER(nombre) LIKE LOWER('%$n_buscar%');";
+		$result = $db_par->prepare($query);
+		$result->execute();
+		$lugares = $result->fetchAll();
+	} else {
+		$query = "SELECT lugares.lid, lugares.nombre, lugares.foto_url FROM lugares, plazas WHERE lugares.lid = plazas.lid;";
+		$result = $db_par->prepare($query);
+		$result->execute();
+		$plazas = $result->fetchAll();
+		$query2 = "SELECT lugares.lid, lugares.nombre, lugares.foto_url FROM lugares, iglesias WHERE lugares.lid = iglesias.lid;";
+		$result2 = $db_par->prepare($query2);
+		$result2->execute();
+		$iglesias = $result2->fetchAll();
+		$query3 = "SELECT lugares.lid, lugares.nombre, lugares.foto_url FROM lugares, museos WHERE lugares.lid = museos.lid;";
+		$result3 = $db_par->prepare($query3);
+		$result3->execute();
+		$museos = $result3->fetchAll();
+		$lugares = array_merge($museos, $iglesias, $plazas);
+	}
+
 ?>
 
 	<div class="navbar-menu">
@@ -82,12 +100,12 @@
 								</a>
 							</li>
 						</ul>
-						<p class="menu-label">
+						<p class="menu-label" >
 							Itinerario
 						</p>
 						<ul class="menu-list">
 							<li>
-								<a>
+								<a href="../procedimiento_almacenado/form_procedimiento_almacenado.php">
 								<span class="icon">
 									<i class="fas fa-clipboard-list"></i>
 								</span>
@@ -135,45 +153,80 @@
 							</div>
 							<div class="level-item is-hidden-tablet-only">
 								<div class="field has-addons">
-									<p class="control">
-										<input class="input" type="text" placeholder="Nombre...">
-									</p>
-									<p class="control">
-										<button class="button">
-											Search
-										</button>
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="level-right">
-							<div class="level-item">
-								Order by
-							</div>
-							<div class="level-item">
-								<div class="select">
-									<select>
-										<option>Fecha Inicio</option>
-										<option>Periodo</option>
-									</select>
+									<form method="post" name="searchlugares" action="lugares.php">
+										<div class="field has-addons">
+											<div class="control">
+												<input class="input" type="text" placeholder="Buscar por nombre, letra,..." name="nombre">
+											</div>
+											<div class="control">
+												<input type="submit" class="button is-info" value="Search">
+											</div>
+										</div>
+									</form>
 								</div>
 							</div>
 						</div>
 					</nav>
 					<div class="columns is-multiline">
-						<?php foreach ($lugares as $a) { ?>
+						<?php foreach ($plazas as $a) { ?>
 							<div class="column is-12-tablet is-6-desktop is-4-widescreen">
 								<article class="box">
 									<div class="media">
 										<aside class="media-left">
-											<img src="<?php echo '#' ?>" width="80" alt="">
+											<img src="<?php echo $a[2] ?>" width="80" alt="">
 										</aside>
 										<div class="media-content">
 											<p class="title is-5 is-marginless">
-												<a href="artista.php?artista_id=<?php echo $a[0] ?>"><?php echo $a[1] ?></a>
+												<a href="lugar.php?lugar_id=<?php echo $a[0] ?>&tipo=plaza"><?php echo $a[1] ?></a>
 											</p>
 											<p class="subtitle is-marginless">
-												<!--										--><?php //echo $a[2]?>
+												Este lugar es una <strong>Plaza</strong>
+												<br>
+												<!--										--><?php //echo $a[3]?>
+											</p>
+											<div class="content is-small">
+												<!--										--><?php //echo $a[4]?>
+											</div>
+										</div>
+								</article>
+							</div>
+						<?php } ?>
+						<?php foreach ($iglesias as $a) { ?>
+							<div class="column is-12-tablet is-6-desktop is-4-widescreen">
+								<article class="box">
+									<div class="media">
+										<aside class="media-left">
+											<img src="<?php echo $a[2] ?>" width="80" alt="">
+										</aside>
+										<div class="media-content">
+											<p class="title is-5 is-marginless">
+												<a href="lugar.php?lugar_id=<?php echo $a[0] ?>&tipo=iglesia"><?php echo $a[1] ?></a>
+											</p>
+											<p class="subtitle is-marginless">
+												Este lugar es una <strong>Iglesia</strong>
+												<br>
+												<!--										--><?php //echo $a[3]?>
+											</p>
+											<div class="content is-small">
+												<!--										--><?php //echo $a[4]?>
+											</div>
+										</div>
+								</article>
+							</div>
+						<?php } ?>
+						<?php foreach ($museos as $a) { ?>
+							<div class="column is-12-tablet is-6-desktop is-4-widescreen">
+								<article class="box">
+									<div class="media">
+										<aside class="media-left">
+											<img src="<?php echo $a[2] ?>" width="80" alt="">
+										</aside>
+										<div class="media-content">
+											<p class="title is-5 is-marginless">
+												<a href="lugar.php?lugar_id=<?php echo $a[0] ?>&tipo=museo"><?php echo $a[1] ?></a>
+											</p>
+											<p class="subtitle is-marginless">
+												Este lugar es un <strong>Museo</strong>
 												<br>
 												<!--										--><?php //echo $a[3]?>
 											</p>

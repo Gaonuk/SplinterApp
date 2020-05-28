@@ -1,10 +1,19 @@
 <?php include "../templates/main_header.html";
 	include('../config/conexion.php');
 	session_start();
-	$query = "SELECT * FROM obras ORDER BY obras.oid ASC;";
-	$result = $db_par->prepare($query);
-	$result->execute();
-	$obras = $result->fetchAll();
+	$n_buscar = $_POST['nombre'];
+	if ($n_buscar != '') {
+		$query = "SELECT * FROM obras WHERE lower(nombre) like lower('%$n_buscar%');";
+		$result = $db_par->prepare($query);
+		$result->execute();
+		$obras = $result->fetchAll();
+	}
+	else {
+		$query = "SELECT * FROM obras ORDER BY obras.oid ASC;";
+		$result = $db_par->prepare($query);
+		$result->execute();
+		$obras = $result->fetchAll();
+	}
 ?>
 
 	<div class="navbar-menu">
@@ -87,7 +96,7 @@
 						</p>
 						<ul class="menu-list">
 							<li>
-								<a>
+								<a href="../procedimiento_almacenado/form_procedimiento_almacenado.php">
 								<span class="icon">
 									<i class="fas fa-clipboard-list"></i>
 								</span>
@@ -135,31 +144,20 @@
 							</div>
 							<div class="level-item is-hidden-tablet-only">
 								<div class="field has-addons">
-									<p class="control">
-										<input class="input" type="text" placeholder="Nombre de obra, periodo...">
-									</p>
-									<p class="control">
-										<button class="button">
-											Search
-										</button>
-									</p>
+									<form method="post" name="searchlugares" action="obras.php">
+										<div class="field has-addons">
+											<div class="control">
+												<input class="input" type="text" placeholder="Buscar por nombre, letra,..." name="nombre">
+											</div>
+											<div class="control">
+												<input type="submit" class="button is-info" value="Search">
+											</div>
+										</div>
+									</form>
 								</div>
 							</div>
 						</div>
-
-						<div class="level-right">
-							<div class="level-item">
-								Order by
-							</div>
-							<div class="level-item">
-								<div class="select">
-									<select>
-										<option>Fecha Inicio</option>
-										<option>Periodo</option>
-									</select>
-								</div>
-							</div>
-						</div>
+						
 					</nav>
 					<div class="columns is-multiline">
 						<?php foreach ($obras as $a) { ?>
