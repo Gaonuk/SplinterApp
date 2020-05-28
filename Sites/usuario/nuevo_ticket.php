@@ -1,8 +1,8 @@
 <?php
 include ('session.php');
 include "../templates/main_header.html"; ?>
-
-<section class="hero is-dark">
+</nav>
+<section class="hero">
   <div class="hero-body">
     <div class="container">
       <h1 class="title">
