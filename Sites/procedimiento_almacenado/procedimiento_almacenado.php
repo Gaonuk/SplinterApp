@@ -19,7 +19,7 @@
 
 <?php
     require("../config/conexion.php");
-    $query = 'SELECT DISTINCT * FROM f_itinerario(\''.$fecha.'\', \''.$ciudad_origen.'\', \''.implode(',', $nombre_artistas).'\')';
+    $query = 'SELECT * FROM f_itinerario(\''.$fecha.'\', \''.$ciudad_origen.'\', \''.implode(',', $nombre_artistas).'\')';
     #Se prepara y ejecuta la consulta. Se obtienen TODOS los resultados
     $result = $db_impar -> prepare($query);
     $result -> execute();

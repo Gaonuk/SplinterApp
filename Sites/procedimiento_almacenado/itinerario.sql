@@ -159,7 +159,7 @@ BEGIN
 	END LOOP;
 
 
-	RETURN QUERY SELECT i.c1, i.c2, i.hora_salida1, i.medio1, i.c3, i.c4, i.hora_salida2, i.medio2 , i.c5, i.c6, i.hora_salida3, i.medio3, i.total  FROM itinerario as i ORDER BY total;
+	RETURN QUERY SELECT DISTINCT i.c1, i.c2, i.hora_salida1, i.medio1, i.c3, i.c4, i.hora_salida2, i.medio2 , i.c5, i.c6, i.hora_salida3, i.medio3, i.total  FROM itinerario as i ORDER BY total;
 RETURN;
 END;
 $$ language plpgsql;
