@@ -19,9 +19,7 @@
 
 <?php
     require("../config/conexion.php");
-    echo ' '.$ciudad_origen.'  '.$fecha.'  '.implode(',',$nombre_artistas).' ';
-    $query = 'SELECT * FROM itinerario(\''.$fecha.'\', \''.$ciudad_origen.'\', \''.implode(',', $nombre_artistas).'\')';
-    echo $query;
+    $query = 'SELECT DISTINCT * FROM f_itinerario(\''.$fecha.'\', \''.$ciudad_origen.'\', \''.implode(',', $nombre_artistas).'\')';
     #Se prepara y ejecuta la consulta. Se obtienen TODOS los resultados
     $result = $db_impar -> prepare($query);
     $result -> execute();
@@ -30,29 +28,23 @@
 
 <table>
     <tr>
-      <th>tid</th>
       <th>c1</th>
       <th>c2</th>
       <th>hora_salida</th>
-      <th>duracion</th>
       <th>medio</th>
-      <th>precio</th>
       <th>c3</th>
       <th>c4</th>
       <th>hora_salida</th>
-      <th>duracion</th>
       <th>medio</th>
-      <th>precio</th>
       <th>c5</th>
       <th>c6</th>
       <th>hora_salida</th>
-      <th>duracion</th>
       <th>medio</th>
-      <th>precio</th>
+      <th>total</th>
     </tr>
   <?php
 	foreach ($rows as $c) {
-  		echo "<tr> <td>$c[0]</td> <td>$c[1]</td> <td>$c[2]</td></tr> <td>$c[3]</td> <td>$c[4]</td> <td>$c[5]</td> <td>$c[6]</td> <td>$c[7]</td> <td>$c[8]</td> <td>$c[9]</td> <td>$c[10]</td> <td>$c[11]</td> <td>$c[12]</td> <td>$c[13]</td> <td>$c[14]</td> <td>$c[15]</td> <td>$c[16]</td> <td>$c[17]</td> <td>$c[18]</td> </tr>";
+  		echo "<tr> <td>$c[0]</td> <td>$c[1]</td> <td>$c[2]</td></tr> <td>$c[3]</td> <td>$c[4]</td> <td>$c[5]</td> <td>$c[6]</td> <td>$c[7]</td> <td>$c[8]</td> <td>$c[9]</td> <td>$c[10]</td> <td>$c[11]</td> <td>$c[12]</td> </tr>";
 	}
   ?>
 	</table>
