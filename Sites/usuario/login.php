@@ -2,9 +2,8 @@
   session_start();
   if($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
-    $email = $_POST["email"];
     $password = $_POST["password"];
-    $query = "SELECT usuarios.uid FROM usuarios WHERE usuarios.username = '$username' AND usuarios.correo = '$email' AND usuarios.password = $password;";
+    $query = "SELECT usuarios.uid FROM usuarios WHERE usuarios.username = '$username' AND usuarios.password = '$password';";
     $result = $db_impar -> prepare($query);
     $result -> execute();
     $usuario = $result -> fetchAll();
@@ -19,7 +18,7 @@
       header('location:main.php');
     
     } else {
-        $error = "Nombre o Email Inválido";
+        $error = "Nombre o Email Inválido, $password";
         
       }
   }

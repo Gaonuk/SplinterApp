@@ -13,15 +13,6 @@
                 </div>
             </div>
             <div class="field">
-                <label class="label">Email</label>
-                <div class="control has-icons-left">
-                    <input type="text" name="email" class="input is-primary">
-                    <span class="icon is-small is-left">
-                        <i class="fa fa-envelope"></i>
-                    </span>
-                </div>
-            </div>
-            <div class="field">
                 <label class="label">Password</label>
                 <div class="control has-icons-left">
                     <input type="password" name="password" class="input is-primary">
