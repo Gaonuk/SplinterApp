@@ -35,7 +35,7 @@
       <tr> <th>Ciudad Origen</th> <th>Ciuedad destino</th> <th>Medio</th> <th>Hora Salida</th> <th>Duracion</th> <th>Precio</th> </tr>
       #Viaje 1
       <tr> <td>' .$c['c1'] . '</td> <td>' . $c['c2'] . '</td> <td>' . $c['medio1'] . '</td><td>' . $c['hora_salida1'] . '</td><td>' . $c['duracion1'] .'</td><td>' .$c['precio1']. '</td><tr>
-      </table>'
+      </table>';
 	}
   ?>
 	
