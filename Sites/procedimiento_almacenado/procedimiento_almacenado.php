@@ -29,7 +29,7 @@
 
 
 
-<?php for foreach ($rows as $c) { ?>
+<?php foreach ($rows as $c) { ?>
   <h3> Itinerario n° <?php echo $c['tid']?> Precio Total: <?php echo $c['total'] ?> </h3>
   <table>
     <!-- Header -->
