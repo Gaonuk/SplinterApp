@@ -24,7 +24,7 @@ BEGIN
 	CREATE TEMP TABLE IF NOT EXISTS ciudades_id AS
         (SELECT DISTINCT cid_artistas.cid FROM
 		(SELECT artistas_cid.cid, artistas_cid.nombre
-		FROM dblink('dbname=grupo84 user=postgres password=paboloso1999', '
+		FROM dblink('dbname=grupo84e3 user=grupo84 password=grupo84', '
 		SELECT ubica_en.cid + 1, artista_lugar.nombre
 		FROM ubica_en,
 			(SELECT obras_artista.aid, obras_en.oid, obras_en.lid, obras_artista.nombre
@@ -123,7 +123,7 @@ BEGIN
 			--Caso que ocupe un viaje
 			ELSE
 				viaje1 := CAST(prow.v3 AS INTEGER);
-				DROP TABLE IF EXISTS v1
+				DROP TABLE IF EXISTS v1;
 				CREATE TEMP TABLE IF NOT EXISTS v1 AS
 				SELECT * FROM destinos WHERE did = viaje1;
 
@@ -164,7 +164,7 @@ BEGIN
 	END LOOP;
 
 
-	RETURN QUERY SELECT DISTINCT i.c1, i.c2, i.hora_salida1, i.medio1, i.c3, i.c4, i.hora_salida2, i.medio2 , i.c5, i.c6, i.hora_salida3, i.medio3, i.total  FROM itinerario as i ORDER BY total;
+	RETURN QUERY SELECT i.c1, i.c2, i.hora_salida1, i.medio1, i.c3, i.c4, i.hora_salida2, i.medio2 , i.c5, i.c6, i.hora_salida3, i.medio3, i.total  FROM itinerario as i ORDER BY total;
 RETURN;
 END;
 $$ language plpgsql;
