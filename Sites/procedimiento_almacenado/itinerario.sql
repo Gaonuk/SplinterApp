@@ -136,6 +136,8 @@ BEGIN
 
 		END LOOP;
 
+	--Revisa las fechas y la duracion para que hora de salida sea valido
+
 	FOR prow IN
 		SELECT * FROM itinerario
 	LOOP
@@ -163,6 +165,8 @@ BEGIN
 
 	END LOOP;
 
+
+	--Retorna itinerario
 
 	RETURN QUERY SELECT i.tid,
 	i.c1, i.c2, i.hora_salida1, i.duracion1, i.medio1, i.precio1,
