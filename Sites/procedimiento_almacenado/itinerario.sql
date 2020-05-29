@@ -25,7 +25,7 @@ BEGIN
         (SELECT DISTINCT cid_artistas.cid FROM
 		(SELECT artistas_cid.cid, artistas_cid.nombre
 		FROM dblink('dbname=grupo84e3 user=grupo84 password=grupo84', '
-		SELECT ubica_en.cid + 1, artista_lugar.nombre
+		SELECT ubica_en.cid, artista_lugar.nombre
 		FROM ubica_en,
 			(SELECT obras_artista.aid, obras_en.oid, obras_en.lid, obras_artista.nombre
 					FROM obras_en,
