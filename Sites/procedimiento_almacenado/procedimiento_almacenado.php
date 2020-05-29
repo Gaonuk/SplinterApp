@@ -1,4 +1,4 @@
-<?php include('../templates/header.html')?>
+<?php include('../templates/main_header.html')?>
 
   <main id="main">
 
@@ -48,3 +48,7 @@
 	}
   ?>
 	</table>
+
+
+  <!-- ======= Footer ======= -->
+<?php include('../templates/main_footer.html')?>
