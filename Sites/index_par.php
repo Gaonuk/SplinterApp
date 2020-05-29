@@ -1,4 +1,48 @@
-<?php include('templates/main_header.html'); ?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Entrega 3 - Grupos 15-84</title>
+	<link href="assets/img/dbb.png" rel="icon">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
+	<script src="https://kit.fontawesome.com/0075857cc2.js" crossorigin="anonymous"></script>
+	<style>
+		.is-rounded img {
+			border-radius: 300000px;
+		}
+
+		figure {
+			margin-right: 0.5rem;
+		}
+
+		.is-leveled {
+			justify-content: space-between;
+		}
+	</style>
+
+</head>
+
+<body>
+<nav class="navbar has-shadow">
+	<div class="navbar-brand">
+		<a class="navbar-item" href="#">
+			<img src="../assets/img/logo_real.png" alt="Logo DB">
+			<!--        <img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28">-->
+		</a>
+		<!--      <div class="navbar-item">-->
+		<!--        <strong>Splinter S.A.</strong>-->
+		<!--      </div>-->
+
+	</div>
+	<div class="navbar-menu">
+		<div class="navbar-start">
+			<div class="navbar-item">
+				<small>Aplicacion web de los grupos 84 y 15</small>
+			</div>
+		</div>
+	</div>
 </nav>
 <section class="section">
 	<div class="columns is-centered">

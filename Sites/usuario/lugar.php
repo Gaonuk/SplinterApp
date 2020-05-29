@@ -14,6 +14,11 @@
 	$result3 = $db_par->prepare($query3);
 	$result3->execute();
 	$artistas = $result3->fetchAll();
+	$query4 = "SELECT ciudades.nombre, ciudades.pais FROM lugares, ciudades, ubica_en WHERE ubica_en.lid = lugares.lid AND ubica_en.cid = ciudades.cid AND lugares.lid = $lugar_id;";
+	$result4 = $db_par->prepare($query4);
+	$result4->execute();
+	$ciudad = $result4->fetchAll();
+	$ciudad = $ciudad[0];
 	if ($tipo == 'iglesia') {
 		$query = "SELECT lugares.lid, lugares.nombre, lugares.foto_url, iglesias.horario_in, iglesias.horario_fin FROM lugares, iglesias WHERE lugares.lid = iglesias.lid and lugares.lid=$lugar_id;";
 		$result = $db_par->prepare($query);
@@ -178,6 +183,18 @@
 									<img src="<?php echo $lugar[2] ?>" width="120" alt="Placeholder image">
 								</figure>
 								<br>
+								<p class="heading">
+									<strong>Ciudad donde se ubica este lugar: </strong>
+								</p>
+								<p class="content">
+									<?php echo $ciudad[0] ?>
+								</p>
+								<p class="heading">
+									<strong>Pais al que pertenece este lugar:</strong>
+								</p>
+								<p class="content">
+									<?php echo $ciudad[1]?>
+								</p>
 								<?php if ($tipo != 'plaza') { ?>
 									<p class="heading">
 										<strong>Horario de Apertura</strong>
