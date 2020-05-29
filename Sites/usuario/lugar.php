@@ -201,6 +201,8 @@
 										$<?php echo $lugar[5]?> Dolares
 									</p>
 									
+									<a href="comprar_entrada.php?mid=<?php echo $lugar_id?>" class="button is-primary">Comprar Entrada</a>
+									
 								<?php }?>
 							</div>
 							<div class="column is-8-desktop is-9-widescreen">

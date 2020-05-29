@@ -1,7 +1,6 @@
 <?php
 	include('session.php');
 	include "../templates/main_header.html";
-	session_start();
 	$login_session = intval($login_session);
 	$uid = $_SESSION["uid"];
 	$query = "SELECT * FROM entradas where uid = $uid;";
@@ -9,7 +8,7 @@
 	$result->execute();
 	$entradas = $result->fetchAll();
 ?>
-	
+
 	<div class="navbar-menu">
 		<div class="navbar-end">
 			<div class="navbar-item has-dropdown is-hoverable">
@@ -41,7 +40,7 @@
 		</div>
 	</div>
 	</nav>
-	
+
 	<section class="">
 		<div class="columns is-gapless">
 			<div class="column is-4-tablet is-3-desktop is-2-widescreen">
@@ -133,13 +132,15 @@
 					</div>
 				</div>
 				<div class="section">
-					
+
 					<div class="columns is-centered">
 						<table class="table">
 							<thead>
 							<tr>
 								<th>Fecha Compra</th>
 								<th>Museo</th>
+								<th>Hora Inicio</th>
+								<th>Hora Cierre</th>
 							</tr>
 							</thead>
 							<tfoot>
@@ -148,11 +149,20 @@
 							</tr>
 							</tfoot>
 							<tbody>
-							<?php
-								foreach ($entradas as $e) {
-									echo "<tr> <td>$e[0]</td> <td>$e[1]</td></tr>";
-								}
-							?>
+							<?php foreach ($entradas as $e) {
+								$query = "SELECT lugares.nombre, museos.horario_in, museos.horario_fin FROM museos, lugares where lugares.lid = $e[1];";
+								$result = $db_par->prepare($query);
+								$result->execute();
+								$museo = $result->fetchAll();
+								$museo = $museo[0];
+								?>
+								<tr>
+									<td><?php echo $e[2] ?></td>
+									<td><?php echo $museo[0] ?></td>
+									<td><?php echo $museo[1] ?></td>
+									<td><?php echo $museo[2] ?></td>
+								</tr>
+							<?php } ?>
 							</tbody>
 						</table>
 					</div>
