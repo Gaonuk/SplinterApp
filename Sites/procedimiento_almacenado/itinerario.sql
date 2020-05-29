@@ -24,8 +24,8 @@ BEGIN
 	CREATE TEMP TABLE IF NOT EXISTS ciudades_id AS
         (SELECT DISTINCT cid_artistas.cid FROM
 		(SELECT artistas_cid.cid, artistas_cid.nombre
-		FROM dblink('dbname=grupo84e3 user=grupo84 password=grupo84', '
-		SELECT ubica_en.cid, artista_lugar.nombre
+		FROM dblink('dbname=grupo84 user=postgres password=paboloso1999', '
+		SELECT ubica_en.cid + 1, artista_lugar.nombre
 		FROM ubica_en,
 			(SELECT obras_artista.aid, obras_en.oid, obras_en.lid, obras_artista.nombre
 					FROM obras_en,
@@ -62,7 +62,7 @@ BEGIN
 		SELECT split_part(V.did, '/', 3) as v1, split_part(V.did, '/', 2) as v2, split_part(V.did, '/', 1) as v3  
 			FROM (SELECT * FROM viajes) AS V, ciudades_id, origen_id 
 			WHERE V.ciudaddestino = ciudades_id.cid AND V.ciudadorigen = origen_id.cid AND
-			V.ciudaddestino != origen_id.cid;
+			V.ciudaddestino != origen_id.cid AND V.ciudaddestino != V.escala2;
 	
 	--Crea tabla para poblar los itinerarios
 	DROP TABLE IF EXISTS itinerario;
@@ -105,6 +105,7 @@ BEGIN
 			ELSEIF prow.v2 != '' THEN
                 viaje1 := CAST(prow.v2 AS INTEGER);
 				viaje2 := CAST(prow.v3 AS INTEGER);
+				DROP TABLE IF EXISTS v1;
 				CREATE TEMP TABLE IF NOT EXISTS v1 AS
 				SELECT * FROM destinos WHERE did = viaje1;
 				DROP TABLE IF EXISTS v2;
@@ -122,6 +123,7 @@ BEGIN
 			--Caso que ocupe un viaje
 			ELSE
 				viaje1 := CAST(prow.v3 AS INTEGER);
+				DROP TABLE IF EXISTS v1
 				CREATE TEMP TABLE IF NOT EXISTS v1 AS
 				SELECT * FROM destinos WHERE did = viaje1;
 
