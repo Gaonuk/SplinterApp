@@ -27,19 +27,22 @@
 ?>
 
 
-  <?php
-	foreach ($rows as $c) {
-      echo 'Itinerario n°' . $c['tid']. 'Precio Total: ' .$c['total'];
-      echo '
-      <table>
-      <tr> <th>Ciudad Origen</th> <th>Ciuedad destino</th> <th>Medio</th> <th>Hora Salida</th> <th>Duracion</th> <th>Precio</th> </tr>
-      #Viaje 1
-      <tr> <td>' .$c['c1'] . '</td> <td>' . $c['c2'] . '</td> <td>' . $c['medio1'] . '</td><td>' . $c['hora_salida1'] . '</td><td>' . $c['duracion1'] .'</td><td>' .$c['precio1']. '</td><tr>
-      </table>';
-	}
-  ?>
-	
 
+
+<?php for foreach ($rows as $c) { ?>
+  <h3> Itinerario n° <?php echo $c['tid']?> Precio Total: <?php echo $c['total'] ?> </h3>
+  <table>
+    <!-- Header -->
+    <tr> <th>Ciudad Origen</th> <th>Ciuedad destino</th> <th>Medio</th> <th>Hora Salida</th> <th>Duracion</th> <th>Precio</th> </tr>
+    <!-- Primer Viaje -->
+    <tr>
+      <td><?php echo $c['c1'] ?></td> <td><?php echo $c['c2'] ?></td> <td><?php echo $c['medio1'] ?></td> <td><?php echo $c['hora_salida1'] ?></td> <td><?php echo $c['duracion1'] ?></td> <td><?php echo $c['precio1'] ?></td>
+    </tr>
+  </table>
+
+
+
+<?php } ?>
 
   <!-- ======= Footer ======= -->
 <?php include('../templates/main_footer.html')?>
