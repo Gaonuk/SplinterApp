@@ -38,6 +38,18 @@
     <tr>
       <td><?php echo $c['c1'] ?></td> <td><?php echo $c['c2'] ?></td> <td><?php echo $c['medio1'] ?></td> <td><?php echo $c['hora_salida1'] ?></td> <td><?php echo $c['duracion1'] ?></td> <td><?php echo $c['precio1'] ?></td>
     </tr>
+    <!-- Segundo Viaje -->
+    <?php if ($c['c3'] != '') { ?>
+    <tr>
+      <td><?php echo $c['c3'] ?></td> <td><?php echo $c['c4'] ?></td> <td><?php echo $c['medio2'] ?></td> <td><?php echo $c['hora_salida2'] ?></td> <td><?php echo $c['duracion2'] ?></td> <td><?php echo $c['precio2'] ?></td>
+    </tr>
+    <?php } ?>
+    <!-- Tercer Viaje -->
+    <?php if ($c['c5'] != '') { ?>
+    <tr>
+      <td><?php echo $c['c5'] ?></td> <td><?php echo $c['c6'] ?></td> <td><?php echo $c['medio3'] ?></td> <td><?php echo $c['hora_salida3'] ?></td> <td><?php echo $c['duracion3'] ?></td> <td><?php echo $c['precio3'] ?></td>
+    </tr>
+    <?php } ?>
   </table>
 
 
