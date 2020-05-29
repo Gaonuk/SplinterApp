@@ -28,9 +28,10 @@
 
 
 
-
+<?php $tid = 0 ?>
 <?php foreach ($rows as $c) { ?>
-  <h3> Itinerario n° <?php echo $c['tid']?> Precio Total: <?php echo $c['total'] ?> </h3>
+  <?php $tid += 1 ?>
+  <h3> Itinerario n° <?php echo $tid?> Precio Total: <?php echo $c['total'] ?> </h3>
   <table>
     <!-- Header -->
     <tr> <th>Ciudad Origen</th> <th>Ciuedad destino</th> <th>Medio</th> <th>Hora Salida</th> <th>Duracion</th> <th>Precio</th> </tr>
