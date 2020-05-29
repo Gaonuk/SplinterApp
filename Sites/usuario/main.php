@@ -28,6 +28,14 @@
 							Sign Out
 						</div>
 					</a>
+					<a class="navbar-item" href="delete.php">
+						<div>
+                                <span class="icon is-small">
+                                  <i class="fa fa-ban"></i>
+                                </span>
+							Delete Account
+						<div>
+					<a>
 				</div>
 			</div>
 		</div>
