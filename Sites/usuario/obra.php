@@ -1,6 +1,10 @@
-<?php include "../templates/main_header.html";
-	include('../config/conexion.php');
+<?php
 	session_start();
+	
+	include "../templates/main_header.html";
+	include('../config/conexion.php');
+	
+	
 	$obras_id = $_GET['obra_id'];
 	$obras_id = intval($obras_id);
 	$query = "SELECT * FROM obras WHERE oid=$obras_id;";

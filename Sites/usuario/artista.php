@@ -1,6 +1,7 @@
-<?php include "../templates/main_header.html";
+<?php
+	include "session.php";
+	include "../templates/main_header.html";
 	include('../config/conexion.php');
-	session_start();
 	$artista_id = $_GET['artista_id'];
 	$artista_id = intval($artista_id);
 	$query = "SELECT * FROM artistas WHERE aid=$artista_id;";

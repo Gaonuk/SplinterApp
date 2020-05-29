@@ -1,6 +1,7 @@
-<?php include "../templates/main_header.html";
-	include('../config/conexion.php');
+<?php
 	session_start();
+	include "../templates/main_header.html";
+	include('../config/conexion.php');
 	$n_buscar = $_POST['nombre'];
 	if ($n_buscar != '') {
 		$query = "SELECT * FROM obras WHERE lower(nombre) like lower('%$n_buscar%');";

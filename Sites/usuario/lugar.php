@@ -1,6 +1,8 @@
-<?php include "../templates/main_header.html";
-	include('../config/conexion.php');
+<?php
 	session_start();
+	
+	include "../templates/main_header.html";
+	include('../config/conexion.php');
 	$lugar_id = $_GET['lugar_id'];
 	$tipo = $_GET['tipo'];
 	$lugar_id = intval($lugar_id);

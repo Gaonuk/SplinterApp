@@ -1,5 +1,6 @@
-<?php include('../templates/main_header.html');
+<?php
 	session_start();
+	include('../templates/main_header.html');
 ?>
 	<div class="navbar-menu">
 		<div class="navbar-end">
