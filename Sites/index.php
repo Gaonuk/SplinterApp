@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta content="width=device-width, initial-scale=1.0" name="viewport">
-	<title>Grupo84 Web App - Index</title>
+	<title>Entrega 3 - Grupos 15-84</title>
 	<meta content="" name="descriptison">
 	<meta content="" name="keywords">
 	<!-- Favicons -->

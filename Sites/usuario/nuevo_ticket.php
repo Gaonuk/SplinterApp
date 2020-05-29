@@ -190,7 +190,7 @@
 							</div>
 							<br>
 							<div class="control">
-								<input type="submit" value="Buscar" class="button is-primary">
+								<input type="submit" value="Comprar" class="button is-primary">
 							</div>
 						</form>
 					</div>
