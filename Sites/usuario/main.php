@@ -12,14 +12,6 @@
 					<?php echo $_SESSION["user"] ?>
 				</div>
 				<div class="navbar-dropdown">
-					<a class="navbar-item" href="">
-						<div>
-                                <span class="icon is-small">
-                                  <i class="fa fa-user-circle-o"></i>
-                                </span>
-							Profile
-						</div>
-					</a>
 					<a class="navbar-item" href="logout.php">
 						<div>
                                 <span class="icon is-small">
@@ -54,9 +46,9 @@
 							<li>
 								<a class="is-active">
 													<span class="icon">
-															<i class="fa fa-tachometer"></i>
+															<i class="fa fa-user-circle-o"></i>
 													</span>
-									Dashboard
+									Mi Perfil
 								</a>
 							</li>
 							<li>
