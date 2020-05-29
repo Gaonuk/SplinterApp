@@ -5,6 +5,7 @@
     $email = $_POST["email"];
     $nombreusuario = $_POST["nombre"];
     $direccion = $_POST["direccion"];
+    $password = $_POST['password'];
 	
 		require("../config/conexion.php");
     
@@ -25,7 +26,7 @@
       $uid = $uid[0][0];
       $uid++;
 
-      $query2 = "INSERT INTO usuarios (uid, nombreusuario, username, correo, direccionusuario) VALUES ($uid, '$nombreusuario', '$username', '$email', '$direccion')";
+      $query2 = "INSERT INTO usuarios (uid, nombreusuario, username, correo, direccionusuario, password) VALUES ($uid, '$nombreusuario', '$username', '$email', '$direccion', '$password');";
       $result2 = $db_impar -> prepare($query2);
       $result2 -> execute();
       $print2 = $result2 -> fetchAll();

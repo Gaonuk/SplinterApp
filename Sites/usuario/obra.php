@@ -12,7 +12,7 @@
 	$result2 = $db_par->prepare($query2);
 	$result2->execute();
 	$artistas = $result2->fetchAll();
-	$query3 = "select lugares.lid, lugares.nombre from obras, lugares, obras_en where obras_en.lid = lugares.lid and obras_en.oid = obras.oid and obras.oid = $obras_id;";
+	$query3 = "select lugares.lid, lugares.nombre, lugares.tipo from obras, lugares, obras_en where obras_en.lid = lugares.lid and obras_en.oid = obras.oid and obras.oid = $obras_id;";
 	$result3 = $db_par->prepare($query3);
 	$result3->execute();
 	$lugares = $result3->fetchAll();
@@ -29,20 +29,20 @@
 					<?php echo $_SESSION["user"] ?>
 				</div>
 				<div class="navbar-dropdown">
-					<a class="navbar-item" href="#">
-						<div>
-                                <span class="icon is-small">
-                                  <i class="fa fa-user-circle-o"></i>
-                                </span>
-							Profile
-						</div>
-					</a>
 					<a class="navbar-item" href="logout.php">
 						<div>
                                 <span class="icon is-small">
                                   <i class="fa fa-sign-out"></i>
                                 </span>
 							Sign Out
+						</div>
+					</a>
+					<a class="navbar-item" href="delete.php">
+						<div>
+                                <span class="icon is-small">
+                                  <i class="fa fa-ban"></i>
+                                </span>
+							Delete Account
 						</div>
 					</a>
 				</div>
@@ -63,9 +63,9 @@
 							<li>
 								<a href="main.php">
 													<span class="icon">
-															<i class="fa fa-tachometer"></i>
+															<i class="fa fa-user"></i>
 													</span>
-									Dashboard
+									Mi Perfil
 								</a>
 							</li>
 							<li>
@@ -152,22 +152,7 @@
 								<figure class="image">
 									<img src="<?php echo $obra[5] ?>" width="120" alt="Placeholder image">
 								</figure>
-								<br>
-								<p class="heading">
-									<strong>Artistas que realizaron esta obra:</strong>
-								</p>
-								<ul>
-									<?php foreach ($artistas as $a) { ?>
-										<li><a href="artista.php?artista_id=<?php echo $a[0] ?>"><?php echo $a[1] ?></a></li>
-									<?php } ?>
-								</ul>
-								<br>
-								<p class="heading">
-									<strong>Ubicacion de la obra:</strong>
-								</p>
-								<p class="content">
-									<a href="lugar.php?lugar_id=<?php echo $lugar[0] ?>"><?php echo $lugar[1] ?></a>
-								</p>
+								
 							</div>
 							<div class="column is-4-desktop is-4-widescreen">
 								<p class="heading">
@@ -189,10 +174,19 @@
 									<?php echo $obra[4] ?>
 								</p>
 								<p class="heading">
-									Link Imagen
+									<strong>Artistas que realizaron esta obra:</strong>
+								</p>
+								<ul>
+									<?php foreach ($artistas as $a) { ?>
+										<li><a href="artista.php?artista_id=<?php echo $a[0] ?>"><?php echo $a[1] ?></a></li>
+									<?php } ?>
+								</ul>
+								<br>
+								<p class="heading">
+									<strong>Ubicacion de la obra:</strong>
 								</p>
 								<p class="content">
-									<a href="<?php echo $obra[5] ?>"><?php echo $obra[5] ?></a>
+									<a href="lugar.php?lugar_id=<?php echo $lugar[0] ?>&tipo=<?php echo $lugar[2] ?>"><?php echo $lugar[1] ?></a>
 								</p>
 							</div>
 

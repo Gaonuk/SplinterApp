@@ -8,15 +8,15 @@
 		$result->execute();
 		$lugares = $result->fetchAll();
 	} else {
-		$query = "SELECT lugares.lid, lugares.nombre, lugares.foto_url FROM lugares, plazas WHERE lugares.lid = plazas.lid;";
+		$query = "SELECT lugares.lid, lugares.nombre, lugares.foto_url, lugares.tipo FROM lugares, plazas WHERE lugares.lid = plazas.lid;";
 		$result = $db_par->prepare($query);
 		$result->execute();
 		$plazas = $result->fetchAll();
-		$query2 = "SELECT lugares.lid, lugares.nombre, lugares.foto_url FROM lugares, iglesias WHERE lugares.lid = iglesias.lid;";
+		$query2 = "SELECT lugares.lid, lugares.nombre, lugares.foto_url, lugares.tipo FROM lugares, iglesias WHERE lugares.lid = iglesias.lid;";
 		$result2 = $db_par->prepare($query2);
 		$result2->execute();
 		$iglesias = $result2->fetchAll();
-		$query3 = "SELECT lugares.lid, lugares.nombre, lugares.foto_url FROM lugares, museos WHERE lugares.lid = museos.lid;";
+		$query3 = "SELECT lugares.lid, lugares.nombre, lugares.foto_url, lugares.tipo FROM lugares, museos WHERE lugares.lid = museos.lid;";
 		$result3 = $db_par->prepare($query3);
 		$result3->execute();
 		$museos = $result3->fetchAll();
@@ -35,20 +35,20 @@
 					<?php echo $_SESSION["user"] ?>
 				</div>
 				<div class="navbar-dropdown">
-					<a class="navbar-item" href="">
-						<div>
-                                <span class="icon is-small">
-                                  <i class="fa fa-user-circle-o"></i>
-                                </span>
-							Profile
-						</div>
-					</a>
 					<a class="navbar-item" href="logout.php">
 						<div>
                                 <span class="icon is-small">
                                   <i class="fa fa-sign-out"></i>
                                 </span>
 							Sign Out
+						</div>
+					</a>
+					<a class="navbar-item" href="delete.php">
+						<div>
+                                <span class="icon is-small">
+                                  <i class="fa fa-ban"></i>
+                                </span>
+							Delete Account
 						</div>
 					</a>
 				</div>
@@ -70,9 +70,9 @@
 							<li>
 								<a href="main.php">
 													<span class="icon">
-															<i class="fa fa-tachometer"></i>
+															<i class="fa fa-user"></i>
 													</span>
-									Dashboard
+									Mi Perfil
 								</a>
 							</li>
 							<li>
@@ -100,7 +100,7 @@
 								</a>
 							</li>
 						</ul>
-						<p class="menu-label" >
+						<p class="menu-label">
 							Itinerario
 						</p>
 						<ul class="menu-list">
@@ -168,7 +168,7 @@
 						</div>
 					</nav>
 					<div class="columns is-multiline">
-						<?php foreach ($plazas as $a) { ?>
+						<?php foreach ($lugares as $a) { ?>
 							<div class="column is-12-tablet is-6-desktop is-4-widescreen">
 								<article class="box">
 									<div class="media">
@@ -177,56 +177,10 @@
 										</aside>
 										<div class="media-content">
 											<p class="title is-5 is-marginless">
-												<a href="lugar.php?lugar_id=<?php echo $a[0] ?>&tipo=plaza"><?php echo $a[1] ?></a>
+												<a href="lugar.php?lugar_id=<?php echo $a[0] ?>&tipo=<?php echo $a[3] ?>"><?php echo $a[1] ?></a>
 											</p>
 											<p class="subtitle is-marginless">
-												Este lugar es una <strong>Plaza</strong>
-												<br>
-												<!--										--><?php //echo $a[3]?>
-											</p>
-											<div class="content is-small">
-												<!--										--><?php //echo $a[4]?>
-											</div>
-										</div>
-								</article>
-							</div>
-						<?php } ?>
-						<?php foreach ($iglesias as $a) { ?>
-							<div class="column is-12-tablet is-6-desktop is-4-widescreen">
-								<article class="box">
-									<div class="media">
-										<aside class="media-left">
-											<img src="<?php echo $a[2] ?>" width="80" alt="">
-										</aside>
-										<div class="media-content">
-											<p class="title is-5 is-marginless">
-												<a href="lugar.php?lugar_id=<?php echo $a[0] ?>&tipo=iglesia"><?php echo $a[1] ?></a>
-											</p>
-											<p class="subtitle is-marginless">
-												Este lugar es una <strong>Iglesia</strong>
-												<br>
-												<!--										--><?php //echo $a[3]?>
-											</p>
-											<div class="content is-small">
-												<!--										--><?php //echo $a[4]?>
-											</div>
-										</div>
-								</article>
-							</div>
-						<?php } ?>
-						<?php foreach ($museos as $a) { ?>
-							<div class="column is-12-tablet is-6-desktop is-4-widescreen">
-								<article class="box">
-									<div class="media">
-										<aside class="media-left">
-											<img src="<?php echo $a[2] ?>" width="80" alt="">
-										</aside>
-										<div class="media-content">
-											<p class="title is-5 is-marginless">
-												<a href="lugar.php?lugar_id=<?php echo $a[0] ?>&tipo=museo"><?php echo $a[1] ?></a>
-											</p>
-											<p class="subtitle is-marginless">
-												Este lugar es un <strong>Museo</strong>
+												Lugar de Tipo: <strong><?php echo $a[3] ?></strong>
 												<br>
 												<!--										--><?php //echo $a[3]?>
 											</p>

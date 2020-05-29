@@ -24,20 +24,20 @@
 					<?php echo $_SESSION["user"] ?>
 				</div>
 				<div class="navbar-dropdown">
-					<a class="navbar-item" href="">
-						<div>
-                                <span class="icon is-small">
-                                  <i class="fa fa-user-circle-o"></i>
-                                </span>
-							Profile
-						</div>
-					</a>
 					<a class="navbar-item" href="logout.php">
 						<div>
                                 <span class="icon is-small">
                                   <i class="fa fa-sign-out"></i>
                                 </span>
 							Sign Out
+						</div>
+					</a>
+					<a class="navbar-item" href="delete.php">
+						<div>
+                                <span class="icon is-small">
+                                  <i class="fa fa-ban"></i>
+                                </span>
+							Delete Account
 						</div>
 					</a>
 				</div>
@@ -59,9 +59,9 @@
 							<li>
 								<a href="main.php">
 													<span class="icon">
-															<i class="fa fa-tachometer"></i>
+															<i class="fa fa-user"></i>
 													</span>
-									Dashboard
+									Mi Perfil
 								</a>
 							</li>
 							<li>

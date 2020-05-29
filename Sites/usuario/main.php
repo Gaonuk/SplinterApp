@@ -26,8 +26,8 @@
                                   <i class="fa fa-ban"></i>
                                 </span>
 							Delete Account
-						<div>
-					<a>
+						</div>
+					</a>
 				</div>
 			</div>
 		</div>
@@ -40,13 +40,23 @@
 				<div style="background-color: #f5f5f5; padding: 1.5rem; min-height: calc(100vh - 3.25rem); overflow: auto;">
 					<aside class="menu ">
 						<p class="menu-label">
+							Buscar en la aplicacion
+						</p>
+						<div class="control has-icons-left">
+							<input class="input is-rounded" type="text" placeholder="Buscar por nombre...">
+							<span class="icon is-small is-left">
+								<i class="fas fa-search"></i>
+							</span>
+						</div>
+						
+						<p class="menu-label">
 							General
 						</p>
 						<ul class="menu-list">
 							<li>
 								<a class="is-active">
 													<span class="icon">
-															<i class="fa fa-user-circle-o"></i>
+															<i class="fa fa-user"></i>
 													</span>
 									Mi Perfil
 								</a>
@@ -116,12 +126,10 @@
 			<main class="column">
 				<div class="hero is-primary">
 					<div class="hero-body">
-						<h1 class="title">Welcome, <strong><?php echo $_SESSION['user'] ?></strong></h1>
+						<h1 class="title">Bienvenido <strong><?php echo $_SESSION['user'] ?></strong>!</h1>
 					</div>
 				</div>
 				<div class="section">
-
-
 					<p class="title">¿Qué deseas hacer? </p>
 					<div class="columns is-centered">
 						<div class="column">
