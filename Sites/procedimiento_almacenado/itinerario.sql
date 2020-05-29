@@ -1,7 +1,7 @@
 CREATE OR REPLACE FUNCTION f_itinerario(fecha date, origen varchar, nombre_artistas varchar)
-RETURNS Table (c1 varchar, c2 varchar(50), hora_salida1 TIMESTAMP, medio1 varchar,
-				c3 varchar, c4 varchar, hora_salida2 TIMESTAMP, medio2 varchar,
-				c5 varchar, c6 varchar, hora_salida3 TIMESTAMP, medio3 varchar, total INT) as $$
+RETURNS Table (tid SERIAL,  c1 varchar, c2 varchar, hora_salida1 TIMESTAMP, duracion1 INT, medio1 varchar, precio1 INT,
+							c3 varchar, c4 varchar, hora_salida2 TIMESTAMP, duracion2 int, medio2 varchar, precio2 int,
+							c5 varchar, c6 varchar, hora_salida3 TIMESTAMP, duracion3 int, medio3 varchar, precio3 int, total INT) as $$
 DECLARE
 viajes RECORD;
 prow RECORD;
@@ -160,11 +160,15 @@ BEGIN
 			UPDATE itinerario SET hora_salida3= prow.hora_salida3 WHERE itinerario.tid = prow.tid;
 			END IF;
 		END IF;
-	
+
 	END LOOP;
 
 
-	RETURN QUERY SELECT i.c1, i.c2, i.hora_salida1, i.medio1, i.c3, i.c4, i.hora_salida2, i.medio2 , i.c5, i.c6, i.hora_salida3, i.medio3, i.total  FROM itinerario as i ORDER BY total;
+	RETURN QUERY SELECT i.tid, 
+	i.c1, i.c2, i.hora_salida1, i.duracion1, i.medio1, i.precio1,
+	i.c3, i.c4, i.hora_salida2, i.duracion2, i.medio2, i.precio2,
+	i.c5, i.c6, i.hora_salida3, i.duracion3, i.medio3, i.precio3,
+	i.total  FROM itinerario as i ORDER BY total;
 RETURN;
 END;
 $$ language plpgsql;
