@@ -60,6 +60,8 @@ BEGIN
 
 			--Caso que ocupe dos viajes
 			ELSEIF prow.v2 != '' THEN
+                viaje1 := CAST(prow.v2 AS INTEGER);
+				viaje2 := CAST(prow.v3 AS INTEGER);
 				CREATE TEMP TABLE IF NOT EXISTS v1 AS
 				SELECT * FROM destinos WHERE did = viaje1;
 				DROP TABLE IF EXISTS v2;
@@ -76,6 +78,7 @@ BEGIN
 
 			--Caso que ocupe un viaje
 			ELSE
+				viaje1 := CAST(prow.v3 AS INTEGER);
 				CREATE TEMP TABLE IF NOT EXISTS v1 AS
 				SELECT * FROM destinos WHERE did = viaje1;
 
