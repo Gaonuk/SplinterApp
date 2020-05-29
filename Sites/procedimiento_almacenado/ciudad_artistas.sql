@@ -1,5 +1,5 @@
 CREATE OR REPLACE FUNCTION ciudad_artistas(nombre_artistas varchar)
-RETURNS TABLE (cid INT, cid_artistas.nombre varchar) AS $$
+RETURNS TABLE (cid INT, cid_artistas varchar) AS $$
 
 BEGIN
     RETURN QUERY SELECT DISTINCT cid_artistas.cid, cid_artistas.nombre FROM
