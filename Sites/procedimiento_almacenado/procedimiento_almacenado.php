@@ -26,28 +26,19 @@
     $rows = $result -> fetchAll();
 ?>
 
-<table>
-    <tr>
-      <th>c1</th>
-      <th>c2</th>
-      <th>hora_salida</th>
-      <th>medio</th>
-      <th>c3</th>
-      <th>c4</th>
-      <th>hora_salida</th>
-      <th>medio</th>
-      <th>c5</th>
-      <th>c6</th>
-      <th>hora_salida</th>
-      <th>medio</th>
-      <th>total</th>
-    </tr>
+
   <?php
 	foreach ($rows as $c) {
-  		echo "<tr> <td>$c[0]</td> <td>$c[1]</td> <td>$c[2]</td></tr> <td>$c[3]</td> <td>$c[4]</td> <td>$c[5]</td> <td>$c[6]</td> <td>$c[7]</td> <td>$c[8]</td> <td>$c[9]</td> <td>$c[10]</td> <td>$c[11]</td> <td>$c[12]</td> </tr>";
+      echo 'Itinerario n°' . $c['tid']. 'Precio Total: ' .$c['total'];
+      echo '
+      <table>
+      <tr> <th>Ciudad Origen</th> <th>Ciuedad destino</th> <th>Medio</th> <th>Hora Salida</th> <th>Duracion</th> <th>Precio</th> </tr>
+      #Viaje 1
+      <tr> <td>' .$c['c1'] . '</td> <td>' . $c['c2'] . '</td> <td>' . $c['medio1'] . '</td><td>' . $c['hora_salida1'] . '</td><td>' . $c['duracion1'] .'</td><td>' .$c['precio1']. '</td><tr>
+      </table>'
 	}
   ?>
-	</table>
+	
 
 
   <!-- ======= Footer ======= -->
