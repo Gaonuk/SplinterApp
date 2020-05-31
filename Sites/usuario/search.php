@@ -1,18 +1,21 @@
 <?php
-	include('session.php');
+	session_start();
 	include "../templates/main_header.html";
-	$login_session = intval($login_session);
-	$fecha_inicio = $_POST["fecha_inicio"];
-	$fecha_fin = $_POST["fecha_fin"];
-	$ciudad = $_POST["ciudad"];
-	
-	$query = "SELECT ciudades.nombreciudad, hoteles.nombrehotel,
- hoteles.direccionhotel, hoteles.telefono, hoteles.precionoche, hoteles.hid FROM hoteles, ciudades 
- WHERE hoteles.nombreciudad = ciudades.cid AND hoteles.nombreciudad = '$ciudad' AND '$fecha_fin' >= '$fecha_inicio';";
-	$result = $db_impar->prepare($query);
-	$result->execute();
-	$hoteles = $result->fetchAll();
+	include('../config/conexion.php');
+	$n_buscar = $_POST['nombre'];
+	if ($n_buscar != '') {
+		$query = "select aid, nombre, descripcion, foto_url from artistas where lower(nombre) like lower('%$n_buscar%') UNION (select oid, nombre, periodo, foto_url from obras where lower(nombre) like lower('%$n_buscar%')) UNION (select lid, nombre, tipo, foto_url from lugares where lower(nombre) like lower('%$n_buscar%'));";
+		$result = $db_par->prepare($query);
+		$result->execute();
+		$resultados = $result->fetchAll();
+	} else {
+		$query = "select aid, nombre, descripcion, foto_url from artistas UNION (select oid, nombre, periodo, foto_url from obras) UNION (select lid, nombre, tipo, foto_url from lugares);";
+		$result = $db_par->prepare($query);
+		$result->execute();
+		$resultados = $result->fetchAll();
+	}
 ?>
+
 	<div class="navbar-menu">
 		<div class="navbar-end">
 			<div class="navbar-item has-dropdown is-hoverable">
@@ -129,7 +132,7 @@
 								</a>
 							</li>
 							<li>
-								<a class="is-active">
+								<a href="nuevo_hotel.php">
 								<span class="icon">
 									<i class="fas fa-hotel"></i>
 								</span>
@@ -143,58 +146,63 @@
 			<main class="column">
 				<div class="hero is-primary">
 					<div class="hero-body">
-						<h1 class="title">
-							Reserva Hotel
-						</h1>
-						<h2 class="subtitle">
-							Aqui esta el resultado de tu busqueda!
-						</h2>
+						<h1 class="title">Busqueda</h1>
 					</div>
 				</div>
 				<div class="section">
-					<div class="columns">
-						<div class="column is-10 is-offset-1">
-							<table class="table">
-								<thead>
-								<tr>
-									<th>Ciudad</th>
-									<th>Nombre Hotel</th>
-									<th>Dirección</th>
-									<th>Teléfono Contacto</th>
-									<th>Precio por Noche</th>
-									<th>Reservar</th>
-								</tr>
-								</thead>
-								<tbody>
-								<?php
-									foreach ($hoteles as $h) {
-										echo "<tr>
-    <td>$h[0]</td> 
-    <td>$h[1]</td> 
-    <td>$h[2]</td> 
-    <td>$h[3]</td> 
-    <td>$h[4]</td> 
-    <td><form action='compra_hotel.php' method='post'>
-    <div class='control'>
-    <input type='hidden' name='hotel' value=$h[5]>
-    <input type='hidden' name='fecha_inicio' value=$fecha_inicio>
-    <input type='hidden' name='fecha_fin' value=$fecha_fin>
-    <input type='submit' value='Reservar' class='button is-primary'>
-    </div>
- </form> </td></tr>";
-									}
-								?>
-								</tbody>
-							</table>
-							<a href="nuevo_hotel.php" class="button is-link">Volver</a>
+					<nav class="level">
+						<div class="level-left">
+							<div class="level-item">
+								<p class="subtitle is-5">
+									<strong><?php echo count($resultados) ?></strong> Resultados
+								</p>
+							</div>
 						</div>
+					</nav>
+					<div class="columns is-multiline">
+						<?php foreach ($resultados as $r) { ?>
+							<div class="column is-12-tablet is-6-desktop is-4-widescreen">
+								<article class="box">
+									<div class="media">
+										<aside class="media-left">
+											<img src="<?php echo $r[3] ?>" width="80" alt="">
+										</aside>
+										<div class="media-content">
+											<?php if (in_array($r[2], ['plaza', 'museo', 'iglesia'])) { ?>
+												<p class="title is-5 is-marginless">
+													<a href="lugar.php?lugar_id=<?php echo $r[0] ?>&tipo=<?php echo $r[2] ?>"><?php echo $r[1] ?></a>
+												</p>
+												<p class="subtitle is-marginless">
+													Lugar de tipo: <strong><?php echo $r[2] ?></strong>
+												</p>
+											<?php } elseif (in_array($r[2], ['Gótico', 'Barroco', 'Renacimiento',
+												'Neoclasicismo Romano de mediados del siglo XVII 1/2', 'Neoclasicismo', 'Romanticismo'])) { ?>
+												<p class="title is-5 is-marginless">
+													<a href="obra.php?obra_id=<?php echo $r[0] ?>"><?php echo $r[1] ?></a>
+												</p>
+												<p class="subtitle is-marginless">
+													Periodo: <strong><?php echo $r[2] ?></strong>
+												</p>
+											<?php } else { ?>
+												<p class="title is-5 is-marginless">
+													<a href="artista.php?artista_id=<?php echo $r[0] ?>"><?php echo $r[1] ?></a>
+												</p>
+												<p class="content is-small">
+													<?php echo $r[2] ?>
+												</p>
+											<?php } ?>
+
+
+										</div>
+								</article>
+							</div>
+						<?php } ?>
 					</div>
 				</div>
+
 			</main>
 		</div>
 	</section>
-<?php if ($fecha_fin < $fecha_inicio) {
-	echo "La fecha de salida debe ser posterior a la fecha de entrada"; ?>
-	<h2><a href="main.php">Volver a intentar</a></h2>
-<?php } ?>
+
+
 <?php include "../templates/main_footer.html"; ?>

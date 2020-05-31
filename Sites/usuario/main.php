@@ -1,7 +1,7 @@
 <?php
 	session_start();
 	include "../templates/main_header.html";
-	
+
 ?>
 
 	<div class="navbar-menu">
@@ -44,13 +44,20 @@
 						<p class="menu-label">
 							Buscar en la aplicacion
 						</p>
-						<div class="control has-icons-left">
-							<input class="input is-rounded" type="text" placeholder="Buscar por nombre...">
-							<span class="icon is-small is-left">
-								<i class="fas fa-search"></i>
-							</span>
-						</div>
-						
+						<form method="post" name="search" action="search.php">
+							<div class="field has-addons">
+								<div class="control has-icons-left">
+									<input class="input is-rounded" type="text" placeholder="Buscar artista, lugar..." name="nombre">
+									<span class="icon is-small is-left">
+										<i class="fas fa-search"></i>
+									</span>
+								</div>
+								<div class="control">
+									<input type="submit" class="button is-info" value="Buscar">
+								</div>
+							</div>
+						</form>
+
 						<p class="menu-label">
 							General
 						</p>

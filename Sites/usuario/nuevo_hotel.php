@@ -39,6 +39,22 @@
 		<div style="background-color: #f5f5f5; padding: 1.5rem; min-height: calc(100vh - 3.25rem); overflow: auto;">
 			<aside class="menu ">
 				<p class="menu-label">
+					Buscar en la aplicacion
+				</p>
+				<form method="post" name="search" action="search.php">
+					<div class="field has-addons">
+						<div class="control has-icons-left">
+							<input class="input is-rounded" type="text" placeholder="Buscar artista, lugar..." name="nombre">
+							<span class="icon is-small is-left">
+										<i class="fas fa-search"></i>
+									</span>
+						</div>
+						<div class="control">
+							<input type="submit" class="button is-info" value="Buscar">
+						</div>
+					</div>
+				</form>
+				<p class="menu-label">
 					General
 				</p>
 				<ul class="menu-list">

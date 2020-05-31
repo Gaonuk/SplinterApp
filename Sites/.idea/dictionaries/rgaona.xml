@@ -9,6 +9,7 @@
       <w>artista</w>
       <w>artistas</w>
       <w>asiento</w>
+      <w>barroco</w>
       <w>bienvenido</w>
       <w>bienvenidos</w>
       <w>boton</w>
@@ -16,6 +17,7 @@
       <w>bulma</w>
       <w>busca</w>
       <w>buscar</w>
+      <w>busqueda</w>
       <w>catolica</w>
       <w>cierre</w>
       <w>ciudad</w>
@@ -31,6 +33,7 @@
       <w>construye</w>
       <w>consulta</w>
       <w>consultas</w>
+      <w>contacto</w>
       <w>crea</w>
       <w>crear</w>
       <w>datos</w>
@@ -49,6 +52,7 @@
       <w>entrega</w>
       <w>envia</w>
       <w>estado</w>
+      <w>estan</w>
       <w>este</w>
       <w>exista</w>
       <w>existe</w>
@@ -60,6 +64,7 @@
       <w>gapless</w>
       <w>grupo</w>
       <w>grupos</w>
+      <w>gótico</w>
       <w>habitación</w>
       <w>hacer</w>
       <w>hola</w>
@@ -83,12 +88,15 @@
       <w>lugar</w>
       <w>lugares</w>
       <w>marginless</w>
+      <w>mediados</w>
       <w>medio</w>
       <w>moverte</w>
       <w>museo</w>
       <w>museos</w>
       <w>nacimiento</w>
       <w>navbar</w>
+      <w>neoclasicismo</w>
+      <w>noche</w>
       <w>nombre</w>
       <w>nombreusuario</w>
       <w>nuestra</w>
@@ -103,6 +111,7 @@
       <w>periodo</w>
       <w>pgsql</w>
       <w>pontificia</w>
+      <w>postgresql</w>
       <w>precio</w>
       <w>prepara</w>
       <w>presione</w>
@@ -112,13 +121,17 @@
       <w>puedes</w>
       <w>realizada</w>
       <w>realizaron</w>
+      <w>renacimiento</w>
       <w>reserva</w>
       <w>reservar</w>
       <w>reservas</w>
+      <w>resultado</w>
       <w>resultados</w>
+      <w>romanticismo</w>
       <w>salida</w>
       <w>searchlugares</w>
       <w>sesión</w>
+      <w>siglo</w>
       <w>siguiente</w>
       <w>siguientes</w>
       <w>somos</w>
