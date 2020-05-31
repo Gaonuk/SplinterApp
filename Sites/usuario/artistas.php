@@ -173,7 +173,14 @@
 										<p class="subtitle is-marginless">
 											<?php echo $a[2] ?>
 											<br>
-											<?php echo $a[3] ?>
+											<?php
+												if ($a[3] <= date('Y-m-d')) {
+													echo $a[3];
+												}
+												else {
+													echo '';
+												}
+											?>
 										</p>
 										<div class="content is-small">
 											<?php echo $a[4] ?>
