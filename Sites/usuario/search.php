@@ -4,12 +4,12 @@
 	include('../config/conexion.php');
 	$n_buscar = $_POST['nombre'];
 	if ($n_buscar != '') {
-		$query = "select aid, nombre, descripcion, foto_url from artistas where lower(nombre) like lower('%$n_buscar%') UNION (select oid, nombre, periodo, foto_url from obras where lower(nombre) like lower('%$n_buscar%')) UNION (select lid, nombre, tipo, foto_url from lugares where lower(nombre) like lower('%$n_buscar%'));";
+		$query = "select aid, nombre, descripcion, foto_url from artistas where lower(nombre) like lower('%$n_buscar%') UNION (select oid, nombre, tipo, foto_url from obras where lower(nombre) like lower('%$n_buscar%')) UNION (select lid, nombre, tipo, foto_url from lugares where lower(nombre) like lower('%$n_buscar%'));";
 		$result = $db_par->prepare($query);
 		$result->execute();
 		$resultados = $result->fetchAll();
 	} else {
-		$query = "select aid, nombre, descripcion, foto_url from artistas UNION (select oid, nombre, periodo, foto_url from obras) UNION (select lid, nombre, tipo, foto_url from lugares);";
+		$query = "select aid, nombre, descripcion, foto_url from artistas UNION (select oid, nombre, tipo, foto_url from obras) UNION (select lid, nombre, tipo, foto_url from lugares);";
 		$result = $db_par->prepare($query);
 		$result->execute();
 		$resultados = $result->fetchAll();
@@ -175,13 +175,12 @@
 												<p class="subtitle is-marginless">
 													Lugar de tipo: <strong><?php echo $r[2] ?></strong>
 												</p>
-											<?php } elseif (in_array($r[2], ['Gótico', 'Barroco', 'Renacimiento',
-												'Neoclasicismo Romano de mediados del siglo XVII 1/2', 'Neoclasicismo', 'Romanticismo'])) { ?>
+											<?php } elseif (in_array($r[2], ['pintura', 'fresco', 'escultura'])) { ?>
 												<p class="title is-5 is-marginless">
-													<a href="obra.php?obra_id=<?php echo $r[0] ?>"><?php echo $r[1] ?></a>
+													<a href="obra.php?obra_id=<?php echo $r[0] ?>&tipo=<?php echo $r[2]?>"><?php echo $r[1] ?></a>
 												</p>
 												<p class="subtitle is-marginless">
-													Periodo: <strong><?php echo $r[2] ?></strong>
+													Obra de tipo: <strong><?php echo $r[2] ?></strong>
 												</p>
 											<?php } else { ?>
 												<p class="title is-5 is-marginless">

@@ -186,7 +186,7 @@
 										</aside>
 										<div class="media-content">
 											<p class="title is-5 is-marginless">
-												<a href="obra.php?obra_id=<?php echo $a[0] ?>"><?php echo $a[1] ?></a>
+												<a href="obra.php?obra_id=<?php echo $a[0] ?>&tipo=<?php echo $a[6]?>"><?php echo $a[1] ?></a>
 											</p>
 											<p class="subtitle is-marginless">
 												<?php echo $a[2] ?>

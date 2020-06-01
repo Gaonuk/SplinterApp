@@ -6,7 +6,7 @@
 	$lugar_id = $_GET['lugar_id'];
 	$tipo = $_GET['tipo'];
 	$lugar_id = intval($lugar_id);
-	$query2 = "SELECT obras.oid, obras.nombre, obras.fecha_in, obras.fecha_fin, obras.periodo, obras.foto_url FROM obras, lugares, obras_en WHERE lugares.lid = obras_en.lid and obras.oid = obras_en.oid and lugares.lid = $lugar_id;";
+	$query2 = "SELECT obras.oid, obras.nombre, obras.fecha_in, obras.fecha_fin, obras.periodo, obras.foto_url, obras.tipo FROM obras, lugares, obras_en WHERE lugares.lid = obras_en.lid and obras.oid = obras_en.oid and lugares.lid = $lugar_id;";
 	$result2 = $db_par->prepare($query2);
 	$result2->execute();
 	$obras = $result2->fetchAll();
@@ -264,7 +264,7 @@
 												<img src="<?php echo $o[5] ?>" width="40" alt="Foto de<?php echo $o[1] ?>">
 											</td>
 											<td>
-												<a href="obra.php?obra_id=<?php echo $o[0] ?>">
+												<a href="obra.php?obra_id=<?php echo $o[0] ?>&tipo=<?php echo $o[6]?>">
 													<strong>
 														<?php echo $o[1] ?>
 													</strong>

@@ -4,14 +4,28 @@
 	include "../templates/main_header.html";
 	include('../config/conexion.php');
 	
-	
 	$obras_id = $_GET['obra_id'];
+	$tipo = $_GET['tipo'];
 	$obras_id = intval($obras_id);
-	$query = "SELECT * FROM obras WHERE oid=$obras_id;";
-	$result = $db_par->prepare($query);
-	$result->execute();
-	$obra = $result->fetchAll();
-	$obra = $obra[0];
+	if ($tipo == 'escultura') {
+		$query = "SELECT * FROM obras, esculturas WHERE obras.oid = esculturas.oid and obras.oid=$obras_id;";
+		$result = $db_par->prepare($query);
+		$result->execute();
+		$obra = $result->fetchAll();
+		$obra = $obra[0];
+	} elseif ($tipo == 'pintura') {
+		$query = "SELECT * FROM obras, pinturas WHERE obras.oid = pinturas.oid and obras.oid=$obras_id;";
+		$result = $db_par->prepare($query);
+		$result->execute();
+		$obra = $result->fetchAll();
+		$obra = $obra[0];
+	} else {
+		$query = "SELECT * FROM obras WHERE oid=$obras_id;";
+		$result = $db_par->prepare($query);
+		$result->execute();
+		$obra = $result->fetchAll();
+		$obra = $obra[0];
+	}
 	$query2 = "SELECT artistas.aid, artistas.nombre FROM artistas, realizo, obras WHERE artistas.aid = realizo.aid AND obras.oid = realizo.oid and obras.oid = $obras_id;";
 	$result2 = $db_par->prepare($query2);
 	$result2->execute();
@@ -172,7 +186,7 @@
 								<figure class="image">
 									<img src="<?php echo $obra[5] ?>" width="120" alt="Placeholder image">
 								</figure>
-								
+
 							</div>
 							<div class="column is-4-desktop is-4-widescreen">
 								<p class="heading">
@@ -193,6 +207,27 @@
 								<p class="content">
 									<?php echo $obra[4] ?>
 								</p>
+								<p class="heading">
+									<strong>Tipo de Obra</strong>
+								</p>
+								<p class="content">
+									<?php echo $obra[6] ?>
+								</p>
+								<?php if ($tipo == 'escultura') { ?>
+									<p class="heading">
+										<strong>Material</strong>
+									</p>
+									<p class="content">
+										<?php echo $obra[8]?>
+									</p>
+								<?php } elseif ($tipo == 'pintura') { ?>
+									<p class="heading">
+										<strong>Tecnica</strong>
+									</p>
+									<p class="content">
+										<?php echo $obra[8]?>
+									</p>
+								<?php }?>
 								<p class="heading">
 									<strong>Artistas que realizaron esta obra:</strong>
 								</p>
