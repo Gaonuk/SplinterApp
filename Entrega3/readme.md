@@ -4,15 +4,15 @@
 
 ### Sistema de usuarios y Login:
 Para comenzar ir a ```http://codd.ing.puc.cl/~grupo15/index.php``` y apretar en comenzar.
-Se da la opción de registrar un nuevo usuario o de iniciar una sesión existente. La contraseña *dummy* para cualquier usuario de la base de datos será el número ```0```.
-Una vez iniciada la sesión, el usuario puede darse de baja apretando en su perfil en la esquina superior derecha, donde aparece la opción: **Delete Account**.
+Se da la opción de registrar un nuevo usuario o de iniciar sesión con un usuario existente. La contraseña *dummy* para usuarios ya existentes en la base de datos será el número ```0```.
+Una vez iniciada la sesión, el usuario puede darse de baja apretando en su perfil en la esquina superior derecha, donde aparece la opción: **Delete Account** o terminar su sesion dentro de la aplicacion con la opcion **Sign Out**.
 
 ### Información Personal:
-Cuando un usuario esta logueado, puede ver sus compras apretando en **Mi Perfil** en la barra izquierda. Ahí le da la opción de ver sus entradas a museos, hoteles y tickets de transporte.
+Cuando un usuario esta logueado, puede ver sus compras apretando en **Mi Perfil** en la barra izquierda. Ahí se le da la opción de ver sus entradas a museos, hoteles y tickets de transporte.
 
 ### Navegación:
-En la barra lateral izquierda, se puede ver todos los **Artistas** que se encuentran en Splint. Apretando en alguno de los artistas, se nos dirige a una pagina específica según el artista que muestra la descripción, fecha de nacimiento y muerte (si ya falleció), sus obras y fechas en que las realizó. Podemos clickear directamente en el nombre de la obra para obtener más detalle sobre ella.
-También en la barra lateral, podemos elegir **Obras** mostrándonos todas las obras; e igual que con artistas, si apretamos alguna nos dirige a su página mostrando más detalles.
+En la barra lateral izquierda, se puede ver todos los **Artistas** que se encuentran en Splinter. Apretando en alguno de los artistas, se nos dirige a una pagina específica, según el artista, que muestra su descripción, fecha de nacimiento (y muerte, solo si ya falleció) y sus obras con sus fechas de realizacion respectivas. Podemos clickear directamente en el nombre de una de estas obras para obtener más detalle sobre esta.
+También en la barra lateral, podemos elegir **Obras** mostrándonos todas las obras y de igual manera que con artistas, si apretamos alguno nos dirige a su página mostrando más detalles.
 Para los lugares es igual, en la barra lateral elegimos **Lugares** y obtenemos todos los lugares disponibles, y si seleccionamos alguno, nos dirige a la pagina específica mostrando que obras hay e información como el precio de entrada, horarios de apertura y cierre.
 
 Para comprar entradas de museos debemos dirigirnos a la pagina específica del museo, y bajo el precio de éste, hay un botón con la opción de **Comprar Entrada**.
