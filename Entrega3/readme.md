@@ -1,6 +1,6 @@
 # Entrega 3 Grupo 15 y 84:
 
-![Logo](Sites\assets\img\logo_real.png)
+![](../Sites/assets/img/logo_real.png)
 
 ### Sistema de usuarios y Login:
 Para comenzar ir a ```http://codd.ing.puc.cl/~grupo15/index.php``` y apretar en comenzar.
