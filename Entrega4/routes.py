@@ -35,7 +35,8 @@ def all_messages():
 @app.route("/users/<int:uid>")
 def get_user(uid):
   user = list(db.users.find({"uid":uid}, {"_id":0}))
-  return json.jsonify(user)
+  mensajes = list(db.messages.find({"sender":uid}, {"_id":0}))
+  return json.jsonify(user, "estos mensajes ha enviado este usuario:", mensajes)
 
 @app.route("/messages/<int:mid>")
 def get_message(mid):
