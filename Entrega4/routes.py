@@ -44,7 +44,69 @@ def get_message(mid):
 
 @app.route("/messages", methods=['POST'])
 def new_message():
-  pass
+    valido = True
+    messages_keys = ['message', 'sender', 'receptant', 'lat', 'long', 'date']
+    try:
+        data = {key: request.json[key] for key in messages_keys}
+        count = db.messages.count_documents({})
+        data["mid"] = count + 2
+    except:
+        valido = False
+        if 'message' in request.json:
+            if 'sender' in request.json:
+                if 'receptant' in request.json:
+                    if 'lat' in request.json:
+                        if 'long' in request.json:
+                            error = 'falta agregar fecha'
+                        else:
+                            error = 'falta agregar longitud'
+                    else:
+                        error = 'falta agregar latitud'
+                else:
+                    error = 'falta agregar receptant'    
+            else:
+                error = 'falta agregar sender'
+        else:
+            error = 'falta agregar mensaje'
+    if valido:
+        for i in str(data['date']):
+            if  i not in '-0123456789':
+                error = 'formato de fecha no válido'
+                valido = False
+        for i in str(data['lat']):
+            if  i not in '.-0123456789':
+                error = 'formato de latitud no válido'
+                valido = False
+        for i in str(data['long']):
+            if  i not in '.-0123456789':
+                error = 'formato de longitud no válido'
+                valido = False
+        if isinstance(data['sender'], int):        
+            uid = int(data['sender'])
+            usuario_sender = db.users.find_one({"uid":uid}, {"_id":0})
+            if usuario_sender is None:
+                error = 'no existe un usuario con el id del sender'
+                valido = False
+        else:
+            error = 'el formato del sender no es correcto'
+            valido = False
+        if isinstance(data['receptant'], int): 
+            uid = int(data['receptant'])
+            usuario_receptant = db.users.find_one({"uid":uid}, {"_id":0})
+            if usuario_receptant is None:
+                error = 'no existe un usuario con el id del receptant'
+                valido = False
+        else:
+            error = 'el formato del receptant no es correcto'
+            valido = False
+    if valido:
+        db.messages.insert_one(data)
+        message = "mensaje creado"
+        success = True
+    else:
+        message = "No se pudo crear el mensaje, {}".format(error)
+        success = False
+    return json.jsonify({'success': success, 'message': message})
 
 @app.route("/messages/<int:mid>", methods=['DELETE'])
 def delete_message(mid):
