@@ -26,6 +26,11 @@ def all_users():
 def all_messages():
   user1 = request.args.get('id1')
   user2= request.args.get('id2')
+  users = db.users.find({}, {"_id": 0})
+  users = list(users)
+  ids = [x['uid'] for x in users]
+  if int(user1) not in ids or int(user2) not in ids:
+    return f'Invalid ID, no users with Id = {user1, user2}'
   if user1==None or user2==None:
     messages = [m for m in db.messages.find({}, {"_id":0})]
     return json.jsonify(messages)
@@ -35,12 +40,24 @@ def all_messages():
 
 @app.route("/users/<int:uid>")
 def get_user(uid):
+  userId = uid
+  users = db.users.find({}, {"_id": 0})
+  users = list(users)
+  ids = [x['uid'] for x in users]
+  if userId not in ids:
+    return f'Invalid ID, no user with Id = {userId}'
   user = list(db.users.find({"uid":uid}, {"_id":0}))
   mensajes = list(db.messages.find({"sender":uid}, {"_id":0}))
   return json.jsonify(user, "estos mensajes ha enviado este usuario:", mensajes)
 
 @app.route("/messages/<int:mid>")
 def get_message(mid):
+  userId = mid
+  messages = db.messages.find({}, {"_id": 0})
+  messages = list(messages)
+  ids = [x['mid'] for x in messages]
+  if userId not in ids:
+    return f'Invalid ID, no message with Id = {userId}'
   message = list(db.messages.find({"mid":mid}, {"_id":0}))
   return json.jsonify(message)
 
@@ -110,14 +127,23 @@ def new_message():
         success = False
     return json.jsonify({'success': success, 'message': message})
 
-@app.route("/messages/<int:mid>", methods=['DELETE'])
+@app.route("/message/<int:mid>", methods=['DELETE'])
 def delete_message(mid):
+  userId = mid
+  messages = db.messages.find({}, {"_id": 0})
+  messages = list(messages)
+  ids = [x['mid'] for x in messages]
+  if userId not in ids:
+    return f'Invalid ID, no message with Id = {userId}'
   db.messages.delete_one({"mid": mid})
   return "Mensaje eliminado"
 
-@app.route('/text_search')
+@app.route('/text-search')
 def busqueda_por_texto():
-    data = request.json
+    try:
+        data = request.json
+    except Exception:
+        data = []
     #Caso que sea el json sea vacio
     if not data:
         output = db.messages.find({}, {'_id': 0})
@@ -147,12 +173,15 @@ def busqueda_por_texto():
         users = db.users.find({}, {"_id": 0})
         users = list(users)
         ids = [x['uid'] for x in users]
-        print(ids)
         if userId not in ids:
             return f'Invalid ID, no user with Id = {userId}'
     except KeyError:
         userId = False
     #Caso que solo existan Forbidden
+    if not desired and not required and not forbidden and not userId:
+        output = db.messages.find({}, {'_id': 0})
+        return json.jsonify(list(output))
+
     if not desired and not required and forbidden:
         #Se crea una nueva collection
         db.messages.aggregate(([ {"$match": {}},
