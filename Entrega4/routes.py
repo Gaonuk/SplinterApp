@@ -1,5 +1,4 @@
 from flask import Flask, json, request
-import pandas
 import pymongo
 from random import randint
 
@@ -130,10 +129,10 @@ def busqueda_por_texto():
         required = False
     #Forbidden
     try:
-        forbidden = ["-" + x for x in data["forbidden"]]
+        forbidden = ["-" + "\"" + x + "\"" for x in data["forbidden"]]
         busqueda.extend(forbidden)
     except KeyError:
-        pass
+        forbidden = False
     #Desired
     try:
         desired = [f"\'{x}\'" for x in data["desired"]]
@@ -141,8 +140,19 @@ def busqueda_por_texto():
     except KeyError:
         desired = False
 
+    try:
+        userId = data["userId"]
+        users = db.users.find({}, {"_id": 0})
+        users = list(users)
+        ids = [x['uid'] for x in users]
+        print(ids)
+        if userId not in ids:
+            return f'Invalid ID, no user with Id = {userId}'
+    except KeyError:
+        userId = False
+
     #Caso que solo existan Forbidden
-    if not desired and not required:
+    if not desired and not required and forbidden:
         #Se crea una nueva collection
         db.messages.aggregate(([ {"$match": {}},
                                  {"$out": "forbidden"},
@@ -158,17 +168,33 @@ def busqueda_por_texto():
         db.forbidden.drop_indexes()
         db.forbidden.create_index([('message', 'text'), ('dummy', 'text')])
         #Se ejecuta la consulta
-        output = db.forbidden.find({ '$text': {'$search': ' '.join(busqueda)}},
-        { 'score': { "$meta": 'textScore'}, '_id': 0, 'dummy': 0}).sort([('score', {'$meta': 'textScore'})])
-        output = json.jsonify(list(output))
-        db.drop_collection('forbidden')
-        return output
-
-    output = db.messages.find(
+        if userId:
+            output = db.forbidden.find({ '$text': {'$search': ' '.join(busqueda)}, 'sender': userId},
+            { 'score': { "$meta": 'textScore'}, '_id': 0, 'dummy': 0}).sort([('score', {'$meta': 'textScore'})])
+            output = json.jsonify(list(output))
+            db.drop_collection('forbidden')
+            return output
+        else:    
+            output = db.forbidden.find({ '$text': {'$search': ' '.join(busqueda)}},
+            { 'score': { "$meta": 'textScore'}, '_id': 0, 'dummy': 0}).sort([('score', {'$meta': 'textScore'})])
+            output = json.jsonify(list(output))
+            db.drop_collection('forbidden')
+            return output
+    
+    if userId and not desired and not required and not forbidden:
+        output = db.messages.find({'sender': userId}, {'_id': 0})
+        return json.jsonify(list(output))
+    elif userId:
+        output = db.messages.find(
+        { '$text': {'$search': ' '.join(busqueda)}, 'sender': userId},
+        { 'score': { "$meta": 'textScore'}, '_id': 0}).sort([('score', {'$meta': 'textScore'})])
+        return json.jsonify(list(output))
+    else:
+        output = db.messages.find(
         { '$text': {'$search': ' '.join(busqueda)}},
         { 'score': { "$meta": 'textScore'}, '_id': 0}).sort([('score', {'$meta': 'textScore'})])
-    return json.jsonify(list(output))
+        return json.jsonify(list(output))
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
