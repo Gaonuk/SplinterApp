@@ -1,5 +1,4 @@
 from flask import Flask, json, request
-import pandas
 import pymongo
 from random import randint
 
