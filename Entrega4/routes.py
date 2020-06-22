@@ -1,4 +1,5 @@
 from flask import Flask, json, request
+import pandas
 import pymongo
 from random import randint
 
@@ -10,6 +11,7 @@ db.messages.drop_indexes()
 db.messages.create_index([("message", "text")])
 
 app = Flask(__name__)
+app.debug = True
 
 @app.route("/")
 def hello_world():
@@ -63,7 +65,7 @@ def new_message():
                     else:
                         error = 'falta agregar latitud'
                 else:
-                    error = 'falta agregar receptant'    
+                    error = 'falta agregar receptant'
             else:
                 error = 'falta agregar sender'
         else:
@@ -113,7 +115,7 @@ def delete_message(mid):
   db.messages.delete_one({"mid": mid})
   return "Mensaje eliminado"
 
-@app.route('/text_search', methods=['POST'])
+@app.route('/text_search')
 def busqueda_por_texto():
     data = request.json
     #Caso que sea el json sea vacio
@@ -123,19 +125,19 @@ def busqueda_por_texto():
     #Required
     busqueda = list()
     try:
-        required = ["\"" + x + "\"" for x in data["required"]]
+        required = ["\""+ x  + "\"" for x in data["required"]]
         busqueda.extend(required)
     except KeyError:
         required = False
     #Forbidden
     try:
-        forbidden = ["-" + "\"" + x + "\"" for x in data["forbidden"]]
+        forbidden = ["-" + "\'" + x + "\'" for x in data["forbidden"]]
         busqueda.extend(forbidden)
     except KeyError:
         forbidden = False
     #Desired
     try:
-        desired = [f"\'{x}\'" for x in data["desired"]]
+        desired = [f"{x}" for x in data["desired"]]
         busqueda.extend(desired)
     except KeyError:
         desired = False
@@ -150,7 +152,6 @@ def busqueda_por_texto():
             return f'Invalid ID, no user with Id = {userId}'
     except KeyError:
         userId = False
-
     #Caso que solo existan Forbidden
     if not desired and not required and forbidden:
         #Se crea una nueva collection
@@ -197,4 +198,4 @@ def busqueda_por_texto():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
