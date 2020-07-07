@@ -210,7 +210,7 @@
 									Busqueda de mensajes
 								</p>
 								<br>
-								<a href="text_search.php" class="button is-success">Buscar mensajes</a>
+								<a href="form_text_search.php" class="button is-success">Buscar mensajes</a>
 							</div>
 						</div>
 
