@@ -3,7 +3,9 @@
 	include "../templates/main_header.html";
 	$login_session = intval($login_session);
 	$uid = $_SESSION["uid"];
+	#url de la api
 	$url = 'https://gorgeous-wind-cave-51826.herokuapp.com/';
+	# se realiza el GET
 	$body_r = file_get_contents($url . 'users/' . $uid);
 	$body=  json_decode($body_r);
 ?>
@@ -152,6 +154,7 @@
 						<table class="table">
 							<thead>
 							<tr>
+								<!-- Se crea la tabla -->
 								<th>Fecha</th>
 								<th>Destinatario</th>
 								<th>Mensaje</th>
@@ -160,6 +163,7 @@
 							<tbody>
 							<?php
 							if ($body_r == 'Invalid ID, no user with Id = ' . $uid) {
+								# Caso donde no hay msjes con ese id
 								echo 'No hay mensajes';
 							} else { ?>
 								<?php foreach ($body[2] as $mensaje) { ?>
@@ -168,7 +172,7 @@
 										<td><?php echo $mensaje -> receptant ?></td>
 										<td><?php echo $mensaje -> message ?></td>
 									</tr>
-									<?php } 
+									<?php }
 							}?>
 
 							</tbody>
