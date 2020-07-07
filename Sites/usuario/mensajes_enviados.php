@@ -1,7 +1,11 @@
 <?php
-	session_start();
+	include('session.php');
 	include "../templates/main_header.html";
-
+	$login_session = intval($login_session);
+	$uid = $_SESSION["uid"];
+	$url = 'https://gorgeous-wind-cave-51826.herokuapp.com/';
+	$body_r = file_get_contents($url . 'users/' . $uid);
+	$body=  json_decode($body_r);
 ?>
 
 	<div class="navbar-menu">
@@ -57,7 +61,6 @@
 								</div>
 							</div>
 						</form>
-
 						<p class="menu-label">
 							General
 						</p>
@@ -135,66 +138,47 @@
 			<main class="column">
 				<div class="hero is-primary">
 					<div class="hero-body">
-						<h1 class="title">Bienvenido <strong><?php echo $_SESSION['user'] ?></strong>!</h1>
+						<h1 class="title">
+							Hola, <?php echo $_SESSION["user"]; ?>
+						</h1>
+						<h2 class="subtitle">
+							Aquí puedes ver tus mensajes enviados
+						</h2>
 					</div>
 				</div>
 				<div class="section">
-					<p class="title">¿Qué deseas hacer? </p>
-					<div class="columns is-centered">
-						<div class="column">
-							<div class="box">
-								<p>
-															<span class="icon">
-																	<i class="fa fa-landmark"></i>
-															</span>
-									Ver mis entradas a museos
-								</p>
-								<br>
-								<a href="museum_entrance.php" class="button is-success">Ver entradas</a>
-							</div>
-						</div>
-						<div class="column is-5-tablet is-4-widescreen is-4-desktop">
-							<div class="box">
-								<p>
-															<span class="icon">
-																	<i class="fas fa-hotel"></i>
-															</span>
-									Ver mis reservas de hoteles
-								</p>
-								<br>
-								<a href="hotels.php" class="button is-success">Ver reservas</a>
-							</div>
-						</div>
-						<div class="column">
-							<div class="box">
-								<p>
-															<span class="icon">
-																	<i class="fas fa-subway"></i>
-															</span>
-									Ver mis tickets de transporte
-								</p>
-								<br>
-								<a href="tickets.php" class="button is-success">Ver tickets</a>
-							</div>
-						</div>
-						<div class="column">
-							<div class="box">
-								<p>
-															<span class="icon">
-																	<i class="fas fa-subway"></i>
-															</span>
-									Ver mensajes recibidos
-								</p>
-								<br>
-								<a href="mensajes_enviados.php" class="button is-success">Ver mensajes</a>
-							</div>
-						</div>
 
+					<div class="columns is-centered">
+						<table class="table">
+							<thead>
+							<tr>
+								<th>Fecha</th>
+								<th>Destinatario</th>
+								<th>Mensaje</th>
+							</tr>
+							</thead>
+							<tbody>
+							<?php
+							if ($body_r == 'Invalid ID, no user with Id = ' . $uid) {
+								echo 'No hay mensajes';
+							} else { ?>
+								<?php foreach ($body[2] as $mensaje) { ?>
+									<tr>
+										<td><?php echo $mensaje -> date ?></td>
+										<td><?php echo $mensaje -> receptant ?></td>
+										<td><?php echo $mensaje -> message ?></td>
+									</tr>
+									<?php } 
+							}?>
+
+							</tbody>
+						</table>
+					</div>
+					<div class="content has-text-centered">
+						<a href="main.php" class="button is-link">Volver</a>
 					</div>
 				</div>
 			</main>
 		</div>
 	</section>
-
-
 <?php include "../templates/main_footer.html"; ?>
