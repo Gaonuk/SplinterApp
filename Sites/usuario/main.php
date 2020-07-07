@@ -201,6 +201,18 @@
 								<a href="mensajes_recibidos.php" class="button is-success">Ver mensajes</a>
 							</div>
 						</div>
+						<div class="column">
+							<div class="box">
+								<p>
+															<span class="icon">
+																	<i class="fas fa-subway"></i>
+															</span>
+									Busqueda de mensajes
+								</p>
+								<br>
+								<a href="text_search.php" class="button is-success">Buscar mensajes</a>
+							</div>
+						</div>
 
 					</div>
 				</div>
