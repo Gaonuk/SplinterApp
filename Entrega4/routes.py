@@ -25,15 +25,15 @@ def all_users():
 def all_messages():
   user1 = request.args.get('id1')
   user2= request.args.get('id2')
-  users = db.users.find({}, {"_id": 0})
-  users = list(users)
-  ids = [x['uid'] for x in users]
-  if int(user1) not in ids or int(user2) not in ids:
-    return f'Invalid ID, no users with Id = {user1, user2}'
   if user1==None or user2==None:
     messages = [m for m in db.messages.find({}, {"_id":0})]
     return json.jsonify(messages)
   else:
+    users = db.users.find({}, {"_id": 0})
+    users = list(users)
+    ids = [x['uid'] for x in users]
+    if int(user1) not in ids or int(user2) not in ids:
+        return f'Invalid ID, no users with Id = {user1, user2}'
     messages = [m for m in db.messages.find({'receptant': {"$in":[int(user1), int(user2)]}, 'sender': {"$in":[int(user1), int(user2)]}}, {"_id":0})]
     return json.jsonify(messages)
 
