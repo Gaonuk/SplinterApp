@@ -186,7 +186,7 @@
 									Ver mensajes recibidos
 								</p>
 								<br>
-								<a href="mensajes_recibido.php" class="button is-success">Ver mensajes</a>
+								<a href="mensajes_enviados.php" class="button is-success">Ver mensajes</a>
 							</div>
 						</div>
 

@@ -4,8 +4,8 @@
 	$login_session = intval($login_session);
 	$uid = $_SESSION["uid"];
 	$url = 'https://gorgeous-wind-cave-51826.herokuapp.com/';
-    $body = file_get_contents($url . 'users/' . $uid);
-    $body=  json_decode($body);
+	$body_r = file_get_contents($url . 'users/' . $uid);
+	$body=  json_decode($body);
 ?>
 
 	<div class="navbar-menu">
@@ -158,13 +158,19 @@
 							</tr>
 							</thead>
 							<tbody>
-							<?php foreach ($body[2] as $mensaje) { ?>
-								<tr>
-									<td><?php echo $mensaje -> date ?></td>
-									<td><?php echo $mensaje -> receptant ?></td>
-									<td><?php echo $mensaje -> message ?></td>
-								</tr>
-							<?php } ?>
+							<?php
+							if ($body_r == 'Invalid ID, no user with Id = ' . $uid) {
+								echo 'No hay mensajes'
+							} else { ?>
+								<?php foreach ($body[2] as $mensaje) { ?>
+									<tr>
+										<td><?php echo $mensaje -> date ?></td>
+										<td><?php echo $mensaje -> receptant ?></td>
+										<td><?php echo $mensaje -> message ?></td>
+									</tr>
+									<?php } 
+							}?>
+
 							</tbody>
 						</table>
 					</div>
