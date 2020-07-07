@@ -46,8 +46,9 @@ def get_user(uid):
   if userId not in ids:
     return f'Invalid ID, no user with Id = {userId}'
   user = list(db.users.find({"uid":uid}, {"_id":0}))
-  mensajes = list(db.messages.find({"sender":uid}, {"_id":0}))
-  return json.jsonify(user, "estos mensajes ha enviado este usuario:", mensajes)
+  mensajes_enviados = list(db.messages.find({"sender":uid}, {"_id":0}))
+  mensajes_recibidos = list(db.messages.find({"receptant":uid}, {"_id":0}))
+  return json.jsonify(user, "estos mensajes ha enviado este usuario:", mensajes_enviados, "estos mensajes ha recibido este usuario:", mensajes_recibidos)
 
 @app.route("/messages/<int:mid>")
 def get_message(mid):
