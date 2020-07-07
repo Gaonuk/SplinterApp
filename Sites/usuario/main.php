@@ -183,10 +183,22 @@
 															<span class="icon">
 																	<i class="fas fa-subway"></i>
 															</span>
-									Ver mensajes recibidos
+									Ver mensajes enviados
 								</p>
 								<br>
 								<a href="mensajes_enviados.php" class="button is-success">Ver mensajes</a>
+							</div>
+						</div>
+						<div class="column">
+							<div class="box">
+								<p>
+															<span class="icon">
+																	<i class="fas fa-subway"></i>
+															</span>
+									Ver mensajes recibidos
+								</p>
+								<br>
+								<a href="mensajes_recibidos.php" class="button is-success">Ver mensajes</a>
 							</div>
 						</div>
 
