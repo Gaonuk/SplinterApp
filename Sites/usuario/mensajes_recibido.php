@@ -158,7 +158,7 @@
 							</tr>
 							</thead>
 							<tbody>
-							<?php foreach ($body[2] as $mensaje) {
+							<?php foreach ($body[2] as $mensaje) { ?>
 								<tr>
 									<td><?php echo $mensaje -> date ?></td>
 									<td><?php echo $mensaje -> receptant ?></td>
