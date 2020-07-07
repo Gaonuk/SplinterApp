@@ -160,7 +160,7 @@
 							<tbody>
 							<?php
 							if ($body_r == 'Invalid ID, no user with Id = ' . $uid) {
-								echo 'No hay mensajes'
+								echo 'No hay mensajes';
 							} else { ?>
 								<?php foreach ($body[2] as $mensaje) { ?>
 									<tr>
