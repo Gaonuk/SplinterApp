@@ -156,6 +156,10 @@
                                 <!-- Uid -->
                                 <label for='uid'>Id del usuario que emite el mensaje:</label><br>
                                 <input type='number' id='uid' name='uid'><br>
+                                <!-- Boton -->
+                                <div class="field">
+									<input type="submit" value="Buscar" class="button is-success">
+								</div>
 							</form>
 						</div>
 					</div>
