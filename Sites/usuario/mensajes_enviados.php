@@ -5,7 +5,7 @@
 	$uid = $_SESSION["uid"];
 	$url = 'https://gorgeous-wind-cave-51826.herokuapp.com/';
 	$body_r = file_get_contents($url . 'users/' . $uid);
-	$body=  json_decode($body);
+	$body=  json_decode($body_r);
 ?>
 
 	<div class="navbar-menu">
