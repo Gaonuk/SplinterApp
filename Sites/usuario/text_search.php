@@ -3,14 +3,29 @@
 	include('../templates/main_header.html'); ?>
 <?php
     $desired = $_POST['desired'];
+    if ($desired == '') {
+        $desired == array()
+    } else {
+        $desired == explode(';', $desired)
+    };
     $required = $_POST['required'];
+    if ($required == '') {
+        $required == array()
+    } else {
+        $required == explode(';', $required)
+    };
     $forbidden = $_POST['forbidden'];
+    if ($forbidden == '') {
+        $forbidden == array()
+    } else {
+        $forbidden == explode(';', $forbidden)
+    };
     $uid = $_POST['uid'];
     $url = 'https://gorgeous-wind-cave-51826.herokuapp.com/text-search';
     $data = array(
-        'desired' => explode(';', $desired),
-        'required' => explode(';', $required),
-        'forbidden' => explode(';', $forbidden),
+        'desired' => $desired,
+        'required' => $required,
+        'forbidden' => $forbidden,
         'userId' => $uid
     );
     $options = array(
@@ -24,8 +39,6 @@
     $context  = stream_context_create( $options );
     $body_r = file_get_contents( $url, false, $context );
     $body = json_decode( $body_r );
-    print_r($body);
-    print_r($body_r);
 ?>
 
 
@@ -184,7 +197,7 @@
 							<?php
 							if ($body_r == 'Invalid ID, no user with Id = ' . $uid) {
 								# Caso donde no hay msjes con ese id
-								echo 'Id de usuario invalido';
+								echo 'Id de usuario invalido' . $uid;
 							} else { ?>
 								<?php foreach ($body as $mensaje) { ?>
 									<tr>
@@ -200,7 +213,7 @@
 						</table>
 					</div>
 					<div class="content has-text-centered">
-						<a href="main.php" class="button is-link">Volver</a>
+						<a href="form_text_search.php" class="button is-link">Volver</a>
 					</div>
 				</div>
 			</main>
