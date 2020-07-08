@@ -181,7 +181,7 @@
 							<div class="box">
 								<p>
 															<span class="icon">
-																	<i class="fas fa-subway"></i>
+																	<i class="fas fa-envelope"></i>
 															</span>
 									Ver mensajes enviados
 								</p>
@@ -193,7 +193,7 @@
 							<div class="box">
 								<p>
 															<span class="icon">
-																	<i class="fas fa-subway"></i>
+																	<i class="fas fa-envelope"></i>
 															</span>
 									Ver mensajes recibidos
 								</p>
@@ -205,12 +205,24 @@
 							<div class="box">
 								<p>
 															<span class="icon">
-																	<i class="fas fa-subway"></i>
+																	<i class="fas fa-envelope"></i>
 															</span>
 									Busqueda de mensajes
 								</p>
 								<br>
 								<a href="form_text_search.php" class="button is-success">Buscar mensajes</a>
+							</div>
+						</div>
+						<div class="column">
+							<div class="box">
+								<p>
+															<span class="icon">
+																	<i class="fas fa-map"></i>
+															</span>
+									Mapa de mensajes
+								</p>
+								<br>
+								<a href="mapa.php" class="button is-success">Ver mensajes</a>
 							</div>
 						</div>
 
