@@ -185,12 +185,10 @@
 											accessToken: 'not-needed',
 											style: 'https://api.maptiler.com/maps/streets/style.json?key=RkvPaF7xgj6LElmfIPoF'
 										}).addTo(map);
-										
+									</script>	
 									<?php foreach ($body[2] as $mensaje) { ?>
-											var lat = "13"
-											var long = "13"
-											var marker = L.marker([lat, long]).addTo(map);
-											L.marker([lat, long]).addTo(map);
+									<script>
+											var marker = L.marker(["13", "13"]).addTo(map);
 									</script>
 										<?php }
 									 }?>
