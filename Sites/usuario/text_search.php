@@ -202,7 +202,7 @@
 								<?php foreach ($body as $mensaje) { ?>
 									<tr>
                                         <td><?php echo $mensaje -> date ?></td>
-                                        <tf><?php echo $mensaje -> sender ?></td>
+                                        <td><?php echo $mensaje -> sender ?></td>
 										<td><?php echo $mensaje -> receptant ?></td>
 										<td><?php echo $mensaje -> message ?></td>
 									</tr>
