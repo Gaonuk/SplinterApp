@@ -171,7 +171,9 @@
 								</style>
 								<div id="mapid"></div>
 									<script>
-										var map = L.map('mapid').setView([0, 0], 14);
+										var lat = <?php echo $body[2][0] -> lat; ?>
+										var long = <?php echo $body[2][0] -> long; ?>
+										var map = L.map('mapid').setView([lat, long], 14);
 										L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
 											attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
 											maxZoom: 18,
@@ -183,7 +185,9 @@
 									</script>	
 									<?php foreach ($body[2] as $mensaje) { ?>
 									<script>
-											var marker = L.marker([13, 13]).addTo(map);
+											var lat = <?php echo $mensaje -> lat; ?>
+											var long = <?php echo $mensaje -> long; ?>
+											L.marker([lat, long]).addTo(map);
 									</script>
 										<?php }
 									 }?>
