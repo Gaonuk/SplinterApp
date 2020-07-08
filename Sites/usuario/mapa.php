@@ -187,13 +187,13 @@
 										}).addTo(map);
 									</script>	
 									<?php foreach ($body[2] as $mensaje) { 
-										if ($fecha1 < $mensaje -> date and $mensaje -> date < $fecha2?>
+										if ($fecha1 < $mensaje -> date and $mensaje -> date < $fecha2 ){?>
 									<script>
 											var lat = parseInt(<?php echo $mensaje -> lat; ?>)
 											var long = parseInt(<?php echo $mensaje -> long; ?>)
 											L.marker([lat, long]).addTo(map);
 									</script>
-										<?php }
+										<?php }}
 									 }?>
 
 					</div>
