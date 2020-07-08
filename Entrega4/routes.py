@@ -169,13 +169,15 @@ def busqueda_por_texto():
         desired = False
 
     try:
-        userId = data["userId"]
+        userId = int(data["userId"])
         users = db.users.find({}, {"_id": 0})
         users = list(users)
         ids = [x['uid'] for x in users]
         if userId not in ids:
             return f'Invalid ID, no user with Id = {userId}'
     except KeyError:
+        userId = False
+    except TypeError:
         userId = False
     #Caso que solo existan Forbidden
     if not desired and not required and not forbidden and not userId:
@@ -204,13 +206,13 @@ def busqueda_por_texto():
             output = json.jsonify(list(output))
             db.drop_collection('forbidden')
             return output
-        else:    
+        else:
             output = db.forbidden.find({ '$text': {'$search': ' '.join(busqueda)}},
             { 'score': { "$meta": 'textScore'}, '_id': 0, 'dummy': 0}).sort([('score', {'$meta': 'textScore'})])
             output = json.jsonify(list(output))
             db.drop_collection('forbidden')
             return output
-    
+
     if userId and not desired and not required and not forbidden:
         output = db.messages.find({'sender': userId}, {'_id': 0})
         return json.jsonify(list(output))
