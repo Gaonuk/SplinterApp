@@ -140,8 +140,8 @@
 				</div>
 				<div class="section">
 					<p class="title">¿Qué deseas hacer? </p>
-					<div class="columns is-centered">
-						<div class="column">
+					<div class="columns is-centered is-multiline">
+						<div class="column is-3-desktop is-3-widescreen">
 							<div class="box">
 								<p>
 															<span class="icon">
@@ -153,7 +153,7 @@
 								<a href="museum_entrance.php" class="button is-success">Ver entradas</a>
 							</div>
 						</div>
-						<div class="column is-5-tablet is-4-widescreen is-4-desktop">
+						<div class="column is-3-desktop is-3-widescreen ">
 							<div class="box">
 								<p>
 															<span class="icon">
@@ -165,7 +165,7 @@
 								<a href="hotels.php" class="button is-success">Ver reservas</a>
 							</div>
 						</div>
-						<div class="column">
+						<div class="column  is-3-desktop is-3-widescreen">
 							<div class="box">
 								<p>
 															<span class="icon">
@@ -177,11 +177,11 @@
 								<a href="tickets.php" class="button is-success">Ver tickets</a>
 							</div>
 						</div>
-						<div class="column">
+						<div class="column  is-3-desktop is-3-widescreen">
 							<div class="box">
 								<p>
 															<span class="icon">
-																	<i class="fas fa-envelope"></i>
+																	<i class="fas fa-paper-plane"></i>
 															</span>
 									Ver mensajes enviados
 								</p>
@@ -189,11 +189,11 @@
 								<a href="mensajes_enviados.php" class="button is-success">Ver mensajes</a>
 							</div>
 						</div>
-						<div class="column">
+						<div class="column  is-3-desktop is-3-widescreen">
 							<div class="box">
 								<p>
 															<span class="icon">
-																	<i class="fas fa-envelope"></i>
+																	<i class="fas fa-mail-bulk"></i>
 															</span>
 									Ver mensajes recibidos
 								</p>
@@ -201,7 +201,7 @@
 								<a href="mensajes_recibidos.php" class="button is-success">Ver mensajes</a>
 							</div>
 						</div>
-						<div class="column">
+						<div class="column is-3-desktop is-3-widescreen">
 							<div class="box">
 								<p>
 															<span class="icon">
@@ -213,7 +213,7 @@
 								<a href="form_text_search.php" class="button is-success">Buscar mensajes</a>
 							</div>
 						</div>
-						<div class="column">
+						<div class="column is-3-desktop is-3-widescreen">
 							<div class="box">
 								<p>
 															<span class="icon">
