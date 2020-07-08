@@ -24,6 +24,8 @@
     $context  = stream_context_create( $options );
     $body_r = file_get_contents( $url, false, $context );
     $body = json_decode( $body_r );
+    print_r($body)
+    print_r($body_r)
 ?>
 
 
