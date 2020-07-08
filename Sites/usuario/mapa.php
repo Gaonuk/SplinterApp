@@ -10,12 +10,12 @@
 	$body=  json_decode($body_r);
 ?>
 <head>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
-integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-crossorigin=""/>
-<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
-integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
-crossorigin=""></script>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+	integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+	crossorigin=""/>
+	<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+	integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+	crossorigin=""></script>
 </head>
 	<div class="navbar-menu">
 		<div class="navbar-end">
@@ -176,8 +176,8 @@ crossorigin=""></script>
 										</a>
 									</p>
 									<script>
-										var lat = "<?php echo $body[2][0]['lat']; ?>"
-										var long = "<?php echo $body[2][0]['long']; ?>"
+										var lat = "0"
+										var long = "0"
 										
 										var map = L.map('mapid').setView([lat, long], 14);
 										var gl = L.mapboxGL({
@@ -187,8 +187,8 @@ crossorigin=""></script>
 										}).addTo(map);
 										
 									<?php foreach ($body[2] as $mensaje) { ?>
-											var lat = "<?php echo $mensaje -> lat; ?>"
-											var long = "<?php echo $mensaje -> long; ?>"
+											var lat = "13"
+											var long = "13"
 											var marker = L.marker([lat, long]).addTo(map);
 											L.marker([lat, long]).addTo(map);
 									</script>
