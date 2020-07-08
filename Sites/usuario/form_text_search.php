@@ -145,13 +145,13 @@
 						<div class="column is-4 is-offset-4">
 							<form action="text_search.php" method="POST" class="box">
                                 <!-- Palabras deseadas -->
-                                <label for='desired'>Texto deseado:</label><br>
+                                <label for='desired'>Texto deseado: (Separar frases entre ;)</label><br>
                                 <input type='text' id='desired' name='desired'><br>
                                 <!-- Palabras requeridas -->
-                                <label for='required'>Texto requerido:</label><br>
+                                <label for='required'>Texto requerido: (Separar frases entre ;)</label><br>
                                 <input type='text' id='required' name='required'><br>
                                 <!-- Forbidden -->
-                                <label for='forbidden'>Palabras interdidas:</label><br>
+                                <label for='forbidden'>Palabras interdidas: (Separar palabras entre ;)</label><br>
                                 <input type='text' id='forbidden' name='forbidden'><br>
                                 <!-- Uid -->
                                 <label for='uid'>Id del usuario que emite el mensaje:</label><br>
