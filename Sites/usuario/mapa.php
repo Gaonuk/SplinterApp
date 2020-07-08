@@ -1,3 +1,9 @@
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+crossorigin=""></script>
 <?php
 	include('session.php');
 	include "../templates/main_header.html";
@@ -159,31 +165,35 @@
                   No hay mensajes
                 </h1>
               <?php } else { ?>
-                <div id="map"></div>
-                <p>
-                  <a href="https://www.maptiler.com/copyright/" target="_blank"></a>
-                  <a href="https://www.openstreetmap.org/copyright" target="_blank">
-                  </a>
-                </p>
-                <script>
-                  var lat = "<?php echo $body[2][0] -> lat; ?>"
-                  var long = "<?php echo $body[2][0] -> long; ?>"
-                  
-                  var map = L.map('map').setView([lat, long], 14);
-                  var gl = L.mapboxGL({
-                    attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">© MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">© OpenStreetMap contributors</a>',
-                    accessToken: 'not-needed',
-                    style: 'https://api.maptiler.com/maps/streets/style.json?key=RkvPaF7xgj6LElmfIPoF'
-                  }).addTo(map);
-                  
-                <?php foreach ($body[2] as $mensaje) { ?>
-                    var lat = "<?php echo $mensaje -> lat; ?>"
-                    var long = "<?php echo $mensaje -> long; ?>"
-                    var marker = L.marker([lat, long]).addTo(map);
-                    L.marker([lat, long]).addTo(map);
-                </script>
-                  <?php }
-              }?>
+								<style>
+									#mapid { height: 180px; }
+								</style>
+								<div id="mapid">
+									<p>
+										<a href="https://www.maptiler.com/copyright/" target="_blank"></a>
+										<a href="https://www.openstreetmap.org/copyright" target="_blank">
+										</a>
+									</p>
+									<script>
+										var lat = "<?php echo $body[2][0]['lat']; ?>"
+										var long = "<?php echo $body[2][0]['long']; ?>"
+										
+										var map = L.map('mapid').setView([lat, long], 14);
+										var gl = L.mapboxGL({
+											attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">© MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">© OpenStreetMap contributors</a>',
+											accessToken: 'not-needed',
+											style: 'https://api.maptiler.com/maps/streets/style.json?key=RkvPaF7xgj6LElmfIPoF'
+										}).addTo(map);
+										
+									<?php foreach ($body[2] as $mensaje) { ?>
+											var lat = "<?php echo $mensaje -> lat; ?>"
+											var long = "<?php echo $mensaje -> long; ?>"
+											var marker = L.marker([lat, long]).addTo(map);
+											L.marker([lat, long]).addTo(map);
+									</script>
+										<?php } ?>
+								</div>
+              <?php }?>
 
 					</div>
 					<div class="content has-text-centered">
