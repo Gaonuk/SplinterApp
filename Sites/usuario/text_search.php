@@ -5,7 +5,7 @@
     $desired = $_POST['desired'];
     $required = $_POST['required'];
     $forbidden = $_POST['forbidden'];
-    $udi = $_POST['uid'];
+    $uid = $_POST['uid'];
     $url = 'https://gorgeous-wind-cave-51826.herokuapp.com/text-search';
     $data = array(
         'desired' => explode(';', $desired),
