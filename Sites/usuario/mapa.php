@@ -159,9 +159,15 @@
                   No hay mensajes
                 </h1>
               <?php } else { ?>
+                <div id="map"></div>
+                <p>
+                  <a href="https://www.maptiler.com/copyright/" target="_blank"></a>
+                  <a href="https://www.openstreetmap.org/copyright" target="_blank">
+                  </a>
+                </p>
                 <script>
-                  var lat = "<?php echo $body[2][0] -> lat ?>"
-                  var long = "<?php echo $body[2][0] -> long ?>"
+                  var lat = "<?php echo $body[2][0] -> lat; ?>"
+                  var long = "<?php echo $body[2][0] -> long; ?>"
                   
                   var map = L.map('map').setView([lat, long], 14);
                   var gl = L.mapboxGL({
@@ -171,8 +177,8 @@
                   }).addTo(map);
                   
                 <?php foreach ($body[2] as $mensaje) { ?>
-                    var lat = "<?php echo $mensaje -> lat ?>"
-                    var long = "<?php echo $mensaje -> long ?>"
+                    var lat = "<?php echo $mensaje -> lat; ?>"
+                    var long = "<?php echo $mensaje -> long; ?>"
                     var marker = L.marker([lat, long]).addTo(map);
                     L.marker([lat, long]).addTo(map);
                 </script>
