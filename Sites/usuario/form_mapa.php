@@ -146,7 +146,7 @@
 							<form action="mapa.php" method="POST" class="box">
 								<!-- Fecha 1 -->
 								<label for='fecha1'>Fecha Inicio: </label><br>
-								<input type='text' id='fecha1' name='fecha1'><br>
+								<input type='date' id='fecha1' name='fecha1'><br>
 								<!-- Fecha 2 -->
 								<label for='fecha2'>Fecha Término</label><br>
 								<input type='date' id='fecha2' name='fecha2'><br>
