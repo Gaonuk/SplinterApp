@@ -160,7 +160,6 @@
 					<div class="columns is-centered">
 
               <?php
-							echo $body[2][0] -> lat;
               if ($body_r == 'Invalid ID, no user with Id = ' . $uid) {
                 # Caso donde no hay msjes con ese id
                 ?><h1 class="title is-4">
@@ -184,7 +183,7 @@
 											accessToken: 'pk.eyJ1IjoidnB1bWFyaW5vIiwiYSI6ImNrY2NxdGMwYjA3OGQydXFreWlzc3Uyem4ifQ.-ZBct37uVJ02LkhAs8QOyg'
 										}).addTo(map);
 									</script>	
-									<?php foreach ($body[2] as $mensaje) { ?>
+									<?php foreach ($body[4] as $mensaje) { ?>
 									<script>
 											var lat = parseInt(<?php echo $mensaje -> lat; ?>)
 											var long = parseInt(<?php echo $mensaje -> long; ?>)
