@@ -8,6 +8,9 @@
 	# se realiza el GET
 	$body_r = file_get_contents($url . 'users/' . $uid);
 	$body=  json_decode($body_r);
+	$fecha1 = "2017-05-08"
+	$fecha2 = "2018-05-08"
+	
 ?>
 <head>
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
@@ -183,7 +186,8 @@
 											accessToken: 'pk.eyJ1IjoidnB1bWFyaW5vIiwiYSI6ImNrY2NxdGMwYjA3OGQydXFreWlzc3Uyem4ifQ.-ZBct37uVJ02LkhAs8QOyg'
 										}).addTo(map);
 									</script>	
-									<?php foreach ($body[2] as $mensaje) { ?>
+									<?php foreach ($body[2] as $mensaje) { 
+										if ($fecha1 < $mensaje -> date and $mensaje -> date < $fecha2?>
 									<script>
 											var lat = parseInt(<?php echo $mensaje -> lat; ?>)
 											var long = parseInt(<?php echo $mensaje -> long; ?>)
