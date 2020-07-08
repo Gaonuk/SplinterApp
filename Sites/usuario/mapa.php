@@ -179,7 +179,7 @@
 											tileSize: 512,
 											zoomOffset: -1,
 											accessToken: 'pk.eyJ1IjoidnB1bWFyaW5vIiwiYSI6ImNrY2NxdGMwYjA3OGQydXFreWlzc3Uyem4ifQ.-ZBct37uVJ02LkhAs8QOyg'
-										}).addTo(mymap);
+										}).addTo(map);
 									</script>	
 									<?php foreach ($body[2] as $mensaje) { ?>
 									<script>
