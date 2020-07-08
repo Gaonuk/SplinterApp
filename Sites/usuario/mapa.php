@@ -172,6 +172,11 @@
 								<div id="mapid"></div>
 									<script>
 										var map = L.map('mapid').setView([0, 0], 14);
+										var gl = L.mapboxGL({
+											attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">© MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">© OpenStreetMap contributors</a>',
+											accessToken: 'not-needed',
+											style: 'https://api.maptiler.com/maps/streets/style.json?key=RkvPaF7xgj6LElmfIPoF'
+										}).addTo(map);
 									</script>	
 									<?php foreach ($body[2] as $mensaje) { ?>
 									<script>
