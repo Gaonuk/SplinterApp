@@ -4,21 +4,21 @@
 <?php
     $desired = $_POST['desired'];
     if ($desired == '') {
-        $desired == array()
+        $desired == array();
     } else {
-        $desired == explode(';', $desired)
+        $desired == explode(';', $desired);
     };
     $required = $_POST['required'];
     if ($required == '') {
-        $required == array()
+        $required == array();
     } else {
-        $required == explode(';', $required)
+        $required == explode(';', $required);
     };
     $forbidden = $_POST['forbidden'];
     if ($forbidden == '') {
-        $forbidden == array()
+        $forbidden == array();
     } else {
-        $forbidden == explode(';', $forbidden)
+        $forbidden == explode(';', $forbidden);
     };
     $uid = $_POST['uid'];
     $url = 'https://gorgeous-wind-cave-51826.herokuapp.com/text-search';
