@@ -186,8 +186,9 @@
 									</script>	
 									<?php foreach ($body[2] as $mensaje) { ?>
 									<script>
-											
-											L.marker([-33, -70]).addTo(map);
+											var lat = parseInt(<?php echo $mensaje -> lat; ?>)
+											var long = parseInt(<?php echo $mensaje -> long; ?>)
+											L.marker([lat, long]).addTo(map);
 									</script>
 										<?php }
 									 }?>
