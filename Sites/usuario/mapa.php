@@ -1,9 +1,22 @@
 <?php
-	session_start();
+	include('session.php');
 	include "../templates/main_header.html";
-
+	$login_session = intval($login_session);
+	$uid = $_SESSION["uid"];
+	#url de la api
+	$url = 'https://gorgeous-wind-cave-51826.herokuapp.com/';
+	# se realiza el GET
+	$body_r = file_get_contents($url . 'users/' . $uid);
+	$body=  json_decode($body_r);
 ?>
-
+<head>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+	integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+	crossorigin=""/>
+	<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+	integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+	crossorigin=""></script>
+</head>
 	<div class="navbar-menu">
 		<div class="navbar-end">
 			<div class="navbar-item has-dropdown is-hoverable">
@@ -57,7 +70,6 @@
 								</div>
 							</div>
 						</form>
-
 						<p class="menu-label">
 							General
 						</p>
@@ -135,102 +147,53 @@
 			<main class="column">
 				<div class="hero is-primary">
 					<div class="hero-body">
-						<h1 class="title">Bienvenido <strong><?php echo $_SESSION['user'] ?></strong>!</h1>
+						<h1 class="title">
+							Hola, <?php echo $_SESSION["user"]; ?>
+						</h1>
+						<h2 class="subtitle">
+							Aquí puedes ver tus mensajes enviados
+						</h2>
 					</div>
 				</div>
 				<div class="section">
-					<p class="title">¿Qué deseas hacer? </p>
-					<div class="columns is-centered">
-						<div class="column">
-							<div class="box">
-								<p>
-															<span class="icon">
-																	<i class="fa fa-landmark"></i>
-															</span>
-									Ver mis entradas a museos
-								</p>
-								<br>
-								<a href="museum_entrance.php" class="button is-success">Ver entradas</a>
-							</div>
-						</div>
-						<div class="column is-5-tablet is-4-widescreen is-4-desktop">
-							<div class="box">
-								<p>
-															<span class="icon">
-																	<i class="fas fa-hotel"></i>
-															</span>
-									Ver mis reservas de hoteles
-								</p>
-								<br>
-								<a href="hotels.php" class="button is-success">Ver reservas</a>
-							</div>
-						</div>
-						<div class="column">
-							<div class="box">
-								<p>
-															<span class="icon">
-																	<i class="fas fa-subway"></i>
-															</span>
-									Ver mis tickets de transporte
-								</p>
-								<br>
-								<a href="tickets.php" class="button is-success">Ver tickets</a>
-							</div>
-						</div>
-						<div class="column">
-							<div class="box">
-								<p>
-															<span class="icon">
-																	<i class="fas fa-envelope"></i>
-															</span>
-									Ver mensajes enviados
-								</p>
-								<br>
-								<a href="mensajes_enviados.php" class="button is-success">Ver mensajes</a>
-							</div>
-						</div>
-						<div class="column">
-							<div class="box">
-								<p>
-															<span class="icon">
-																	<i class="fas fa-envelope"></i>
-															</span>
-									Ver mensajes recibidos
-								</p>
-								<br>
-								<a href="mensajes_recibidos.php" class="button is-success">Ver mensajes</a>
-							</div>
-						</div>
-						<div class="column">
-							<div class="box">
-								<p>
-															<span class="icon">
-																	<i class="fas fa-envelope"></i>
-															</span>
-									Busqueda de mensajes
-								</p>
-								<br>
-								<a href="form_text_search.php" class="button is-success">Buscar mensajes</a>
-							</div>
-						</div>
-						<div class="column">
-							<div class="box">
-								<p>
-															<span class="icon">
-																	<i class="fas fa-map"></i>
-															</span>
-									Mapa de mensajes
-								</p>
-								<br>
-								<a href="mapa.php" class="button is-success">Ver mensajes</a>
-							</div>
-						</div>
 
+					<div class="columns is-centered">
+
+              <?php
+              if ($body_r == 'Invalid ID, no user with Id = ' . $uid) {
+                # Caso donde no hay msjes con ese id
+                ?><h1 class="title is-4">
+                  No hay mensajes
+                </h1>
+              <?php } else { ?>
+								<style>
+									#mapid {height: 400px; width: 480px;}
+								</style>
+								<div id="mapid"></div>
+									<script>
+										var map = L.map('mapid').setView([0, 0], 14);
+										L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+											attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+											maxZoom: 18,
+											id: 'mapbox/streets-v11',
+											tileSize: 512,
+											zoomOffset: -1,
+											accessToken: 'pk.eyJ1IjoidnB1bWFyaW5vIiwiYSI6ImNrY2NxdGMwYjA3OGQydXFreWlzc3Uyem4ifQ.-ZBct37uVJ02LkhAs8QOyg'
+										}).addTo(map);
+									</script>	
+									<?php foreach ($body[2] as $mensaje) { ?>
+									<script>
+											var marker = L.marker([13, 13]).addTo(map);
+									</script>
+										<?php }
+									 }?>
+
+					</div>
+					<div class="content has-text-centered">
+						<a href="main.php" class="button is-link">Volver</a>
 					</div>
 				</div>
 			</main>
 		</div>
 	</section>
-
-
 <?php include "../templates/main_footer.html"; ?>
