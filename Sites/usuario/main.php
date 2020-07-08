@@ -222,7 +222,7 @@
 									Mapa de mensajes
 								</p>
 								<br>
-								<a href="mapa.php" class="button is-success">Ver mensajes</a>
+								<a href="form_mapa.php" class="button is-success">Ver mensajes</a>
 							</div>
 						</div>
 
