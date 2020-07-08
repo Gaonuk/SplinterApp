@@ -160,6 +160,7 @@
 					<div class="columns is-centered">
 
               <?php
+							echo $body[2][0] -> lat;
               if ($body_r == 'Invalid ID, no user with Id = ' . $uid) {
                 # Caso donde no hay msjes con ese id
                 ?><h1 class="title is-4">
