@@ -21,6 +21,9 @@
         $forbidden = explode(';', $forbidden);
     };
     $uid = $_POST['uid'];
+    if (empty($uid)) {
+        $uid = array();
+    };
     $url = 'https://gorgeous-wind-cave-51826.herokuapp.com/text-search';
     $data = array(
         'desired' => $desired,
