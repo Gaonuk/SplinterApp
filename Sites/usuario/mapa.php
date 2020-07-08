@@ -155,11 +155,13 @@
               <?php
               if ($body_r == 'Invalid ID, no user with Id = ' . $uid) {
                 # Caso donde no hay msjes con ese id
-                echo 'No hay mensajes';
-              } else { ?>
+                ?><h1 class="title is-4">
+                  No hay mensajes
+                </h1>
+              <?php } else { ?>
                 <script>
-                  var lat = "0"
-                  var long = "0"
+                  var lat = "<?php echo $body[2][0] -> lat ?>"
+                  var long = "<?php echo $body[2][0] -> long ?>"
                   
                   var map = L.map('map').setView([lat, long], 14);
                   var gl = L.mapboxGL({
@@ -168,19 +170,15 @@
                     style: 'https://api.maptiler.com/maps/streets/style.json?key=RkvPaF7xgj6LElmfIPoF'
                   }).addTo(map);
                   
-                </script>
                 <?php foreach ($body[2] as $mensaje) { ?>
-                  <script>
                     var lat = "<?php echo $mensaje -> lat ?>"
                     var long = "<?php echo $mensaje -> long ?>"
                     var marker = L.marker([lat, long]).addTo(map);
                     L.marker([lat, long]).addTo(map);
-                  </script>
+                </script>
                   <?php }
               }?>
 
-							</tbody>
-						</table>
 					</div>
 					<div class="content has-text-centered">
 						<a href="main.php" class="button is-link">Volver</a>
