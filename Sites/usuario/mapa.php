@@ -172,11 +172,14 @@
 								<div id="mapid"></div>
 									<script>
 										var map = L.map('mapid').setView([0, 0], 14);
-										var gl = L.mapboxGL({
-											attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">© MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">© OpenStreetMap contributors</a>',
-											accessToken: 'not-needed',
-											style: 'https://api.maptiler.com/maps/streets/style.json?key=RkvPaF7xgj6LElmfIPoF'
-										}).addTo(map);
+										L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+											attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+											maxZoom: 18,
+											id: 'mapbox/streets-v11',
+											tileSize: 512,
+											zoomOffset: -1,
+											accessToken: 'pk.eyJ1IjoidnB1bWFyaW5vIiwiYSI6ImNrY2NxdGMwYjA3OGQydXFreWlzc3Uyem4ifQ.-ZBct37uVJ02LkhAs8QOyg'
+										}).addTo(mymap);
 									</script>	
 									<?php foreach ($body[2] as $mensaje) { ?>
 									<script>
