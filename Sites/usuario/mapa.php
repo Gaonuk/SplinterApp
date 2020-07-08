@@ -180,7 +180,7 @@
 									</script>	
 									<?php foreach ($body[2] as $mensaje) { ?>
 									<script>
-											var marker = L.marker(["13", "13"]).addTo(map);
+											var marker = L.marker([13, 13]).addTo(map);
 									</script>
 										<?php }
 									 }?>
