@@ -8,8 +8,8 @@
 	# se realiza el GET
 	$body_r = file_get_contents($url . 'users/' . $uid);
 	$body=  json_decode($body_r);
-	$fecha1 = "2017-05-08"
-	$fecha2 = "2018-05-08"
+	$fecha1 = "2017-05-08";
+	$fecha2 = "2018-05-08";
 	
 ?>
 <head>
