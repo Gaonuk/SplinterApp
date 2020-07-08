@@ -169,7 +169,7 @@ crossorigin=""></script>
 								<style>
 									#mapid { height: 180px; }
 								</style>
-								<div id="mapid">
+								<div id="mapid"></div>
 									<p>
 										<a href="https://www.maptiler.com/copyright/" target="_blank"></a>
 										<a href="https://www.openstreetmap.org/copyright" target="_blank">
@@ -192,9 +192,8 @@ crossorigin=""></script>
 											var marker = L.marker([lat, long]).addTo(map);
 											L.marker([lat, long]).addTo(map);
 									</script>
-										<?php } ?>
-								</div>
-              <?php }?>
+										<?php }
+									 }?>
 
 					</div>
 					<div class="content has-text-centered">
