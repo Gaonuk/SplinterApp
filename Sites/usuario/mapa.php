@@ -167,20 +167,11 @@
                 </h1>
               <?php } else { ?>
 								<style>
-									mapid { height: 180px; }
+									#mapid {height: 400px; width: 480px;}
 								</style>
 								<div id="mapid"></div>
-									<p>
-										<a href="https://www.maptiler.com/copyright/" target="_blank"></a>
-										<a href="https://www.openstreetmap.org/copyright" target="_blank">
-										</a>
-									</p>
 									<script>
-										var lat = "0"
-										var long = "0"
-										
-										var map = L.map('mapid').setView([lat, long], 14);
-										
+										var map = L.map('mapid').setView([0, 0], 14);
 									</script>	
 									<?php foreach ($body[2] as $mensaje) { ?>
 									<script>
