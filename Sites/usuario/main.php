@@ -204,6 +204,18 @@
 						<div class="column is-3-desktop is-3-widescreen">
 							<div class="box">
 								<p>
+								<span class="icon">
+																	<i class="fas fa-paper-plane"></i>
+															</span>
+									Enviar Mensaje
+								</p>
+								<br>
+								<a href="form_enviar_mensaje.php" class="button is-success">Enviar mensaje</a>
+							</div>
+						</div>
+						<div class="column  is-3-desktop is-3-widescreen">
+							<div class="box">
+								<p>
 															<span class="icon">
 																	<i class="fas fa-envelope"></i>
 															</span>

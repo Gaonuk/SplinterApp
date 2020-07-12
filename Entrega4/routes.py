@@ -1,6 +1,7 @@
 from flask import Flask, json, request
 import pymongo
 from random import randint
+from datetime import date
 
 uri = "mongodb://grupo15:grupo15@gray.ing.puc.cl/grupo15"
 # La uri 'estándar' es "mongodb://user:password@ip/database"
@@ -64,51 +65,25 @@ def get_message(mid):
 @app.route("/messages", methods=['POST'])
 def new_message():
     valido = True
-    messages_keys = ['message', 'sender', 'receptant', 'lat', 'long', 'date']
+    messages_keys = ['receptant', 'sender', 'message']
     try:
         data = {key: request.json[key] for key in messages_keys}
+        usuario_receptant = db.users.find_one({"name":data['receptant']}, {"_id":0})
+        data['receptant'] = usuario_receptant['uid']
         count = db.messages.count_documents({})
         data["mid"] = count + 2
+        data['lat'] = -33.4372
+        data['long'] = -70.6506 33
+        fecha = date.today()
+        fecha_str = fecha.strftime('%Y-%m-%d')
+        data['date'] = fecha_str
     except:
         valido = False
         if 'message' in request.json:
-            if 'sender' in request.json:
-                if 'receptant' in request.json:
-                    if 'lat' in request.json:
-                        if 'long' in request.json:
-                            error = 'falta agregar fecha'
-                        else:
-                            error = 'falta agregar longitud'
-                    else:
-                        error = 'falta agregar latitud'
-                else:
-                    error = 'falta agregar receptant'
-            else:
-                error = 'falta agregar sender'
+            error = 'falta agregar receptant'
         else:
             error = 'falta agregar mensaje'
     if valido:
-        for i in str(data['date']):
-            if  i not in '-0123456789':
-                error = 'formato de fecha no válido'
-                valido = False
-        for i in str(data['lat']):
-            if  i not in '.-0123456789':
-                error = 'formato de latitud no válido'
-                valido = False
-        for i in str(data['long']):
-            if  i not in '.-0123456789':
-                error = 'formato de longitud no válido'
-                valido = False
-        if isinstance(data['sender'], int):        
-            uid = int(data['sender'])
-            usuario_sender = db.users.find_one({"uid":uid}, {"_id":0})
-            if usuario_sender is None:
-                error = 'no existe un usuario con el id del sender'
-                valido = False
-        else:
-            error = 'el formato del sender no es correcto'
-            valido = False
         if isinstance(data['receptant'], int): 
             uid = int(data['receptant'])
             usuario_receptant = db.users.find_one({"uid":uid}, {"_id":0})
@@ -120,7 +95,7 @@ def new_message():
             valido = False
     if valido:
         db.messages.insert_one(data)
-        message = "mensaje creado"
+        message = "mensaje enviado"
         success = True
     else:
         message = "No se pudo crear el mensaje, {}".format(error)
@@ -169,15 +144,13 @@ def busqueda_por_texto():
         desired = False
 
     try:
-        userId = int(data["userId"])
+        userId = data["userId"]
         users = db.users.find({}, {"_id": 0})
         users = list(users)
         ids = [x['uid'] for x in users]
         if userId not in ids:
             return f'Invalid ID, no user with Id = {userId}'
     except KeyError:
-        userId = False
-    except TypeError:
         userId = False
     #Caso que solo existan Forbidden
     if not desired and not required and not forbidden and not userId:
@@ -206,13 +179,13 @@ def busqueda_por_texto():
             output = json.jsonify(list(output))
             db.drop_collection('forbidden')
             return output
-        else:
+        else:    
             output = db.forbidden.find({ '$text': {'$search': ' '.join(busqueda)}},
             { 'score': { "$meta": 'textScore'}, '_id': 0, 'dummy': 0}).sort([('score', {'$meta': 'textScore'})])
             output = json.jsonify(list(output))
             db.drop_collection('forbidden')
             return output
-
+    
     if userId and not desired and not required and not forbidden:
         output = db.messages.find({'sender': userId}, {'_id': 0})
         return json.jsonify(list(output))
