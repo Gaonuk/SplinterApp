@@ -66,23 +66,24 @@ def get_message(mid):
 def new_message():
     valido = True
     messages_keys = ['receptant', 'sender', 'message']
-    try:
-        data = {key: request.json[key] for key in messages_keys}
-        usuario_receptant = db.users.find_one({"name":data['receptant']}, {"_id":0})
-        data['receptant'] = usuario_receptant['uid']
-        count = db.messages.count_documents({})
-        data["mid"] = count + 2
-        data['lat'] = -33.4372
-        data['long'] = -70.6506 33
-        fecha = date.today()
-        fecha_str = fecha.strftime('%Y-%m-%d')
-        data['date'] = fecha_str
-    except:
+    data = {key: request.json[key] for key in messages_keys}
+    if data['receptant'] is False:
         valido = False
-        if 'message' in request.json:
-            error = 'falta agregar receptant'
-        else:
+        error = 'falta agregar receptant'
+    else:
+        if data['message'] is False:
+            valido = False
             error = 'falta agregar mensaje'
+        else:
+            usuario_receptant = db.users.find_one({"name":data['receptant']}, {"_id":0})
+            data['receptant'] = usuario_receptant['uid']
+            count = db.messages.count_documents({})
+            data["mid"] = count + 2
+            data['lat'] = -33.436947
+            data['long'] = -70.634387
+            fecha = date.today()
+            fecha_str = fecha.strftime('%Y-%m-%d')
+            data['date'] = fecha_str
     if valido:
         if isinstance(data['receptant'], int): 
             uid = int(data['receptant'])

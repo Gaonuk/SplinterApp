@@ -4,11 +4,11 @@
 <?php
     $receptant = $_POST["username"];
     if (empty($receptant)) {
-			$receptant = array();
+			$receptant = False;
 		}
     $mensaje = $_POST["mensaje"];
     if (empty($mensaje)) {
-			$mensaje = array();
+			$mensaje = False;
 		}
 
         $url = 'https://gorgeous-wind-cave-51826.herokuapp.com/text-search';
