@@ -4,11 +4,12 @@
 <?php
     $receptant = $_POST["username"];
     if (empty($receptant)) {
-        $receptant = array();
+			$receptant = array();
+		}
     $mensaje = $_POST["mensaje"];
     if (empty($mensaje)) {
-        $mensaje = array();
-
+			$mensaje = array();
+		}
 
         $url = 'https://gorgeous-wind-cave-51826.herokuapp.com/text-search';
         $data = array(
@@ -169,20 +170,17 @@
                         </div>
                     </div>
                     <div class="section">
-    
-                        <div class="columns is-centered">
+                        <div class="columns">
                             <div class="column is-4 is-offset-4">
-                                <form>
+                                <div class="box">
                                 <?php
                                 if ($body['success'] == True) {
-                                    
                                     echo 'Mensaje enviado';
-                                } else {  
+                                } else {
                                     echo $body['message'];
                                 }?>
-    
                                 </div>
-                            </form>
+                            </div>
                         </div>
                         <div class="content has-text-centered">
                             <a href="form_text_search.php" class="button is-link">Volver</a>
@@ -192,3 +190,4 @@
             </div>
         </section>
     <?php include "../templates/main_footer.html"; ?>
+
