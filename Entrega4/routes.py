@@ -76,24 +76,18 @@ def new_message():
             error = 'falta agregar mensaje'
         else:
             usuario_receptant = db.users.find_one({"name":data['receptant']}, {"_id":0})
-            data['receptant'] = usuario_receptant['uid']
-            count = db.messages.count_documents({})
-            data["mid"] = count + 2
-            data['lat'] = -33.436947
-            data['long'] = -70.634387
-            fecha = date.today()
-            fecha_str = fecha.strftime('%Y-%m-%d')
-            data['date'] = fecha_str
-    if valido:
-        if isinstance(data['receptant'], int): 
-            uid = int(data['receptant'])
-            usuario_receptant = db.users.find_one({"uid":uid}, {"_id":0})
             if usuario_receptant is None:
-                error = 'no existe un usuario con el id del receptant'
+                error = 'no existe un usuario con el username del receptant'
                 valido = False
-        else:
-            error = 'el formato del receptant no es correcto'
-            valido = False
+            else:
+                data['receptant'] = usuario_receptant['uid']
+                count = db.messages.count_documents({})
+                data["mid"] = count + 2
+                data['lat'] = -33.436947
+                data['long'] = -70.634387
+                fecha = date.today()
+                fecha_str = fecha.strftime('%Y-%m-%d')
+                data['date'] = fecha_str
     if valido:
         db.messages.insert_one(data)
         message = "mensaje enviado"

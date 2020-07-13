@@ -136,7 +136,7 @@
 							Sección enviar mensajes
 						</h1>
 						<h2 class="subtitle">
-							Enviat mensaje
+							Enviar mensaje
 						</h2>
 					</div>
 				</div>
@@ -155,7 +155,9 @@
                                 <!-- mensaje -->
                                 <!-- Boton -->
                                 <div class="field">
-									<input type="submit" value="Enviar" class="button is-success">
+									<input type="submit" value="Enviar" class="button is-success"><b>
+								<div class="content has-text-centered">
+                            		<a href="main.php" class="button is-link">Volver</a>
 								</div>
 							</form>
 						</div>

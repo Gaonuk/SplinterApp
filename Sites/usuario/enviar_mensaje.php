@@ -11,7 +11,7 @@
 			$mensaje = False;
 		}
 
-        $url = 'https://gorgeous-wind-cave-51826.herokuapp.com/text-search';
+        $url = 'https://gorgeous-wind-cave-51826.herokuapp.com/messages';
         $data = array(
             'receptant' => $receptant,
             'sender' => $_SESSION['uid'],
@@ -26,8 +26,8 @@
             )
           );
         $context  = stream_context_create( $options );
-        $body_r = file_get_contents( $url, false, $context );
-        $body = json_decode( $body_r );
+        $result = file_get_contents( $url, false, $context );
+        $response = json_decode( $result , true);
     ?>
     
     
@@ -174,16 +174,16 @@
                             <div class="column is-4 is-offset-4">
                                 <div class="box">
                                 <?php
-                                if ($body['success'] == True) {
+                                if ($response['success'] == True) {
                                     echo 'Mensaje enviado';
                                 } else {
-                                    echo $body['message'];
+                                    echo $response['message'];
                                 }?>
                                 </div>
                             </div>
                         </div>
                         <div class="content has-text-centered">
-                            <a href="form_text_search.php" class="button is-link">Volver</a>
+                            <a href="form_enviar_mensaje.php" class="button is-link">Volver</a>
                         </div>
                     </div>
                 </main>
