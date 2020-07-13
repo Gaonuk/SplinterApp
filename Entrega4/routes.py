@@ -139,13 +139,15 @@ def busqueda_por_texto():
         desired = False
 
     try:
-        userId = data["userId"]
+        userId = int(data["userId"])
         users = db.users.find({}, {"_id": 0})
         users = list(users)
         ids = [x['uid'] for x in users]
         if userId not in ids:
             return f'Invalid ID, no user with Id = {userId}'
     except KeyError:
+        userId = False
+    except TypeError:
         userId = False
     #Caso que solo existan Forbidden
     if not desired and not required and not forbidden and not userId:
