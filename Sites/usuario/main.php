@@ -219,7 +219,7 @@
 															<span class="icon">
 																	<i class="fas fa-envelope"></i>
 															</span>
-									Busqueda de mensajes
+									Búsqueda de mensajes
 								</p>
 								<br>
 								<a href="form_text_search.php" class="button is-success">Buscar mensajes</a>

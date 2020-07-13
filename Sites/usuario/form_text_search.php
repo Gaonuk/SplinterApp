@@ -133,10 +133,10 @@
 				<div class="hero is-primary">
 					<div class="hero-body">
 						<h1 class="title">
-							Busqueda de mensajes
+							Búsqueda de mensajes
 						</h1>
 						<h2 class="subtitle">
-							Herramienta para buscar mensajes especificos
+							Herramienta para buscar mensajes específicos
 						</h2>
 					</div>
 				</div>
